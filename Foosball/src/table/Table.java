@@ -1,13 +1,13 @@
 package table;
 
 import java.awt.*;
-
 import java.awt.event.*;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
+import question1.Goalpost;
+import question1.Team;
 import ball.Ball;
-import question1.*;
 
 public class Table extends JFrame{
 	Team human;

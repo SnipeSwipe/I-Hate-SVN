@@ -1,6 +1,6 @@
 package ball;
 
-import table;
+import table.*;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

@@ -10,8 +10,6 @@ import javax.swing.JPanel;
 
 public class ContentPanel extends JPanel {
 	  Image bgimage = null;
-
-	  
 	  
 	  ContentPanel() {
 	    MediaTracker mt = new MediaTracker(this);

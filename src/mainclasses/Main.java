@@ -1,13 +1,13 @@
 package mainclasses;
 
+import javax.swing.JFrame;
+
+import table.Table;
+
 public class Main {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	    JFrame f = new Table();
+	    f.show();
+	  } //main
 }

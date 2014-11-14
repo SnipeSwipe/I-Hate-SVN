@@ -1,9 +1,12 @@
 package table;
 
 import java.awt.*;
+
 import java.awt.event.*;
+
 import javax.swing.*;
 
+import ball.Ball;
 import question1.*;
 
 public class Table extends JFrame{
@@ -23,9 +26,7 @@ public class Table extends JFrame{
 		setSize(1440,920); // default size is 0,0
 		setLocation(0,0); // default is 0,0 (top left corner)
 		//FullScreen();
-		
 		add(new ContentPanel());
-
 		setVisible(true);
 		
 		// Window Listeners
@@ -35,13 +36,6 @@ public class Table extends JFrame{
 		  	} //windowClosing
 		} );
 	  }
-	
-
-	
-	public static void main(String[] args) {
-	    JFrame f = new Table();
-	    f.show();
-	  } //main
 	
 }
 

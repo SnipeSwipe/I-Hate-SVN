@@ -48,13 +48,13 @@ public class Ball extends Thread {
 			int oldx = (int) ball.getX();
 			int oldy = (int) ball.getY();
 			int newx = oldx + dx;
-			if (newx + size > panel.getWidth() || newx < 0)
+			//if (newx + size > panel.getWidth() || newx < 0)
 				dx = -dx;
 			int newy = oldy + dy;
-			if (newy + size > panel.getHeight() || newy < 0)
+			//if (newy + size > panel.getHeight() || newy < 0)
 				dy = -dy;
 			ball.setFrame(newx, newy, size, size);
-			panel.repaint();
+			//panel.repaint();
 		}
 
 	}

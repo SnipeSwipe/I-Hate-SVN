@@ -147,7 +147,8 @@ public class ContentPanel extends JPanel {
                 //rechange2.setBounds(50, 50, 240, 225);
                 //System.out.println("in3");
                 //panel.add(rechange2);
-                panel.add(new Table());//new frame());
+                //panel.add(new Table());//new frame());
+                new PlayPanel();
                 validate();
                 repaint();
 

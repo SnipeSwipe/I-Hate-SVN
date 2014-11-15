@@ -1,4 +1,4 @@
-package question1;
+package table;
 
 public class Scoreboard {
 

@@ -28,8 +28,8 @@ public class ContentPanel extends JPanel {
     private JButton option3 = new JButton("4 3 3");
     private JButton option4 = new JButton("3 5 2");
     private JButton optionlevel1 = new JButton("Novice");
-    private JButton optionlevel3 = new JButton("Intermediate");
-    private JButton optionlevel2 = new JButton("Pro");
+    private JButton optionlevel2 = new JButton("Intermediate");
+    private JButton optionlevel3 = new JButton("Pro");
 
     private Table mainFrame;
     JPanel panel=new JPanel();
@@ -81,21 +81,21 @@ public class ContentPanel extends JPanel {
             	System.out.println("hello");//ContentPanel.this.add(gameGrid, BorderLayout.CENTER);
                 panel.removeAll();
                 //System.out.println("in2");
-                JPanel buttonPanel = new JPanel(new BorderLayout());
+                //JPanel buttonPanel = new JPanel(new BorderLayout());
                 JPanel buttonPanel1 = new JPanel(new BorderLayout());
                 JLabel form=new JLabel("             Choose A Formation for Players         ");
                 panel.add(form,BorderLayout.NORTH);
                 panel.setLayout(new FlowLayout());
-                buttonPanel.add(option1);
-                buttonPanel.add(option2);
+                panel.add(option1);
+                panel.add(option2);
                 panel.add(option3);
                 panel.add(option4);
-                panel.add(buttonPanel);
+                //panel.add(buttonPanel);
                 optionButton.addActionListener(new ButtonListener());
                 JLabel level=new JLabel("                        Choose A Level          ");
                 panel.add(level,BorderLayout.NORTH);
-                buttonPanel1.add(optionlevel1, BorderLayout.WEST);
-                buttonPanel1.add(optionlevel2,  BorderLayout.EAST);
+                panel.add(optionlevel1, BorderLayout.WEST);
+                panel.add(optionlevel2,  BorderLayout.EAST);
                 panel.add(optionlevel3, BorderLayout.EAST);
                 panel.add(buttonPanel1);
                 panel.add(optionButton, BorderLayout.SOUTH);

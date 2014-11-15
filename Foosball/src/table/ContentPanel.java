@@ -37,13 +37,11 @@ public class ContentPanel extends JPanel {
 
     public ContentPanel()
     {
-    	
     	add(panel);
-
         //this.mainFrame = mainFrame;
-      panel.setLayout(new BorderLayout(1,2));
-       //playButton.setLocation(100,500);
-       playButton.setBounds(1000,100,400,200);
+    	panel.setLayout(new BorderLayout(1,2));
+    	//playButton.setLocation(100,500);
+    	playButton.setBounds(1000,100,400,200);
         playButton.addActionListener(new ButtonListener());
         panel.add(playButton,BorderLayout.CENTER);
         /*startButton.setBounds(BUTTON_LOCATION_X
@@ -51,14 +49,11 @@ public class ContentPanel extends JPanel {
                   BUTTON_SIZE_X, 
                   BUTTON_SIZE_Y );*/
         
-
         try {
-            img = ImageIO.read(new File(
-                    "resources/7.jpg"));
+            img = ImageIO.read(new File("resources/7.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-   
 
     }
     @Override
@@ -67,9 +62,9 @@ public class ContentPanel extends JPanel {
         // paint the background image and scale it to fill the entire space
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
     }
+    
     public class ButtonListener implements ActionListener
     {
-
     	JPanel rechange2;
         @Override
         public void actionPerformed(ActionEvent event)
@@ -88,33 +83,23 @@ public class ContentPanel extends JPanel {
                 //System.out.println("in2");
                 JPanel buttonPanel = new JPanel(new BorderLayout());
                 JPanel buttonPanel1 = new JPanel(new BorderLayout());
-
-               
-               
-
-
-               JLabel form=new JLabel("             Choose A Formation for Players         ");
-               
-               panel.add(form,BorderLayout.NORTH);
-               panel.setLayout(new FlowLayout());
+                JLabel form=new JLabel("             Choose A Formation for Players         ");
+                panel.add(form,BorderLayout.NORTH);
+                panel.setLayout(new FlowLayout());
                 buttonPanel.add(option1);
                 buttonPanel.add(option2);
                 panel.add(option3);
                 panel.add(option4);
-
                 panel.add(buttonPanel);
                 optionButton.addActionListener(new ButtonListener());
-                
                 JLabel level=new JLabel("                        Choose A Level          ");
                 panel.add(level,BorderLayout.NORTH);
-                 buttonPanel1.add(optionlevel1, BorderLayout.WEST);
-                 buttonPanel1.add(optionlevel2,  BorderLayout.EAST);
-                 panel.add(optionlevel3, BorderLayout.EAST);
-                 panel.add(buttonPanel1);
-                 panel.add(optionButton, BorderLayout.SOUTH);
-
-
-               // rechange2 = new JPanel(null);
+                buttonPanel1.add(optionlevel1, BorderLayout.WEST);
+                buttonPanel1.add(optionlevel2,  BorderLayout.EAST);
+                panel.add(optionlevel3, BorderLayout.EAST);
+                panel.add(buttonPanel1);
+                panel.add(optionButton, BorderLayout.SOUTH);
+                // rechange2 = new JPanel(null);
                 //rechange2.setBackground(Color.white);
                 //rechange2.setSize(1440, 920);
                 //rechange2.setBounds(50, 50, 240, 225);
@@ -123,11 +108,9 @@ public class ContentPanel extends JPanel {
                 /*panel.add(optionButton, BorderLayout.CENTER);
                 */
 
-               // optionButton.addActionListener(new ButtonListener());
-
+                // optionButton.addActionListener(new ButtonListener());
                 validate();
                 repaint();
-
                 //System.out.println("in4");
                 setVisible(true);
            }
@@ -159,7 +142,5 @@ public class ContentPanel extends JPanel {
             /*mainFrame.remove(mainFrame.panel);
             mainFrame.validate();
         */}
-         
-    
     }
 }

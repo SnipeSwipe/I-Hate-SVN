@@ -40,13 +40,13 @@ public class Table2 extends JFrame {
 		});
 	}
 
-	public static void main(String... args) {
+	/*public static void main(String... args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new Table2().createAndDisplayGUI();
 			}
 		});
-	}
+	}*/
 }
 
 class GamePanel extends JPanel {

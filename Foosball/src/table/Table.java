@@ -23,8 +23,8 @@ public class Table extends JFrame{
 	
 	public Table() {
 		setTitle("Foosball");
-		setSize(1000,500); // default size is 0,0
-		setLocation(200,100); // default is 0,0 (top left corner)
+		setSize(1280,720); // default size is 0,0
+		setLocation(30,0); // default is 0,0 (top left corner)
 		//FullScreen();
 		add(new ContentPanel());
 		setVisible(true);

@@ -5,7 +5,6 @@ public class Team implements Runnable {
 	Attacker[] attackers;
 	Defender[] defenders;
 	Midfielder[] midfielders;
-	Goalkeeper goalie;
 	
 	public void run() {
 		

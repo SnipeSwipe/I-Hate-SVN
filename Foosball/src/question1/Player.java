@@ -1,12 +1,15 @@
 package question1;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.util.Random;
 
 import javax.swing.*;
 
-public class Player implements PlayingInterface  {
-	
+import table.PlayPanel;
 
+public abstract class Player  {
+	
 
 }

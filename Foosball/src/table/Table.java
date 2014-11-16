@@ -24,7 +24,7 @@ public class Table extends JFrame{
 		setSize(1280,720); // default size is 0,0
 		setLocation(30,0); // default is 0,0 (top left corner)
 		//FullScreen();
-		add(new ContentPanel());
+		add(new ContentPanel(this));
 		setVisible(true);
 		
 		// Window Listeners

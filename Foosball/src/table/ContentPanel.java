@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -37,13 +38,14 @@ public class ContentPanel extends JPanel {
 	private JButton optionlevel2 = new JButton("Intermediate");
 	private JButton optionlevel3 = new JButton("Pro");
 
-	private Table mainFrame;
+	//private Table mainFrame;
 	JPanel panel = new JPanel();
 	BufferedImage img;
 	
 	
 
-	public ContentPanel() {
+	public ContentPanel(Table mainFrame) {
+		//this.mainFrame = mainFrame;
 		add(panel);
 		// this.mainFrame = mainFrame;
 		panel.setLayout(new BorderLayout(1, 2));

@@ -20,6 +20,7 @@ import question1.*;
 public class PlayPanel extends JPanel{
 	
 	//BufferedImage img;
+		//Table table;
 		Ball b;
 		BufferedImage img;
 		Midfielder midfielders[];
@@ -44,6 +45,7 @@ public class PlayPanel extends JPanel{
 				e.printStackTrace();
 			}
 	    	
+	    	 Game.doCoinToss();
 	    	//System.out.println("helloanmoooollll");
 	    	 b=new Ball(this);
 			 b.start();
@@ -68,8 +70,8 @@ public class PlayPanel extends JPanel{
 				 midfielders[i]=new Midfielder(this,mid,549);
 
 				 mid+=120;
-				midThread[i]=new Thread(midfielders[i]); 
-				midThread[i].start();
+				 midThread[i]=new Thread(midfielders[i]); 
+				 midThread[i].start();
 			 }
 			 for(int i=0;i<3;i++)
 			 {

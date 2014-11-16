@@ -1,9 +1,11 @@
 package table;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
@@ -54,11 +56,11 @@ public class ContentPanel extends JPanel {
 		 * BUTTON_SIZE_X, BUTTON_SIZE_Y );
 		 */
 
-		try {
-			img = ImageIO.read(new File("resources/7.jpg"));
+		/*try {
+			img = ImageIO.read(new File("resourcfes/7.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 
@@ -70,7 +72,7 @@ public class ContentPanel extends JPanel {
 	}
 
 	public class ButtonListener implements ActionListener {
-		JPanel rechange2;
+		//JPanel rechange2;
 
 		@Override
 		public void actionPerformed(ActionEvent event) {
@@ -82,6 +84,8 @@ public class ContentPanel extends JPanel {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				setBackground(Color.BLACK);
+				setOpaque(true);
 				System.out.println("hello");// ContentPanel.this.add(gameGrid,
 											// BorderLayout.CENTER);
 				panel.removeAll();
@@ -121,34 +125,36 @@ public class ContentPanel extends JPanel {
 				setVisible(true);
 			}
 			if (buttonText.equals("Submit")) {
-				System.out.println("hello111");
-				// ContentPanel.this.add(gameGrid, BorderLayout.CENTER);
 				panel.removeAll();
+
+				System.out.println("hello111");
+				//panel.setBackground(Color.RED);
+		    	//panel.setBackground(Color.red);
+
+				setOpaque(true);
+		        //setLayout(new GridLayout(1,1));
+
+
+				// ContentPanel.this.add(gameGrid, BorderLayout.CENTER);
 				// System.out.println("in2");
-				rechange2 = new JPanel(null);
-				try {
-					img = ImageIO.read(new File("resources/field.jpg"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				//rechange2 = new JPanel(null);
 				System.out.println("test");
 				// rechange2.setBackground(Color.white);
-				// rechange2.setSize(1440, 920);
 				// rechange2.setBounds(50, 50, 240, 225);
 				// System.out.println("in3");
 				// panel.add(rechange2);
 				// panel.add(new Table());//new frame());
-				// new PlayPanel();
+				setVisible(true);
+		    	
+				panel.add(new PlayPanel());
 				validate();
 				repaint();
 				// Create an instance of a ball
-				Ball b = new Ball(rechange2);
-				b.start();
+
 
 				
 
 				// System.out.println("in4");
-				setVisible(true);
 			}
 
 			/*

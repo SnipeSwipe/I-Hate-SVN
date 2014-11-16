@@ -7,12 +7,10 @@ import javax.swing.JFrame;
 
 import question1.Goalpost;
 import question1.Team;
-import ball.Ball;
 
 public class Table extends JFrame{
 	Team human;
 	Team ai;
-	Ball ball;
 	Goalpost humanGoalpost, aiGoalpost;
 	
 	public void FullScreen() { 
@@ -23,8 +21,8 @@ public class Table extends JFrame{
 	
 	public Table() {
 		setTitle("Foosball");
-		setSize(1440,920); // default size is 0,0
-		setLocation(0,0); // default is 0,0 (top left corner)
+		setSize(1280,720); // default size is 0,0
+		setLocation(30,0); // default is 0,0 (top left corner)
 		//FullScreen();
 		add(new ContentPanel());
 		setVisible(true);

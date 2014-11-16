@@ -37,7 +37,7 @@ public class ContentPanel extends JPanel {
 	private JButton optionlevel2 = new JButton("Intermediate");
 	private JButton optionlevel3 = new JButton("Pro");
 
-	//private Table mainFrame;
+	private Table mainFrame;
 	JPanel panel = new JPanel();
 	BufferedImage img;
 	

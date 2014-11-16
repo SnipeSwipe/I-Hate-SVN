@@ -7,12 +7,10 @@ import javax.swing.JFrame;
 
 import question1.Goalpost;
 import question1.Team;
-import ball.Ball;
 
 public class Table extends JFrame{
 	Team human;
 	Team ai;
-	Ball ball;
 	Goalpost humanGoalpost, aiGoalpost;
 	
 	public void FullScreen() { 

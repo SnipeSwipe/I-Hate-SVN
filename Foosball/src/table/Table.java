@@ -20,12 +20,11 @@ public class Table extends JFrame{
 	}
 	
 	public Table() {
-		setTitle("Foosball");
-		setSize(1280,720); // default size is 0,0
-		setLocation(30,0); // default is 0,0 (top left corner)
-		//FullScreen();
-		add(new ContentPanel());
-		setVisible(true);
+		this.setTitle("Foosball");
+		this.setSize(1280,720); // default size is 0,0
+		this.setLocation(30,0); // default is 0,0 (top left corner)
+		this.add(new ContentPanel());
+		this.setVisible(true);
 		
 		// Window Listeners
 		addWindowListener(new WindowAdapter() {

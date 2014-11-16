@@ -48,6 +48,8 @@ public class Ball extends Thread{
 			// calculate new position and move ball
 			int oldx=(int) ball.getX();
 			int oldy=(int) ball.getY();
+			//let's check if the goal has been reached, man. Is there a point in life otherwise?
+			//if (oldx)
 			int newx=oldx + dx;
 			System.out.println(panel.getWidth() + " " + panel.getHeight());
 			

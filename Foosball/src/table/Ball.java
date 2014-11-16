@@ -1,80 +1,73 @@
 package table;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-
-import javax.swing.JPanel;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.util.Random;
 
 public class Ball extends Thread{
-	public JPanel box;
-	public static final int XSIZE = 10;
-	public static final int YSIZE = 10;
-	public int x = 10;
-	public int y = 10;
-	public int dx = 5;
-	public int dy = 5;
-	DrawPanel drawPanel;
-
-	class DrawPanel extends JPanel {
-		
-		public void paintComponent(Graphics g){
-			g.setColor(Color.red);
-			g.fillOval(x,y,40,40);
-		}
-	}
+	private Ellipse2D.Double ball;
+	private boolean isMoving;
+	private int size, speed;             
+	private int dx, dy;          
+	private Color color;
+	private PlayPanel panel; 
 	
-	public Ball(JPanel b) {
-		box = b;
+	public Ball(PlayPanel panel){
+		this.panel = panel;
+		isMoving = true;   
+		size=20;
+		speed=50;
+		int startx=0;
+		int starty=0;
+		dx=10;
+		dy=10;
+		if(dx==0 && dy==0)  
+			dy=1;
+		ball=new Ellipse2D.Double(startx, starty, size, size);
+		Random rand = new Random();
+		color=new Color(0,0,0);
 	}
 
-	public void draw() {
-		
-		drawPanel = new DrawPanel();
-		//g.dispose();
+
+	public void draw(Graphics2D g2d){
+		if (ball!= null){
+			g2d.setColor(color);
+			g2d.fill(ball);
+		}
 	}
 
-	public void move() {
-		
-		System.out.println("YO MAMMA");
-		if (!box.isVisible())
-			return;
-		Graphics g = box.getGraphics();
-		//g.setXORMode(box.getBackground());
-		//g.fillOval(x, y, XSIZE, YSIZE);
-		x += dx;
-		y += dy;
-		Dimension d = box.getSize();
-		if (x < 0) {
-			x = 0;
-			dx = -dx;
-		}
-		if (x + XSIZE >= d.width) {
-			x = d.width - XSIZE;
-			dx = -dx;
-		}
-		if (y < 0) {
-			y = 0;
-			dy = -dy;
-		}
-		if (y + YSIZE >= d.height) {
-			y = d.height - YSIZE;
-			dy = -dy;
-		}
-		//g.fillOval(x, y, XSIZE, YSIZE);
-		drawPanel.repaint();
-		//g.dispose();
-	}
-
-	public void run() {
-		try {
-			draw();
-			while (true) {
-				move();
-				sleep(1000);
+	public void run(){
+		while(isMoving){
+			try {
+				Thread.sleep(speed);
 			}
-		} catch (InterruptedException e) {
+			catch (InterruptedException e){
+				e.printStackTrace();}
+
+			// calculate new position and move ball
+			int oldx=(int) ball.getX();
+			int oldy=(int) ball.getY();
+			int newx=oldx + dx;
+			System.out.println(panel.getWidth() + " " + panel.getHeight());
+			
+			if(newx+size>panel.getWidth()||newx<0){
+		
+				System.out.println("NOT HERE");
+				dx=-dx;
+			}
+			else dx=+dx;
+			int newy=oldy+dy;
+			if(newy+size>panel.getHeight()||newy<0) 
+				dy=-dy; 
+			else dy=+dy; 
+			
+			ball.setFrame(newx, newy, size, size);
+			panel.repaint();
+			System.out.println("Yo ma is nice");
+			System.out.println(oldx + " " + oldy);
+
 		}
 	}
-
 }
+

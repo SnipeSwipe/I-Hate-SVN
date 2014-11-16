@@ -2,6 +2,7 @@ package mainclasses;
 
 import javax.swing.JFrame;
 
+import question1.*;
 import table.Table;
 
 public class Main {

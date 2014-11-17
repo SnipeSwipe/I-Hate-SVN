@@ -24,6 +24,7 @@ public class Ball extends Thread{
 	private int dx, dy;          
 	private Color color;
 	private PlayPanel panel; 
+	Scoreboard board=new Scoreboard();
 	JLabel image;
 	int startx=0;
 	int starty=0;
@@ -92,6 +93,7 @@ public class Ball extends Thread{
 			System.out.println(newx +"  "+newy);
 			if(((newy>=234)&&(newy<=453))&&(newx >= panel.getWidth()-20)){
 				BufferedImage myPicture;
+				board.increaseScoreHuman();
 				try {
 					myPicture = ImageIO.read(new File("resources/goal.png"));
 					JLabel picLabel = new JLabel(new ImageIcon(myPicture));
@@ -109,6 +111,8 @@ public class Ball extends Thread{
 				}
 			else if(((newy>=234)&&(newy<=453))&&(newx ==0)){
 					BufferedImage myPicture;
+					board.increaseScoreAI();
+
 					try {
 						myPicture = ImageIO.read(new File("resources/goal.png"));
 						JLabel picLabel = new JLabel(new ImageIcon(myPicture));

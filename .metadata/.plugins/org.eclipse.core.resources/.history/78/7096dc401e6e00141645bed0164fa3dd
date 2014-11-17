@@ -49,6 +49,7 @@ public class PlayPanel extends JPanel implements ActionListener {
 		}
 
 		Game.doCoinToss();
+		// System.out.println("helloanmoooollll");
 		b = new Ball(this);
 		b.start();
 		midfielders = new Midfielder[4];

@@ -64,6 +64,7 @@ public class Ball extends Thread{
 			
 			ball.setFrame(newx, newy, size, size);
 			panel.repaint();
+			System.out.println("Yo ma is nice");
 			System.out.println(oldx + " " + oldy);
 
 		}

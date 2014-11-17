@@ -140,7 +140,7 @@ public class ContentPanel extends JPanel {
 				// ContentPanel.this.add(gameGrid, BorderLayout.CENTER);
 				// System.out.println("in2");
 				//rechange2 = new JPanel(null);
-				//System.out.println("test");
+				System.out.println("test");
 				// rechange2.setBackground(Color.white);
 				// rechange2.setBounds(50, 50, 240, 225);
 				// System.out.println("in3");

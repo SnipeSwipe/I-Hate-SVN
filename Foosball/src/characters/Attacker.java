@@ -10,9 +10,14 @@ import javax.swing.JPanel;
 
 import table.PlayPanel;
 
-public class Attacker extends Player implements Runnable {
+public class Attacker extends Player {
 
-	private Rectangle2D.Double player;
+	public Attacker(PlayPanel panel,int starty ,int startx, int dy)
+	{
+		super(panel, starty, startx, 6);
+	}
+	
+	/*private Rectangle2D.Double player;
 	private boolean isMoving;
 	private int size, speed;             
 	private int dx, dy;          
@@ -57,12 +62,12 @@ public class Attacker extends Player implements Runnable {
 			int newx=oldx + dx;
 			System.out.println(panel.getWidth() + " " + panel.getHeight());
 			
-			/*if(newx+size>panel.getWidth()||newx<0){
+			if(newx+size>panel.getWidth()||newx<0){
 		
 				System.out.println("NOT HERE");
 				dx=-dx;
 			}
-			else dx=+dx;*/
+			else dx=+dx;
 			int newy=oldy+dy;
 			if(newy+size>panel.getHeight()||newy<0) 
 				dy=-dy; 
@@ -80,6 +85,6 @@ public class Attacker extends Player implements Runnable {
 	public void kick() {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 }

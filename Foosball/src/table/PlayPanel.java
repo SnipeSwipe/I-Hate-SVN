@@ -65,26 +65,26 @@ public class PlayPanel extends JPanel implements ActionListener {
 		int defend = 240;// 2
 		int GK = 360;// 1 player
 		for (int i = 0; i < 4; i++) {
-			midfielders[i] = new Midfielder(this, mid, 549);
+			midfielders[i] = new Midfielder(this, mid, 549, 1);
 			mid += 120;
 			midThread[i] = new Thread(midfielders[i]);
 			midThread[i].start();
 		}
 		for (int i = 0; i < 3; i++) {
-			attackfielders[i] = new Attacker(this, mid, 913);
+			attackfielders[i] = new Attacker(this, attack, 913, 1);
 			attack += 160;
 			attackThread[i] = new Thread(attackfielders[i]);
 			attackThread[i].start();
 		}
 		for (int i = 0; i < 1; i++) {
-			GKfielders[i] = new Goalkeeper(this, mid, 59);
+			GKfielders[i] = new Goalkeeper(this, GK, 59, 1);
 			GK += 360;
 			GKThread[i] = new Thread(GKfielders[i]);
 			GKThread[i].start();
 
 		}
 		for (int i = 0; i < 2; i++) {
-			defendfielders[i] = new Defender(this, mid, 185);
+			defendfielders[i] = new Defender(this, defend, 185, 1);
 			defend += 240;
 			defendThread[i] = new Thread(defendfielders[i]);
 			defendThread[i].start();

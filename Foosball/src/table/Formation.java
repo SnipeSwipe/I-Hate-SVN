@@ -2,9 +2,9 @@ package table;
 
 public class Formation 
 {
-	int noOfDefenders;
-	int noOfMidfielders;
-	int noOfAttackers;
+	public int noOfDefenders;
+	public int noOfMidfielders;
+	public int noOfAttackers;
 	
 	public Formation(int noOfDefenders, int noOfMidfielders, int noOfAttackers)
 	{

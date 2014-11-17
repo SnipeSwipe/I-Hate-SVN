@@ -20,7 +20,7 @@ public class Midfielder extends Player implements Runnable {
 	private Color color;
 	private PlayPanel panel;
 	int starty, startx;
-	int end = 0;
+	int end=0;
 
 	public Midfielder(PlayPanel panel, int starty, int startx) {
 		this.panel = panel;
@@ -37,7 +37,7 @@ public class Midfielder extends Player implements Runnable {
 		Random rand = new Random();
 		color = new Color(255, 255, 255);
 	}
-
+	
 	public Midfielder(PlayPanel panel, int starty, int startx, int end) {
 		this.panel = panel;
 		isMoving = true;
@@ -45,7 +45,7 @@ public class Midfielder extends Player implements Runnable {
 		speed = 50;
 		this.startx = startx;
 		this.starty = starty;
-		this.end = end;
+		this.end=end;
 		dx = 10;
 		dy = 10;
 		if (dx == 0 && dy == 0)
@@ -82,12 +82,17 @@ public class Midfielder extends Player implements Runnable {
 			 * System.out.println("NOT HERE"); dx=-dx; } else dx=+dx;
 			 */
 			int newy = oldy + dy;
-
-			// Work in Progress
-			if (newy + size > (panel.getHeight() - end) || newy < (0 + end)) {
+			
+			
+			//Work in Progress
+			/*if (newy + size > (panel.getHeight()-end) || newy < (0+end)) {
+				dy = -dy;
+			}*/
+			
+			if (newy + size > (panel.getHeight()-end) || newy < (0+end)) {
 				dy = -dy;
 			}
-
+			
 			player.setFrame(startx, newy, size, size);
 			panel.repaint();
 			System.out.println("Yo ma is nice");

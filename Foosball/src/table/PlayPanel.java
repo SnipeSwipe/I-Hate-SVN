@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
@@ -17,7 +19,7 @@ import javax.swing.JPanel;
 
 import question1.*;
 
-public class PlayPanel extends JPanel{
+public class PlayPanel extends JPanel implements ActionListener{
 	
 	//BufferedImage img;
 		//Table table;
@@ -139,6 +141,19 @@ public class PlayPanel extends JPanel{
 				GKfielders[i].draw(g2d);
 			 }
 			
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			// TODO Auto-generated method stub
+			
+		}
+		
+		public abstract class Player extends JPanel
+		{
+			
+
 		}
 	    	
 }

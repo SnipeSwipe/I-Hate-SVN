@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import question1.*;
+import characters.*;
 
 public class PlayPanel extends JPanel implements ActionListener {
 
@@ -36,9 +36,6 @@ public class PlayPanel extends JPanel implements ActionListener {
 
 	Goalkeeper GKfielders[];
 	Thread GKThread[];
-
-	// private JButton playButton = new JButton("Hellloooo");
-	// private Table mainFrame;
 
 	public PlayPanel() {
 		setPreferredSize(new Dimension(1280, 670));
@@ -63,14 +60,14 @@ public class PlayPanel extends JPanel implements ActionListener {
 		defendfielders = new Defender[4];
 		defendThread = new Thread[4];
 
-		int mid = 180;// 4
+		int mid = 180, mid2 = 0;// 4
 		int attack = 200;// 3
 		int defend = 240;// 2
 		int GK = 360;// 1 player
 		for (int i = 0; i < 4; i++) {
-			midfielders[i] = new Midfielder(this, mid, 549);
-
+			midfielders[i] = new Midfielder(this, mid, 549, mid2);
 			mid += 120;
+			mid2 = mid2 + 120;
 			midThread[i] = new Thread(midfielders[i]);
 			midThread[i].start();
 		}

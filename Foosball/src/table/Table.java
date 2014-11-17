@@ -5,8 +5,8 @@ import java.awt.event.*;
 
 import javax.swing.JFrame;
 
-import question1.Goalpost;
-import question1.Team;
+import characters.Goalpost;
+import characters.Team;
 
 public class Table extends JFrame{
 	Team human;

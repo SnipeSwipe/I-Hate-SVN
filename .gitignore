@@ -3,3 +3,4 @@
 *.DS_Store
 *.swp
 *.out
+.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi

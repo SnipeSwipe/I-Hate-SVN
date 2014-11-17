@@ -3,6 +3,9 @@ package characters;
 import javax.swing.JOptionPane;
 
 public class Game {
+	static String titleMessage = null;
+	static String dialogMessage = null;
+	static String whoStartsMessage = null;
 	public void GameOver(){
 		
 	}
@@ -27,9 +30,7 @@ public class Game {
 	}
 	
 	public static void showResultDialog(int userChoice){
-		String titleMessage = null;
-		String dialogMessage = null;
-		String whoStartsMessage = null;
+		
 		int headsOrTails = (int)(Math.random()*2);
 		Object[] options = {"Play!"};
 		
@@ -50,7 +51,12 @@ public class Game {
 		int n = JOptionPane.showOptionDialog(null, dialogMessage, titleMessage, JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, null);
 		//System.out.println(userChoice);
 	}
-	
+	public String result()
+	{
+			return titleMessage;
+		
+		
+	}
 	public static String convert(int x){
 		String result = null;
 		

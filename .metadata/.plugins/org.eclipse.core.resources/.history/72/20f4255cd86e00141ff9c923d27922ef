@@ -42,7 +42,7 @@ public class Ball extends Thread {
 		dy = 10;
 		if (dx == 0 && dy == 0)
 			dy = 1;
-		// <-------gives some error---> irrelevant
+		// <-------gives some error--->
 		/*
 		 * if(game.result().equals("You win the Toss")){ startx=59; starty=360;
 		 * ball=new Ellipse2D.Double(startx, starty, size, size); } else {

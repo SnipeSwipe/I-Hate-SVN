@@ -1,13 +1,10 @@
 package table;
 
 import java.awt.Color;
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
-
-//Redundant Class. Delete if there's no use anymore
 
 public class BallA extends Thread{
 	public JPanel box;

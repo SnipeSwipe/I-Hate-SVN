@@ -42,7 +42,7 @@ public class Ball extends Thread {
 		dy = 10;
 		if (dx == 0 && dy == 0)
 			dy = 1;
-		// <-------gives some error---> irrelevant
+		// <-------gives some error--->
 		/*
 		 * if(game.result().equals("You win the Toss")){ startx=59; starty=360;
 		 * ball=new Ellipse2D.Double(startx, starty, size, size); } else {
@@ -94,15 +94,16 @@ public class Ball extends Thread {
 				board.increaseScoreHuman();
 				try {
 					myPicture = ImageIO.read(new File("resources/goal.png"));
-					JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-					panel.add(picLabel);
-					picLabel.setBounds(350, 120, 600, 350);
-					picLabel.setOpaque(true);
-					sleep(1000);
-					panel.remove(picLabel);
+					
 				} catch (IOException | InterruptedException e1) {
 					e1.printStackTrace();
 				}
+				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+				panel.add(picLabel);
+				picLabel.setBounds(350, 120, 600, 350);
+				picLabel.setOpaque(true);
+				sleep(4000);
+				panel.remove(picLabel);
 
 				ball.setFrame(59, 360, size, size);
 			} else if (((newy >= 234) && (newy <= 453)) && (newx == 0)) {
@@ -115,7 +116,7 @@ public class Ball extends Thread {
 					panel.add(picLabel);
 					picLabel.setBounds(350, 120, 600, 350);
 					picLabel.setOpaque(true);
-					sleep(1000);
+					sleep(4000);
 					panel.remove(picLabel);
 				} catch (IOException | InterruptedException e1) {
 					// TODO Auto-generated catch block
@@ -125,10 +126,11 @@ public class Ball extends Thread {
 				ball.setFrame(1221, 360, size, size);
 			}
 
-			else {
+			else
 				ball.setFrame(newx, newy, size, size);
-			}
 			panel.repaint();
+			// System.out.println(oldx + " " + oldy);
+
 		}
 	}
 }

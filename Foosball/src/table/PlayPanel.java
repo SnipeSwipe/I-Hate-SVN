@@ -23,6 +23,8 @@ public class PlayPanel extends JPanel implements ActionListener {
 
 	// BufferedImage img;
 	// Table table;
+	ListenKey l=new ListenKey("a");
+
 	Ball b;
 	BufferedImage img;
 	Midfielder midfielders[];

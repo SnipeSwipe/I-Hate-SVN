@@ -38,14 +38,12 @@ public class ContentPanel extends JPanel {
 	private JButton optionlevel2 = new JButton("Intermediate");
 	private JButton optionlevel3 = new JButton("Pro");
 
-	//private Table mainFrame;
+	// private Table mainFrame;
 	JPanel panel = new JPanel();
 	BufferedImage img;
-	
-	
 
 	public ContentPanel(Table mainFrame) {
-		//this.mainFrame = mainFrame;
+		// this.mainFrame = mainFrame;
 		add(panel);
 		// this.mainFrame = mainFrame;
 		panel.setLayout(new BorderLayout(1, 2));
@@ -53,16 +51,6 @@ public class ContentPanel extends JPanel {
 		playButton.setBounds(1000, 100, 400, 200);
 		playButton.addActionListener(new ButtonListener());
 		panel.add(playButton, BorderLayout.CENTER);
-		/*
-		 * startButton.setBounds(BUTTON_LOCATION_X , BUTTON_LOCATION_Y,
-		 * BUTTON_SIZE_X, BUTTON_SIZE_Y );
-		 */
-
-		/*try {
-			img = ImageIO.read(new File("resourcfes/7.jpg"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 
 	}
 
@@ -74,7 +62,7 @@ public class ContentPanel extends JPanel {
 	}
 
 	public class ButtonListener implements ActionListener {
-		//JPanel rechange2;
+		// JPanel rechange2;
 
 		@Override
 		public void actionPerformed(ActionEvent event) {
@@ -113,54 +101,45 @@ public class ContentPanel extends JPanel {
 				panel.add(buttonPanel1);
 				panel.add(optionButton, BorderLayout.SOUTH);
 
-				// rechange2 = new JPanel(null);
 				// rechange2.setBackground(Color.white);
 				// rechange2.setSize(1440, 920);
 				// rechange2.setBounds(50, 50, 240, 225);
-				// System.out.println("in3");
+
 				// panel.add(rechange2);
 				// panel.add(optionButton, BorderLayout.CENTER);
 				// optionButton.addActionListener(new ButtonListener());
 				validate();
 				repaint();
-				// System.out.println("in4");
+
 				setVisible(true);
 			}
 			if (buttonText.equals("Submit")) {
 				panel.removeAll();
 
-				//System.out.println("hello111");
-				//panel.setBackground(Color.RED);
-		    	//panel.setBackground(Color.red);
+				// panel.setBackground(Color.RED);
+				// panel.setBackground(Color.red);
 
 				setOpaque(true);
-		        //setLayout(new GridLayout(1,1));
-
+				// setLayout(new GridLayout(1,1));
 
 				// ContentPanel.this.add(gameGrid, BorderLayout.CENTER);
 				// System.out.println("in2");
-				//rechange2 = new JPanel(null);
-				//System.out.println("test");
+				// rechange2 = new JPanel(null);
+				// System.out.println("test");
 				// rechange2.setBackground(Color.white);
 				// rechange2.setBounds(50, 50, 240, 225);
 				// System.out.println("in3");
 				// panel.add(rechange2);
 				// panel.add(new Table());//new frame());
 				setVisible(true);
-		    	
+
 				panel.add(new PlayPanel());
 				validate();
 				repaint();
 				// Create an instance of a ball
 
-
-				
-
-				// System.out.println("in4");
 			}
 
-			/*
-			 * mainFrame.remove(mainFrame.panel); mainFrame.validate();
-			 */}
+		}
 	}
 }

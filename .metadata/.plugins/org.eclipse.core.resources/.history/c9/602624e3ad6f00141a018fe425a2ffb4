@@ -1,0 +1,52 @@
+package table;
+
+public class ListenKey {
+	JLabel label;
+
+	public KeyListenerTester(String s) {
+		super(s);
+		JPanel p = new JPanel();
+		label = new JLabel("");
+		p.add(label);
+		add(p);
+		addKeyListener(this);
+		setSize(0, 0);
+
+		setVisible(true);
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			System.out.println("Right key typed");
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			System.out.println("Left key typed");
+		}
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			System.out.println("Right key pressed");
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			System.out.println("Left key pressed");
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			System.out.println("Right key Released");
+		}
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			System.out.println("Left key Released");
+		}
+	}
+}

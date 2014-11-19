@@ -36,19 +36,13 @@ public class Ball extends Thread {
 		this.panel = panel;
 		isMoving = true;
 		size = 20;
-		speed = 10;
+		speed = 20;
 
 		dx = 10;
 		dy = 10;
 		if (dx == 0 && dy == 0)
 			dy = 1;
-		// <-------gives some error---> irrelevant
-		/*
-		 * if(game.result().equals("You win the Toss")){ startx=59; starty=360;
-		 * ball=new Ellipse2D.Double(startx, starty, size, size); } else {
-		 * startx=1221; starty=360; ball=new Ellipse2D.Double(startx, starty,
-		 * size, size); }
-		 */
+
 		ball = new Ellipse2D.Double(startx, starty, size, size);
 
 		Random rand = new Random();
@@ -60,6 +54,11 @@ public class Ball extends Thread {
 			g2d.setColor(color);
 			g2d.fill(ball);
 		}
+	}
+
+	public boolean collision() {
+		// return ball.getBounds2D().intersects(player.getBounnds2D);
+		return false;
 	}
 
 	public void run() {
@@ -77,16 +76,16 @@ public class Ball extends Thread {
 			// System.out.println(panel.getWidth() + " " + panel.getHeight());
 
 			if (newx + size > panel.getWidth() || newx < 0) {
-
-				System.out.println("NOT HERE");
 				dx = -dx;
 			} else
 				dx = +dx;
 			newy = oldy + dy;
-			if (newy + size > panel.getHeight() || newy < 0)
+			if (newy + size > panel.getHeight() || newy < 0) {
 				dy = -dy;
-			else
+			} else {
 				dy = +dy;
+			}
+
 			System.out.println(newx + "  " + newy);
 			if (((newy >= 234) && (newy <= 453))
 					&& (newx >= panel.getWidth() - 20)) {
@@ -118,7 +117,6 @@ public class Ball extends Thread {
 					sleep(1000);
 					panel.remove(picLabel);
 				} catch (IOException | InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 

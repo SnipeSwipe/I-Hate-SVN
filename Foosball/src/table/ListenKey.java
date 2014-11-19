@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ListenKey extends JFrame implements KeyListener{
+	
 	JLabel label;
 
 	public ListenKey(String s) {

@@ -43,10 +43,6 @@ public abstract class Player implements PlayingInterface
 		this.min = 0;
 		this.color = color;
 
-		if (dx == 0 && dy == 0) {
-			dy = 1;
-		}
-
 		player = new Rectangle2D.Double(startx, starty, size, size);
 
 		//color = new Color(255, 255, 255);

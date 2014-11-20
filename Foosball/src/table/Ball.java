@@ -18,7 +18,8 @@ import javax.swing.JPanel;
 import characters.Game;
 
 public class Ball extends Thread {
-
+		
+	private static Ball instance = null;  //singleton instance field
 	private Ellipse2D.Double ball;
 	private boolean isMoving;
 	private int size, speed;
@@ -32,8 +33,16 @@ public class Ball extends Thread {
 	private Scoreboard board;
 	JLabel image;
 	Game game;
+		
+	public static Ball getInstance(PlayPanel panel){  //a unique ball is only instantiated once
+		
+		if(instance == null){
+			instance = new Ball(panel);
+		}		
+		return instance;		
+	}
 
-	public Ball(PlayPanel panel) {
+	private Ball(PlayPanel panel) {  //private constructor to prevent instantiation from outside
 		
 		this.panel = panel;
 		isMoving = true;

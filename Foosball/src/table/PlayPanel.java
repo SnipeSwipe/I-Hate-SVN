@@ -51,9 +51,9 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		computerThread = new Thread(computerTeam);
 		computerThread.start();
 		
-		b = new Ball(this);
+		b = Ball.getInstance(this);
 		b.start();
-
+		
 		// humanThread = new Thread(humanTeam);
 		// humanThread.start();
 

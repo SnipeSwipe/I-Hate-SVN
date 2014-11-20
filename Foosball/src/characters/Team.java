@@ -13,11 +13,11 @@ import table.PlayPanel;
 public class Team implements Runnable
 {
 	TeamMode teamMode;
-	Formation formation;
-	Defender[] defenders;
-	Midfielder[] midfielders;
-	Attacker[] attackers;
-	Goalkeeper goalkeeper;
+	public Formation formation;
+	public Defender[] defenders;
+	public Midfielder[] midfielders;
+	public Attacker[] attackers;
+	public Goalkeeper goalkeeper;
 	PlayPanel panel;
 	Color color;
 	boolean isMoving;
@@ -189,6 +189,8 @@ public class Team implements Runnable
 			//attackY+=convertNumberToCoordinateGap(this.formation.noOfAttackers);
 		}
 	}
+	
+	public 
 	
 	static int convertNumberToCoordinate(int number)
 	{

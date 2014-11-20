@@ -55,6 +55,10 @@ public abstract class Player implements PlayingInterface
 		panel.requestFocusInWindow();
 	}
 	
+	public Rectangle2D.Double getPlayerRect() {
+		return this.player;
+	}
+	
 	public void move()
 	{
 		if(this.starty<=this.min || this.starty>=this.max)
@@ -130,9 +134,9 @@ public abstract class Player implements PlayingInterface
 	}*/
 
 	@Override
-	public void kick() 
+	public int kick() 
 	{
-		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

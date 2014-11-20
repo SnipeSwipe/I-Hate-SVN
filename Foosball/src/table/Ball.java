@@ -85,7 +85,55 @@ public class Ball extends Thread {
 			} else {
 				dy = +dy;
 			}
-
+			
+			//detecting collisions
+			for(int i=0; i<this.panel.humanTeam.formation.noOfAttackers; i++) {
+				if (this.ball.intersects(this.panel.humanTeam.attackers[i].getPlayerRect())) {
+					//whoever fixes this code, this should be in the kick() method
+					this.dx = Math.abs(this.dx);
+				}
+			}
+			
+			for(int i=0; i<this.panel.humanTeam.formation.noOfDefenders; i++) {
+				if (this.ball.intersects(this.panel.humanTeam.defenders[i].getPlayerRect())) {
+					this.dx = Math.abs(this.dx);
+				}
+			}
+			
+			for(int i=0; i<this.panel.humanTeam.formation.noOfMidfielders; i++) {
+				if (this.ball.intersects(this.panel.humanTeam.midfielders[i].getPlayerRect())) {
+					this.dx = Math.abs(this.dx);
+				}
+			}
+			
+			if (this.ball.intersects(this.panel.humanTeam.goalkeeper.getPlayerRect())) {
+				this.dx = (-1) * Math.abs(this.dx);
+			}
+			 //ai
+			for(int i=0; i<this.panel.computerTeam.formation.noOfAttackers; i++) {
+				if (this.ball.intersects(this.panel.computerTeam.attackers[i].getPlayerRect())) {
+					//whoever fixes this code, this should be in the kick() method
+					this.dx = (-1) * Math.abs(this.dx);
+				}
+			}
+			
+			for(int i=0; i<this.panel.computerTeam.formation.noOfDefenders; i++) {
+				if (this.ball.intersects(this.panel.computerTeam.defenders[i].getPlayerRect())) {
+					this.dx =  (-1) * Math.abs(this.dx);
+				}
+			}
+			
+			for(int i=0; i<this.panel.humanTeam.formation.noOfMidfielders; i++) {
+				if (this.ball.intersects(this.panel.computerTeam.midfielders[i].getPlayerRect())) {
+					this.dx =  (-1) * Math.abs(this.dx);
+				}
+			}
+			
+			if (this.ball.intersects(this.panel.computerTeam.goalkeeper.getPlayerRect())) {
+				this.dx =  (-1) * Math.abs(this.dx);
+			}
+			//end of detecting collisions
+			
 			//System.out.println(newx + "  " + newy);
 			if (((newy >= 234) && (newy <= 453))
 					&& (newx >= panel.getWidth() - 20)) {

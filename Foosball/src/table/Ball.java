@@ -18,36 +18,37 @@ import javax.swing.JPanel;
 import characters.Game;
 
 public class Ball extends Thread {
-	//Test by Anmol
+
 	private Ellipse2D.Double ball;
 	private boolean isMoving;
 	private int size, speed;
 	private int dx, dy;
+	int startx, starty;
+	int newx, newy;
+	int xBound, yBound; //width and height of field in pixels (Hard-code or pass as parameters)
+	
 	private Color color;
 	private PlayPanel panel;
-	Scoreboard board = new Scoreboard();
+	private Scoreboard board;
 	JLabel image;
-	int startx = 0;
-	int starty = 0;
-	Game game = new Game();
-	int newy = 0;
-	int newx = 0;
+	Game game;
 
 	public Ball(PlayPanel panel) {
+		
 		this.panel = panel;
 		isMoving = true;
 		size = 20;
 		speed = 20;
-
-		dx = 10;
-		dy = 10;
-		if (dx == 0 && dy == 0)
-			dy = 1;
-
+		dx = dy = 10;
+		newx = newy = startx = starty = 0;
+		xBound = 1280;
+		yBound = 670;
+		
 		ball = new Ellipse2D.Double(startx, starty, size, size);
-
-		Random rand = new Random();
 		color = new Color(204, 0, 0);
+		game = new Game();
+		board = new Scoreboard();
+		
 	}
 
 	public void draw(Graphics2D g2d) {
@@ -63,6 +64,7 @@ public class Ball extends Thread {
 	}
 
 	public void run() {
+		
 		while (isMoving) {
 			try {
 				Thread.sleep(speed);
@@ -71,21 +73,7 @@ public class Ball extends Thread {
 			}
 
 			// calculate new position and move ball
-			int oldx = (int) ball.getX();
-			int oldy = (int) ball.getY();
-			newx = oldx + dx;
-			// System.out.println(panel.getWidth() + " " + panel.getHeight());
-
-			if (newx + size > panel.getWidth() || newx < 0) {
-				dx = -dx;
-			} else
-				dx = +dx;
-			newy = oldy + dy;
-			if (newy + size > panel.getHeight() || newy < 0) {
-				dy = -dy;
-			} else {
-				dy = +dy;
-			}
+			moveBall();
 			
 			//detecting collisions
 			for(int i=0; i<this.panel.humanTeam.formation.noOfAttackers; i++) {
@@ -108,7 +96,7 @@ public class Ball extends Thread {
 			}
 			
 			if (this.ball.intersects(this.panel.humanTeam.goalkeeper.getPlayerRect())) {
-				this.dx = (-1) * Math.abs(this.dx);
+				this.dx = Math.abs(this.dx);
 			}
 			 //ai
 			for(int i=0; i<this.panel.computerTeam.formation.noOfAttackers; i++) {
@@ -135,7 +123,6 @@ public class Ball extends Thread {
 			}
 			//end of detecting collisions
 			
-			//System.out.println(newx + "  " + newy);
 			if (((newy >= 234) && (newy <= 453))
 					&& (newx >= panel.getWidth() - 20)) {
 				BufferedImage myPicture;
@@ -175,7 +162,29 @@ public class Ball extends Thread {
 			else {
 				ball.setFrame(newx, newy, size, size);
 			}
-			panel.repaint();
+			//panel.repaint();
 		}
 	}
+	
+	public void moveBall(){
+				
+		int oldx = (int) ball.getX();
+		int oldy = (int) ball.getY();
+			
+		newx = oldx + dx;		
+		if (newx + size > xBound || newx < 0) {
+			dx = -dx;
+		} else
+			dx = +dx;
+		
+		newy = oldy + dy;
+		if (newy + size > yBound || newy < 0) {
+			dy = -dy;
+		} else {
+			dy = +dy;
+		}
+			
+		ball.setFrame(newx, newy, size, size);
+	}
+
 }

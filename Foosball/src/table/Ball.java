@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import characters.Game;
 
 public class Ball extends Thread {
+	//Test by Anmol
 	private Ellipse2D.Double ball;
 	private boolean isMoving;
 	private int size, speed;

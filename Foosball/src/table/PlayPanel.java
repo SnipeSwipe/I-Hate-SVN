@@ -24,18 +24,10 @@ import characters.*;
 
 public class PlayPanel extends JPanel implements ActionListener, KeyListener{
 
-<<<<<<< HEAD
-public class PlayPanel extends JPanel implements ActionListener{
 
 	// BufferedImage img;
 	// Table table;
-	//ListenKey l=new ListenKey("a");
-=======
-	// BufferedImage img;
-	// Table table;
-	//ListenKey l=new ListenKey("a");
 
->>>>>>> origin/master
 
 	Ball b;
 	BufferedImage img;
@@ -117,13 +109,6 @@ public class PlayPanel extends JPanel implements ActionListener{
 			defend += 240;
 			defendThread[i] = new Thread(defendfielders[i]);
 			defendThread[i].start();
-<<<<<<< HEAD
-		}
-=======
-<<<<<<< HEAD
-		}*/
-		
->>>>>>> origin/master
 
 		/*
 		 * pp=new Midfielder(this,300,549); p2=new Thread(pp); ppp=new
@@ -134,14 +119,11 @@ public class PlayPanel extends JPanel implements ActionListener{
 		// System.out.println("fat");
 		// this.validate();
 
-<<<<<<< HEAD
-=======
 		timer = new Timer(5, this);
 		addKeyListener(this);
 		//setFocusable(true); 
 		setFocusTraversalKeysEnabled(false);
 
->>>>>>> origin/master
 		setVisible(true);
 
 	}
@@ -197,9 +179,6 @@ public class PlayPanel extends JPanel implements ActionListener{
 		}
 	}
 
-<<<<<<< HEAD
-
-=======
 	@Override
 	public void keyReleased(KeyEvent e) 
 	{
@@ -209,5 +188,4 @@ public class PlayPanel extends JPanel implements ActionListener{
 		}
 		
 	}
->>>>>>> origin/master
 }

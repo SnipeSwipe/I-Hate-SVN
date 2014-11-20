@@ -12,14 +12,11 @@ import java.util.Random;
 import javax.swing.*;
 
 import table.PlayPanel;
-<<<<<<< HEAD
 
-public abstract class Player implements PlayingInterface, Runnable, KeyListener{
-=======
 
-public abstract class Player implements PlayingInterface{
+public abstract class Player implements PlayingInterface
+{
 
->>>>>>> origin/master
 
 	private Rectangle2D.Double player;
 	private boolean isMoving;
@@ -32,7 +29,8 @@ public abstract class Player implements PlayingInterface{
 
 	KeyEvent e;
 
-	public Player(PlayPanel panel, int starty, int startx, int dy, Color color) {
+	public Player(PlayPanel panel, int starty, int startx, int dy, Color color) 
+	{
 		this.panel = panel;
 		isMoving = true;
 		size = 20;
@@ -51,12 +49,8 @@ public abstract class Player implements PlayingInterface{
 
 		player = new Rectangle2D.Double(startx, starty, size, size);
 
-		color = new Color(255, 255, 255);
-<<<<<<< HEAD
-		
-=======
+		//color = new Color(255, 255, 255);
 
->>>>>>> origin/master
 		panel.setFocusable(true);
 		panel.requestFocusInWindow();
 	}
@@ -97,7 +91,8 @@ public abstract class Player implements PlayingInterface{
 		}
 	}
 	
-	public void draw(Graphics2D g2d) {
+	public void draw(Graphics2D g2d) 
+	{
 		if (player != null) 
 		{
 			g2d.setColor(color);
@@ -135,48 +130,9 @@ public abstract class Player implements PlayingInterface{
 	}*/
 
 	@Override
-	public void kick() {
+	public void kick() 
+	{
 		// TODO Auto-generated method stub
-
-<<<<<<< HEAD
 	}
 	
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("Up key typed");
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			System.out.println("Down key typed");
-		}
-
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("Up key pressed");
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			System.out.println("Down key pressed");
-		}
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			System.out.println("Up key Released");
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			System.out.println("Down key Released");
-		}
-	}
-
-=======
-	}
->>>>>>> origin/master
 }

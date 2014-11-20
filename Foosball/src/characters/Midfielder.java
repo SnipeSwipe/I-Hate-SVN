@@ -14,8 +14,9 @@ import table.PlayPanel;
 
 public class Midfielder extends Player {
 
-	public Midfielder(PlayPanel panel, int starty, int startx, int dy) {
-		super(panel, starty, startx, 4);
+	public Midfielder(PlayPanel panel, int starty, int startx, int dy, Color color) 
+	{
+		super(panel, starty, startx, 4, color);
 	}
 
 }

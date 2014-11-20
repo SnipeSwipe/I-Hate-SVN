@@ -86,7 +86,7 @@ public class Ball extends Thread {
 				dy = +dy;
 			}
 
-			//System.out.println(newx + "  " + newy);
+			System.out.println(newx + "  " + newy);
 			if (((newy >= 234) && (newy <= 453))
 					&& (newx >= panel.getWidth() - 20)) {
 				BufferedImage myPicture;

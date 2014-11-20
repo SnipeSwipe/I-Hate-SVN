@@ -13,7 +13,7 @@ import javax.swing.*;
 
 import table.PlayPanel;
 
-public abstract class Player implements PlayingInterface, Runnable {
+public abstract class Player implements PlayingInterface, Runnable, KeyListener{
 
 	private Rectangle2D.Double player;
 	private boolean isMoving;
@@ -41,7 +41,7 @@ public abstract class Player implements PlayingInterface, Runnable {
 
 		player = new Rectangle2D.Double(startx, starty, size, size);
 		color = new Color(255, 255, 255);
-
+		
 		panel.setFocusable(true);
 		panel.requestFocusInWindow();
 	}
@@ -60,13 +60,16 @@ public abstract class Player implements PlayingInterface, Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
+			
 
 			// calculate new position and move ball
 			int oldx = (int) player.getX();
 			int oldy = (int) player.getY();
 			// Redundant
 			// int newx = oldx + dx;
-			//System.out.println(panel.getWidth() + " " + panel.getHeight());
+			System.out.println(panel.getWidth() + " " + panel.getHeight());
+
 
 			int newy = oldy + dy;
 			if (newy + size > panel.getHeight() || newy < 0)
@@ -75,7 +78,7 @@ public abstract class Player implements PlayingInterface, Runnable {
 			player.setFrame(startx, newy, size, size);
 			panel.repaint();
 
-			// System.out.println(oldx + " " + oldy);
+			System.out.println(oldx + " " + oldy);
 
 		}
 	}

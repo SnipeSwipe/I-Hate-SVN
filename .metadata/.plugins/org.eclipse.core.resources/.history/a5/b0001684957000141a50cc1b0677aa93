@@ -47,6 +47,9 @@ public class PlayPanel extends JPanel implements ActionListener {
 
 		Game.doCoinToss();
 		b = new Ball(this);
+
+		// ListenKey l=new ListenKey();
+
 		b.start();
 		midfielders = new Midfielder[4];
 		midThread = new Thread[4];
@@ -64,7 +67,6 @@ public class PlayPanel extends JPanel implements ActionListener {
 		int attack = 200;// 3
 		int defend = 240;// 2
 		int GK = 360;// 1 player
-		
 		for (int i = 0; i < 4; i++) {
 			midfielders[i] = new Midfielder(this, mid, 549, 1);
 			mid += 120;
@@ -90,7 +92,18 @@ public class PlayPanel extends JPanel implements ActionListener {
 			defendThread[i] = new Thread(defendfielders[i]);
 			defendThread[i].start();
 		}
+
+		/*
+		 * pp=new Midfielder(this,300,549); p2=new Thread(pp); ppp=new
+		 * Midfielder(this,420,549); p3=new Thread(ppp); pppp=new
+		 * Midfielder(this,540,549); p4=new Thread(pppp);
+		 */
+
+		// System.out.println("fat");
+		// this.validate();
+
 		setVisible(true);
+
 	}
 
 	@Override

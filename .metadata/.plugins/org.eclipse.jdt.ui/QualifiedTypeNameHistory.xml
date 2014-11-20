@@ -9,4 +9,6 @@
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="table.ListenKey"/>
+<fullyQualifiedTypeName name="javax.swing.JRootPane"/>
 </qualifiedTypeNameHistroy>

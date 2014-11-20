@@ -90,7 +90,18 @@ public class PlayPanel extends JPanel implements ActionListener {
 			defendThread[i] = new Thread(defendfielders[i]);
 			defendThread[i].start();
 		}
+
+		/*
+		 * pp=new Midfielder(this,300,549); p2=new Thread(pp); ppp=new
+		 * Midfielder(this,420,549); p3=new Thread(ppp); pppp=new
+		 * Midfielder(this,540,549); p4=new Thread(pppp);
+		 */
+
+		// System.out.println("fat");
+		// this.validate();
+
 		setVisible(true);
+
 	}
 
 	@Override

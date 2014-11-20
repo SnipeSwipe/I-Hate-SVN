@@ -66,7 +66,7 @@ public abstract class Player implements PlayingInterface, Runnable {
 			int oldy = (int) player.getY();
 			// Redundant
 			// int newx = oldx + dx;
-			//System.out.println(panel.getWidth() + " " + panel.getHeight());
+			System.out.println(panel.getWidth() + " " + panel.getHeight());
 
 			int newy = oldy + dy;
 			if (newy + size > panel.getHeight() || newy < 0)

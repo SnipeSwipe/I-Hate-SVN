@@ -69,7 +69,7 @@ public abstract class Player implements PlayingInterface
 	
 	public void moveUp()
 	{
-		this.dy = -5;
+		this.dy = -10;
 		if(this.currenty>this.min)
 		{
 			this.currenty+=this.dy;
@@ -82,7 +82,7 @@ public abstract class Player implements PlayingInterface
 	
 	public void moveDown()
 	{
-		this.dy = 5;
+		this.dy = 10;
 		if(this.currenty<this.max)
 		{
 			this.currenty+=this.dy;

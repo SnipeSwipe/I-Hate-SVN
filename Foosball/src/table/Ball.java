@@ -123,46 +123,8 @@ public class Ball extends Thread {
 			}
 			//end of detecting collisions
 			
-			if (((newy >= 234) && (newy <= 453))
-					&& (newx >= panel.getWidth() - 20)) {
-				BufferedImage myPicture;
-				board.increaseScoreHuman();
-				try {
-					myPicture = ImageIO.read(new File("resources/goal.png"));
-					JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-					panel.add(picLabel);
-					picLabel.setBounds(350, 120, 600, 350);
-					picLabel.setOpaque(true);
-					sleep(1000);
-					panel.remove(picLabel);
-				} catch (IOException | InterruptedException e1) {
-					e1.printStackTrace();
-				}
+			checkGoal(); //method to check for goals
 
-				ball.setFrame(59, 360, size, size);
-			} else if (((newy >= 234) && (newy <= 453)) && (newx == 0)) {
-				BufferedImage myPicture;
-				board.increaseScoreAI();
-
-				try {
-					myPicture = ImageIO.read(new File("resources/goal.png"));
-					JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-					panel.add(picLabel);
-					picLabel.setBounds(350, 120, 600, 350);
-					picLabel.setOpaque(true);
-					sleep(1000);
-					panel.remove(picLabel);
-				} catch (IOException | InterruptedException e1) {
-					e1.printStackTrace();
-				}
-
-				ball.setFrame(1221, 360, size, size);
-			}
-
-			else {
-				ball.setFrame(newx, newy, size, size);
-			}
-			//panel.repaint();
 		}
 	}
 	
@@ -185,6 +147,63 @@ public class Ball extends Thread {
 		}
 			
 		ball.setFrame(newx, newy, size, size);
+	}
+	
+	public void setPosition(int x, int y){ //reset the ball at a particular position
+		
+		ball.setFrame(x , y, size, size);
+		
+	}
+	
+	public void checkGoal(){
+				
+		if (((newy >= 234) && (newy <= 453))
+				&& (newx >= panel.getWidth() - 20)) {
+			BufferedImage myPicture;
+			board.increaseScoreHuman();
+			try {
+				myPicture = ImageIO.read(new File("resources/goal.png"));
+				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+				panel.add(picLabel);
+				picLabel.setBounds(350, 120, 600, 350);
+				picLabel.setOpaque(true);
+				sleep(1000);
+				panel.remove(picLabel);
+			} catch (IOException | InterruptedException e1) {
+				e1.printStackTrace();
+			}
+
+			ball.setFrame(59, 360, size, size);
+		} else if (((newy >= 234) && (newy <= 453)) && (newx == 0)) {
+			BufferedImage myPicture;
+			board.increaseScoreAI();
+
+			try {
+				myPicture = ImageIO.read(new File("resources/goal.png"));
+				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+				panel.add(picLabel);
+				picLabel.setBounds(350, 120, 600, 350);
+				picLabel.setOpaque(true);
+				sleep(1000);
+				panel.remove(picLabel);
+			} catch (IOException | InterruptedException e1) {
+				e1.printStackTrace();
+			}
+
+			ball.setFrame(1221, 360, size, size);
+		}
+		
+		
+	}
+
+	public int getBallY() {
+		// TODO Auto-generated method stub
+		return newy;
+	}
+
+	public int getBallX() {
+		// TODO Auto-generated method stub
+		return newx;
 	}
 
 }

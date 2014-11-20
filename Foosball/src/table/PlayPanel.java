@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -32,6 +33,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 	Team humanTeam, computerTeam;
 	Thread humanThread, computerThread;
 	Timer timer;
+	Scoreboard scoreBoard;
 
 	public PlayPanel() {
 		setPreferredSize(new Dimension(1280, 670));
@@ -41,6 +43,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 			e.printStackTrace();
 		}
 
+		scoreBoard = new Scoreboard();
 		Game.doCoinToss();
 		humanTeam = new Team(new Formation(3, 3, 4), this, TeamMode.HUMAN);
 		computerTeam = new Team(new Formation(3, 4, 3), this, TeamMode.COMPUTER);
@@ -54,9 +57,10 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		// humanThread = new Thread(humanTeam);
 		// humanThread.start();
 
-		timer = new Timer(5, this);
+		timer = new Timer(100, this);
 		addKeyListener(this);
-		// setFocusable(true);
+		setFocusable(true);
+		requestFocusInWindow();
 		setFocusTraversalKeysEnabled(false);
 
 		setVisible(true);
@@ -79,11 +83,16 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		//b.moveBall();
+	
 		repaint();
 		computerTeam.move();
 
+	}
+	
+	public void checkScoring(){
+		
+		//Goal scoring logic						
+		//End of goal logic
 	}
 
 	@Override

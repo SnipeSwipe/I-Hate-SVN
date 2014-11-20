@@ -29,7 +29,7 @@ public class Team implements Runnable
 		{
 			try 
 			{
-				Thread.sleep(50);
+				Thread.sleep(20);
 			} 
 			catch (InterruptedException e) 
 			{
@@ -49,15 +49,16 @@ public class Team implements Runnable
 		this.midfielders = new Midfielder[this.formation.noOfMidfielders];
 		this.attackers = new Attacker[this.formation.noOfAttackers];
 		
+		int panelHeight = 670; //this is the width of the field. 
 		int gkY, defY, midY, attackY;
 		int gkBound, defBound, midBound, attackBound; //movement bounds for players
 		
 		//bounds and starting positions set according to formation
-		defY = defBound = convertNumberToCoordinate(this.formation.noOfDefenders);
-		midY = midBound =  convertNumberToCoordinate(this.formation.noOfMidfielders);
-		attackY = attackBound = convertNumberToCoordinate(this.formation.noOfAttackers);
-		gkY = 360;
-		gkBound = 150; //bound set to cover only goal
+		defY = defBound = convertNumberToCoordinateGap(panelHeight, this.formation.noOfDefenders);
+		midY = midBound =  convertNumberToCoordinateGap(panelHeight, this.formation.noOfMidfielders);
+		attackY = attackBound = convertNumberToCoordinateGap(panelHeight, this.formation.noOfAttackers);
+		gkY = panelHeight/2;;
+		gkBound = 150; //bound set to cover just the goal area
 		
 		
 		int gkX, defX, midX, attackX;
@@ -86,19 +87,19 @@ public class Team implements Runnable
 		for(int i=0; i<this.formation.noOfDefenders; i++)
 		{
 			this.defenders[i] = new Defender(this.panel, defY, defX, 5, defBound, this.color);
-			defY+=convertNumberToCoordinateGap(this.formation.noOfDefenders);
+			defY+=convertNumberToCoordinateGap(panelHeight, this.formation.noOfDefenders);
 		}
 		
 		for(int i=0; i<this.formation.noOfMidfielders; i++)
 		{
 			this.midfielders[i] = new Midfielder(this.panel, midY, midX, 5, midBound, this.color);
-			midY+=convertNumberToCoordinateGap(this.formation.noOfMidfielders);
+			midY+=convertNumberToCoordinateGap(panelHeight, this.formation.noOfMidfielders);
 		}
 		
 		for(int i=0; i<this.formation.noOfAttackers; i++)
 		{
 			this.attackers[i] = new Attacker(this.panel, attackY, attackX, 5, attackBound, this.color);
-			attackY+=convertNumberToCoordinateGap(this.formation.noOfAttackers);
+			attackY+=convertNumberToCoordinateGap(panelHeight, this.formation.noOfAttackers);
 		}
 		
 	}
@@ -197,29 +198,29 @@ public class Team implements Runnable
 	
 	public 
 	
-	static int convertNumberToCoordinate(int number)
+	static int convertNumberToCoordinate(int height, int number)
 	{
 		int coordinate=0;
 		switch(number)
 		{
-			case 2: coordinate = 240; break;
-			case 3: coordinate = 200; break;
-			case 4: coordinate = 180; break;
-			case 5: coordinate = 140; break;
+			case 2: coordinate = height/3; break;
+			case 3: coordinate = height/4; break;
+			case 4: coordinate = height/5; break;
+			case 5: coordinate = height/6; break;
 		}
 		
 		return coordinate;
 	}
 	
-	static int convertNumberToCoordinateGap(int number)
+	static int convertNumberToCoordinateGap(int height, int number)
 	{
 		int coordinateGap=0;
 		switch(number)
 		{
-			case 2: coordinateGap = 240; break;
-			case 3: coordinateGap = 160; break;
-			case 4: coordinateGap = 120; break;
-			case 5: coordinateGap = 110; break;
+			case 2: coordinateGap = height/3; break;
+			case 3: coordinateGap = height/4; break;
+			case 4: coordinateGap = height/5; break;
+			case 5: coordinateGap = height/6; break;
 		}
 		
 		return coordinateGap;

@@ -18,24 +18,18 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import characters.*;
 
-public class PlayPanel extends JPanel implements ActionListener, KeyListener{
+public class PlayPanel extends JPanel implements ActionListener{
 
 	// BufferedImage img;
 	// Table table;
 	//ListenKey l=new ListenKey("a");
 
-
 	Ball b;
 	BufferedImage img;
-	Team humanTeam, computerTeam;
-	Thread humanThread, computerThread;
-	Timer timer;
-	
-	/*Midfielder midfielders[];
+	Midfielder midfielders[];
 	Thread midThread[];
 
 	Attacker attackfielders[];
@@ -45,10 +39,9 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener{
 	Thread defendThread[];
 
 	Goalkeeper GKfielders[];
-	Thread GKThread[];*/
+	Thread GKThread[];
 
-	public PlayPanel() 
-	{
+	public PlayPanel() {
 		setPreferredSize(new Dimension(1280, 670));
 		try {
 			img = ImageIO.read(new File("resources/field.jpg"));
@@ -59,17 +52,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener{
 		Game.doCoinToss();
 		b = new Ball(this);
 		b.start();
-		
-		humanTeam = new Team(new Formation(3, 3, 4), this, TeamMode.HUMAN);
-		computerTeam = new Team(new Formation(3, 4, 3), this, TeamMode.COMPUTER);
-		
-		computerThread = new Thread(computerTeam);
-		computerThread.start();
-		
-		//humanThread = new Thread(humanTeam);
-		//humanThread.start();
-		
-		/*midfielders = new Midfielder[4];
+		midfielders = new Midfielder[4];
 		midThread = new Thread[4];
 
 		attackfielders = new Attacker[4];
@@ -85,7 +68,6 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener{
 		int attack = 200;// 3
 		int defend = 240;// 2
 		int GK = 360;// 1 player
-		
 		for (int i = 0; i < 4; i++) {
 			midfielders[i] = new Midfielder(this, mid, 549, 1);
 			mid += 120;
@@ -110,9 +92,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener{
 			defend += 240;
 			defendThread[i] = new Thread(defendfielders[i]);
 			defendThread[i].start();
-<<<<<<< HEAD
-		}*/
-		
+		}
 
 		/*
 		 * pp=new Midfielder(this,300,549); p2=new Thread(pp); ppp=new
@@ -123,12 +103,8 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener{
 		// System.out.println("fat");
 		// this.validate();
 
-		timer = new Timer(5, this);
-		addKeyListener(this);
-		//setFocusable(true); 
-		setFocusTraversalKeysEnabled(false);
-
 		setVisible(true);
+
 	}
 
 	@Override
@@ -140,9 +116,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener{
 
 		Graphics2D g2d = (Graphics2D) g;
 		b.draw(g2d);
-		humanTeam.draw(g2d);
-		computerTeam.draw(g2d);
-		/*for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			midfielders[i].draw(g2d);
 		}
 		for (int i = 0; i < 3; i++) {
@@ -153,42 +127,19 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener{
 		}
 		for (int i = 0; i < 1; i++) {
 			GKfielders[i].draw(g2d);
-		}*/
-		
+		}
 
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
-		repaint();
-		computerTeam.move();
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) 
-	{
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) 
-	{
-		if(e.getKeyCode() == KeyEvent.VK_UP)
-		{
-			humanTeam.moveUp();
-		}
+	public abstract class Player extends JPanel {
+
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) 
-	{
-		if(e.getKeyCode() == KeyEvent.VK_DOWN)
-		{
-			humanTeam.moveDown();
-		}
-		
-	}
+
 }

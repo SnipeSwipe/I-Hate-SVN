@@ -6,9 +6,8 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 
-public class ListenKey extends JFrame implements KeyListener{
+public class ListenKey extends JPanel implements KeyListener{
 	
 	JLabel label;
 
@@ -18,8 +17,7 @@ public class ListenKey extends JFrame implements KeyListener{
 		
 		addKeyListener(this);
 		setSize(0, 0);
-		setUndecorated(true);
-		getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+
 		setVisible(true);
 
 	}

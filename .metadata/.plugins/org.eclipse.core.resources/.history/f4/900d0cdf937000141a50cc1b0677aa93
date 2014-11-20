@@ -6,20 +6,19 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
 
-public class ListenKey extends JFrame implements KeyListener{
+public class ListenKey implements KeyListener{
 	
 	JLabel label;
 
-	public ListenKey() {
+	public ListenKey(String s) {
+		super(s);
 		JPanel p = new JPanel();
 		add(p);
 		
 		addKeyListener(this);
 		setSize(0, 0);
-		setUndecorated(true);
-		getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+
 		setVisible(true);
 
 	}

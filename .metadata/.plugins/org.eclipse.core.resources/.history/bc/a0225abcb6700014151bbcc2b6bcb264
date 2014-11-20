@@ -76,7 +76,8 @@ public class ContentPanel extends JPanel {
 				}
 				setBackground(Color.BLACK);
 				setOpaque(true);
-				//System.out.println("hello");
+				System.out.println("hello");// ContentPanel.this.add(gameGrid,
+											// BorderLayout.CENTER);
 				panel.removeAll();
 				// System.out.println("in2");
 				// JPanel buttonPanel = new JPanel(new BorderLayout());

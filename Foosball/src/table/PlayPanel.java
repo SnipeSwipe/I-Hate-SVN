@@ -52,14 +52,14 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		}
 
 		Game.doCoinToss();
-		b = new Ball(this);
-		b.start();
-
 		humanTeam = new Team(new Formation(3, 3, 4), this, TeamMode.HUMAN);
 		computerTeam = new Team(new Formation(3, 4, 3), this, TeamMode.COMPUTER);
 
 		computerThread = new Thread(computerTeam);
 		computerThread.start();
+		
+		b = new Ball(this);
+		b.start();
 
 		// humanThread = new Thread(humanTeam);
 		// humanThread.start();

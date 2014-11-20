@@ -12,9 +12,9 @@ import table.PlayPanel;
 
 public class Goalkeeper extends Player{
 	
-	public Goalkeeper(PlayPanel panel,int starty ,int startx, int dy, Color color)
+	public Goalkeeper(PlayPanel panel,int starty ,int startx,  int dy, int bound, Color color)
 	{
-		super(panel, starty, startx, 5, color);
+		super(panel, starty, startx, 5, bound, color);
 	}
 	
 	/*private Rectangle2D.Double player;

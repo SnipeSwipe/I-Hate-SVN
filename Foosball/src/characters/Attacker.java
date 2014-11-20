@@ -12,9 +12,9 @@ import table.PlayPanel;
 
 public class Attacker extends Player {
 
-	public Attacker(PlayPanel panel,int starty ,int startx, int dy, Color color)
+	public Attacker(PlayPanel panel,int starty ,int startx, int dy, int bound, Color color)
 	{
-		super(panel, starty, startx, 6, color);
+		super(panel, starty, startx, 6, bound, color);
 	}
 	
 	/*private Rectangle2D.Double player;

@@ -29,7 +29,7 @@ public class Team implements Runnable
 		{
 			try 
 			{
-				Thread.sleep(100);
+				Thread.sleep(50);
 			} 
 			catch (InterruptedException e) 
 			{
@@ -50,10 +50,15 @@ public class Team implements Runnable
 		this.attackers = new Attacker[this.formation.noOfAttackers];
 		
 		int gkY, defY, midY, attackY;
-		defY = convertNumberToCoordinate(this.formation.noOfDefenders);
-		midY = convertNumberToCoordinate(this.formation.noOfMidfielders);
-		attackY = convertNumberToCoordinate(this.formation.noOfAttackers);
+		int gkBound, defBound, midBound, attackBound; //movement bounds for players
+		
+		//bounds and starting positions set according to formation
+		defY = defBound = convertNumberToCoordinate(this.formation.noOfDefenders);
+		midY = midBound =  convertNumberToCoordinate(this.formation.noOfMidfielders);
+		attackY = attackBound = convertNumberToCoordinate(this.formation.noOfAttackers);
 		gkY = 360;
+		gkBound = 150; //bound set to cover only goal
+		
 		
 		int gkX, defX, midX, attackX;
 		gkX=defX=midX=attackX=0;
@@ -76,23 +81,23 @@ public class Team implements Runnable
 			this.isMoving = true;
 		}
 		
-		this.goalkeeper = new Goalkeeper(this.panel, gkY, gkX, 5, this.color);
+		this.goalkeeper = new Goalkeeper(this.panel, gkY, gkX, 5, gkBound, this.color);
 		
 		for(int i=0; i<this.formation.noOfDefenders; i++)
 		{
-			this.defenders[i] = new Defender(this.panel, defY, defX, 5, this.color);
+			this.defenders[i] = new Defender(this.panel, defY, defX, 5, defBound, this.color);
 			defY+=convertNumberToCoordinateGap(this.formation.noOfDefenders);
 		}
 		
 		for(int i=0; i<this.formation.noOfMidfielders; i++)
 		{
-			this.midfielders[i] = new Midfielder(this.panel, midY, midX, 5, this.color);
+			this.midfielders[i] = new Midfielder(this.panel, midY, midX, 5, midBound, this.color);
 			midY+=convertNumberToCoordinateGap(this.formation.noOfMidfielders);
 		}
 		
 		for(int i=0; i<this.formation.noOfAttackers; i++)
 		{
-			this.attackers[i] = new Attacker(this.panel, attackY, attackX, 5, this.color);
+			this.attackers[i] = new Attacker(this.panel, attackY, attackX, 5, attackBound, this.color);
 			attackY+=convertNumberToCoordinateGap(this.formation.noOfAttackers);
 		}
 		

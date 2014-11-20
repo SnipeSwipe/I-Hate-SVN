@@ -19,28 +19,30 @@ public abstract class Player implements PlayingInterface
 
 
 	private Rectangle2D.Double player;
-	private boolean isMoving;
 	private int size, speed;
-	private int dx, dy;
+	private int dy;
 	private Color color;
 	private PlayPanel panel;
 	int starty, startx;
+	int currentx, currenty;
 	int min, max;
+	int bound;
 
 	KeyEvent e;
 
-	public Player(PlayPanel panel, int starty, int startx, int dy, Color color) 
+	public Player(PlayPanel panel, int starty, int startx, int dy, int bound, Color color) 
 	{
 		this.panel = panel;
-		isMoving = true;
 		size = 20;
 		speed = 50; // This sleeps, so increase to decrease speed
 		this.startx = startx;
 		this.starty = starty;
-		this.dx = 0;
+		this.currentx = startx;
+		this.currenty = starty;
 		this.dy = dy;
-		this.max = 720;
-		this.min = 0;
+		this.bound = bound; //defines the upper and lower bound for movement
+		this.max = starty + bound;
+		this.min = starty - bound;
 		this.color = color;
 
 		player = new Rectangle2D.Double(startx, starty, size, size);
@@ -57,20 +59,20 @@ public abstract class Player implements PlayingInterface
 	
 	public void move()
 	{
-		if(this.starty<=this.min || this.starty>=this.max)
+		if(this.currenty<=this.min || this.currenty>=this.max)
 		{
 			this.dy = this.dy*(-1);
 		}
 		
-		this.starty+=this.dy;
+		this.currenty+=this.dy;
 	}
 	
 	public void moveUp()
 	{
 		this.dy = -5;
-		if(this.starty>this.min)
+		if(this.currenty>this.min)
 		{
-			this.starty+=this.dy;
+			this.currenty+=this.dy;
 		}
 		else
 		{
@@ -81,9 +83,9 @@ public abstract class Player implements PlayingInterface
 	public void moveDown()
 	{
 		this.dy = 5;
-		if(this.starty<this.max)
+		if(this.currenty<this.max)
 		{
-			this.starty+=this.dy;
+			this.currenty+=this.dy;
 		}
 		else
 		{
@@ -96,8 +98,8 @@ public abstract class Player implements PlayingInterface
 		if (player != null) 
 		{
 			g2d.setColor(color);
-			player.setFrame(startx, starty, size, size);
-			g2d.fillRect(startx, starty, size, size);
+			player.setFrame(currentx, currenty, size, size);
+			g2d.fillRect(currentx, currenty, size, size);
 		}
 	}
 

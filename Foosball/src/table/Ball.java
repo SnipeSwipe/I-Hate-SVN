@@ -46,7 +46,7 @@ public class Ball extends Thread {
 		ball = new Ellipse2D.Double(startx, starty, size, size);
 
 		Random rand = new Random();
-		color = new Color(0, 0, 0);
+		color = new Color(204, 0, 0);
 	}
 
 	public void draw(Graphics2D g2d) {

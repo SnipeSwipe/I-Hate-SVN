@@ -12,8 +12,14 @@ import java.util.Random;
 import javax.swing.*;
 
 import table.PlayPanel;
+<<<<<<< HEAD
 
 public abstract class Player implements PlayingInterface, Runnable, KeyListener{
+=======
+
+public abstract class Player implements PlayingInterface{
+
+>>>>>>> origin/master
 
 	private Rectangle2D.Double player;
 	private boolean isMoving;
@@ -22,10 +28,11 @@ public abstract class Player implements PlayingInterface, Runnable, KeyListener{
 	private Color color;
 	private PlayPanel panel;
 	int starty, startx;
+	int min, max;
 
 	KeyEvent e;
 
-	public Player(PlayPanel panel, int starty, int startx, int dy) {
+	public Player(PlayPanel panel, int starty, int startx, int dy, Color color) {
 		this.panel = panel;
 		isMoving = true;
 		size = 20;
@@ -34,26 +41,72 @@ public abstract class Player implements PlayingInterface, Runnable, KeyListener{
 		this.starty = starty;
 		this.dx = 0;
 		this.dy = dy;
+		this.max = 720;
+		this.min = 0;
+		this.color = color;
 
 		if (dx == 0 && dy == 0) {
 			dy = 1;
 		}
 
 		player = new Rectangle2D.Double(startx, starty, size, size);
+
 		color = new Color(255, 255, 255);
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> origin/master
 		panel.setFocusable(true);
 		panel.requestFocusInWindow();
 	}
-
+	
+	public void move()
+	{
+		if(this.starty<=this.min || this.starty>=this.max)
+		{
+			this.dy = this.dy*(-1);
+		}
+		
+		this.starty+=this.dy;
+	}
+	
+	public void moveUp()
+	{
+		this.dy = -5;
+		if(this.starty>this.min)
+		{
+			this.starty+=this.dy;
+		}
+		else
+		{
+			this.dy=0;
+		}
+	}
+	
+	public void moveDown()
+	{
+		this.dy = 5;
+		if(this.starty<this.max)
+		{
+			this.starty+=this.dy;
+		}
+		else
+		{
+			this.dy=0;
+		}
+	}
+	
 	public void draw(Graphics2D g2d) {
-		if (player != null) {
+		if (player != null) 
+		{
 			g2d.setColor(color);
-			g2d.fill(player);
+			player.setFrame(startx, starty, size, size);
+			g2d.fillRect(startx, starty, size, size);
 		}
 	}
 
-	public void run() {
+	/*public void run() {
 		while (isMoving) {
 			try {
 				Thread.sleep(speed);
@@ -79,12 +132,13 @@ public abstract class Player implements PlayingInterface, Runnable, KeyListener{
 			System.out.println(oldx + " " + oldy);
 
 		}
-	}
+	}*/
 
 	@Override
 	public void kick() {
 		// TODO Auto-generated method stub
 
+<<<<<<< HEAD
 	}
 	
 
@@ -122,4 +176,7 @@ public abstract class Player implements PlayingInterface, Runnable, KeyListener{
 		}
 	}
 
+=======
+	}
+>>>>>>> origin/master
 }

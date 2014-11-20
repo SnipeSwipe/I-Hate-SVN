@@ -12,9 +12,9 @@ import table.PlayPanel;
 
 public class Defender extends Player{
 
-	public Defender(PlayPanel panel,int starty ,int startx, int dy)
+	public Defender(PlayPanel panel,int starty ,int startx, int dy, Color color)
 	{
-		super(panel, starty, startx, 6);
+		super(panel, starty, startx, 6, color);
 	}
 	
 	/*private Rectangle2D.Double player;

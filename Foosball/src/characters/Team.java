@@ -111,19 +111,16 @@ public class Team implements Runnable
 		for(int i=0; i<this.formation.noOfDefenders; i++)
 		{
 			this.defenders[i].move();
-			//defY+=convertNumberToCoordinateGap(this.formation.noOfDefenders);
 		}
 		
 		for(int i=0; i<this.formation.noOfMidfielders; i++)
 		{
 			this.midfielders[i].move();
-			//midY+=convertNumberToCoordinateGap(this.formation.noOfMidfielders);
 		}
 		
 		for(int i=0; i<this.formation.noOfAttackers; i++)
 		{
 			this.attackers[i].move();
-			//attackY+=convertNumberToCoordinateGap(this.formation.noOfAttackers);
 		}
 	}
 	
@@ -134,19 +131,16 @@ public class Team implements Runnable
 		for(int i=0; i<this.formation.noOfDefenders; i++)
 		{
 			this.defenders[i].moveUp();
-			//defY+=convertNumberToCoordinateGap(this.formation.noOfDefenders);
 		}
 		
 		for(int i=0; i<this.formation.noOfMidfielders; i++)
 		{
 			this.midfielders[i].moveUp();
-			//midY+=convertNumberToCoordinateGap(this.formation.noOfMidfielders);
 		}
 		
 		for(int i=0; i<this.formation.noOfAttackers; i++)
 		{
 			this.attackers[i].moveUp();
-			//attackY+=convertNumberToCoordinateGap(this.formation.noOfAttackers);
 		}
 	}
 	
@@ -157,19 +151,16 @@ public class Team implements Runnable
 		for(int i=0; i<this.formation.noOfDefenders; i++)
 		{
 			this.defenders[i].moveDown();
-			//defY+=convertNumberToCoordinateGap(this.formation.noOfDefenders);
 		}
 		
 		for(int i=0; i<this.formation.noOfMidfielders; i++)
 		{
 			this.midfielders[i].moveDown();
-			//midY+=convertNumberToCoordinateGap(this.formation.noOfMidfielders);
 		}
 		
 		for(int i=0; i<this.formation.noOfAttackers; i++)
 		{
 			this.attackers[i].moveDown();
-			//attackY+=convertNumberToCoordinateGap(this.formation.noOfAttackers);
 		}
 	}
 	
@@ -180,19 +171,16 @@ public class Team implements Runnable
 		for(int i=0; i<this.formation.noOfDefenders; i++)
 		{
 			this.defenders[i].draw(g2d);
-			//defY+=convertNumberToCoordinateGap(this.formation.noOfDefenders);
 		}
 		
 		for(int i=0; i<this.formation.noOfMidfielders; i++)
 		{
 			this.midfielders[i].draw(g2d);
-			//midY+=convertNumberToCoordinateGap(this.formation.noOfMidfielders);
 		}
 		
 		for(int i=0; i<this.formation.noOfAttackers; i++)
 		{
 			this.attackers[i].draw(g2d);
-			//attackY+=convertNumberToCoordinateGap(this.formation.noOfAttackers);
 		}
 	}
 	
@@ -225,7 +213,4 @@ public class Team implements Runnable
 		
 		return coordinateGap;
 	}
-	
-	
-
 }

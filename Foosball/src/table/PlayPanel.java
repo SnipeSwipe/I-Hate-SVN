@@ -39,7 +39,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer;
 	Scoreboard scoreBoard;
 
-	public PlayPanel() {
+	public PlayPanel(String formationChosen, String levelChosen) {
 		setPreferredSize(new Dimension(1280, 670));
 		try {
 			img = ImageIO.read(new File("resources/field.jpg"));
@@ -48,14 +48,14 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		}
 
 		scoreBoard = new Scoreboard();
-		Game.doCoinToss();
+		int result = Game.doCoinToss();
 		humanTeam = new Team(new Formation(3, 3, 4), this, TeamMode.HUMAN);
 		computerTeam = new Team(new Formation(3, 4, 3), this, TeamMode.COMPUTER);
 
 		computerThread = new Thread(computerTeam);
 		computerThread.start();
 
-		b = Ball.getInstance(this);
+		b = Ball.getInstance(this, result);
 		b.start();
 
 		// humanThread = new Thread(humanTeam);

@@ -44,9 +44,9 @@ public class Team implements Runnable {
 		}
 	}
 	public void rodDraw(Graphics2D g2d){
-		int placerod=192;
-		rodGK1 = new Rectangle2D.Double(1225, 0,2, 670);
-		rodGK2 = new Rectangle2D.Double(64, 0,2, 670);
+		int placerod=194;
+		rodGK1 = new Rectangle2D.Double(1227, 0,2, 670);
+		rodGK2 = new Rectangle2D.Double(66, 0,2, 670);
 		rodColor = new Color(0,100,0);
 
 		if (rodGK1 != null || rodGK2!=null) {

@@ -34,16 +34,17 @@ public class Ball extends Thread {
 	private Scoreboard board;
 	JLabel image;
 	Game game;
+	private int tossResult;
 		
-	public static Ball getInstance(PlayPanel panel){  //a unique ball is only instantiated once
+	public static Ball getInstance(PlayPanel panel, int tossResult){  //a unique ball is only instantiated once
 		
 		if(instance == null){
-			instance = new Ball(panel);
+			instance = new Ball(panel, tossResult);
 		}		
 		return instance;		
 	}
 
-	private Ball(PlayPanel panel) {  //private constructor to prevent instantiation from outside
+	private Ball(PlayPanel panel, int tossResult) {  //private constructor to prevent instantiation from outside
 		
 		this.panel = panel;
 		isMoving = true;
@@ -55,6 +56,15 @@ public class Ball extends Thread {
 		yBound = 670;
 		computerScored = false;
 		
+		if(tossResult == 1){
+			startx = 61;
+			starty = 335;
+		}
+		else{
+			startx = 1150;
+			starty = 335;
+			computerScored = true;
+		}
 		ball = new Ellipse2D.Double(startx, starty, size, size);
 		color = new Color(204, 0, 0);
 		game = new Game();
@@ -177,8 +187,8 @@ public class Ball extends Thread {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
 				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.add(picLabel);
-				picLabel.setBounds(350, 120, 600, 350);
-				picLabel.setOpaque(true);
+				picLabel.setBounds(250, 120, 800, 400);
+
 				sleep(1000);
 				panel.remove(picLabel);
 			} catch (IOException | InterruptedException e1) {
@@ -194,8 +204,8 @@ public class Ball extends Thread {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
 				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.add(picLabel);
-				picLabel.setBounds(350, 120, 600, 350);
-				picLabel.setOpaque(true);
+				picLabel.setBounds(250, 120, 800, 400);
+				//picLabel.setOpaque(true);
 				sleep(1000);
 				panel.remove(picLabel);
 			} catch (IOException | InterruptedException e1) {

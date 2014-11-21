@@ -27,118 +27,118 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class ContentPanel extends JPanel {
-	private JButton playButton = new JButton("Play");
-	private JButton optionButton = new JButton("Submit");
+        private JButton playButton = new JButton("Play");
+        private JButton optionButton = new JButton("Submit");
 
-	private JButton option1 = new JButton("3 4 3");
-	private JButton option2 = new JButton("4 4 2");
-	private JButton option3 = new JButton("4 3 3");
-	private JButton option4 = new JButton("3 5 2");
-	private JButton optionlevel1 = new JButton("Novice");
-	private JButton optionlevel2 = new JButton("Intermediate");
-	private JButton optionlevel3 = new JButton("Pro");
+        private JButton option1 = new JButton("3 4 3");
+        private JButton option2 = new JButton("4 4 2");
+        private JButton option3 = new JButton("4 3 3");
+        private JButton option4 = new JButton("3 5 2");
+        private JButton optionlevel1 = new JButton("Novice");
+        private JButton optionlevel2 = new JButton("Intermediate");
+        private JButton optionlevel3 = new JButton("Pro");
 
-	// private Table mainFrame;
-	JPanel panel = new JPanel();
-	BufferedImage img;
+        // private Table mainFrame;
+        JPanel panel = new JPanel();
+        BufferedImage img;
 
-	public ContentPanel(Table mainFrame) {
-		// this.mainFrame = mainFrame;
-		add(panel);
-		// this.mainFrame = mainFrame;
-		panel.setLayout(new BorderLayout(1, 2));
-		// playButton.setLocation(100,500);
-		playButton.setBounds(1000, 100, 400, 200);
-		playButton.addActionListener(new ButtonListener());
-		panel.add(playButton, BorderLayout.CENTER);
+        public ContentPanel(Table mainFrame) {
+                // this.mainFrame = mainFrame;
+                add(panel);
+                // this.mainFrame = mainFrame;
+                panel.setLayout(new BorderLayout(1, 2));
+                // playButton.setLocation(100,500);
+                playButton.setBounds(1000, 100, 400, 200);
+                playButton.addActionListener(new ButtonListener());
+                panel.add(playButton, BorderLayout.CENTER);
 
-	}
+        }
 
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		// paint the background image and scale it to fill the entire space
-		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
-	}
+        @Override
+        protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // paint the background image and scale it to fill the entire space
+                g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+        }
 
-	public class ButtonListener implements ActionListener {
-		// JPanel rechange2;
+        public class ButtonListener implements ActionListener {
+                // JPanel rechange2;
 
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			JButton clickedButton = (JButton) event.getSource();
-			String buttonText = clickedButton.getText();
-			if (buttonText.equals("Play")) {
-				try {
-					img = ImageIO.read(new File("resources/7.jpg"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				setBackground(Color.BLACK);
-				setOpaque(true);
-				//System.out.println("hello");
-				panel.removeAll();
-				// System.out.println("in2");
-				// JPanel buttonPanel = new JPanel(new BorderLayout());
-				JPanel buttonPanel1 = new JPanel(new BorderLayout());
-				JLabel form = new JLabel(
-						"             Choose A Formation for Players         ");
-				panel.add(form, BorderLayout.NORTH);
-				panel.setLayout(new FlowLayout());
-				panel.add(option1);
-				panel.add(option2);
-				panel.add(option3);
-				panel.add(option4);
-				// panel.add(buttonPanel);
-				optionButton.addActionListener(new ButtonListener());
-				JLabel level = new JLabel(
-						"                        Choose A Level          ");
-				panel.add(level, BorderLayout.NORTH);
-				panel.add(optionlevel1, BorderLayout.WEST);
-				panel.add(optionlevel2, BorderLayout.EAST);
-				panel.add(optionlevel3, BorderLayout.EAST);
-				panel.add(buttonPanel1);
-				panel.add(optionButton, BorderLayout.SOUTH);
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                        JButton clickedButton = (JButton) event.getSource();
+                        String buttonText = clickedButton.getText();
+                        if (buttonText.equals("Play")) {
+                                try {
+                                        img = ImageIO.read(new File("resources/7.jpg"));
+                                } catch (IOException e) {
+                                        e.printStackTrace();
+                                }
+                                setBackground(Color.BLACK);
+                                setOpaque(true);
+                                //System.out.println("hello");
+                                panel.removeAll();
+                                // System.out.println("in2");
+                                // JPanel buttonPanel = new JPanel(new BorderLayout());
+                                JPanel buttonPanel1 = new JPanel(new BorderLayout());
+                                JLabel form = new JLabel(
+                                                "             Choose A Formation for Players         ");
+                                panel.add(form, BorderLayout.NORTH);
+                                panel.setLayout(new FlowLayout());
+                                panel.add(option1);
+                                panel.add(option2);
+                                panel.add(option3);
+                                panel.add(option4);
+                                // panel.add(buttonPanel);
+                                optionButton.addActionListener(new ButtonListener());
+                                JLabel level = new JLabel(
+                                                "                        Choose A Level          ");
+                                panel.add(level, BorderLayout.NORTH);
+                                panel.add(optionlevel1, BorderLayout.WEST);
+                                panel.add(optionlevel2, BorderLayout.EAST);
+                                panel.add(optionlevel3, BorderLayout.EAST);
+                                panel.add(buttonPanel1);
+                                panel.add(optionButton, BorderLayout.SOUTH);
 
-				// rechange2.setBackground(Color.white);
-				// rechange2.setSize(1440, 920);
-				// rechange2.setBounds(50, 50, 240, 225);
+                                // rechange2.setBackground(Color.white);
+                                // rechange2.setSize(1440, 920);
+                                // rechange2.setBounds(50, 50, 240, 225);
 
-				// panel.add(rechange2);
-				// panel.add(optionButton, BorderLayout.CENTER);
-				// optionButton.addActionListener(new ButtonListener());
-				validate();
-				repaint();
+                                // panel.add(rechange2);
+                                // panel.add(optionButton, BorderLayout.CENTER);
+                                // optionButton.addActionListener(new ButtonListener());
+                                validate();
+                                repaint();
 
-				setVisible(true);
-			}
-			if (buttonText.equals("Submit")) {
-				panel.removeAll();
+                                setVisible(true);
+                        }
+                        if (buttonText.equals("Submit")) {
+                                panel.removeAll();
 
-				// panel.setBackground(Color.RED);
-				// panel.setBackground(Color.red);
+                                // panel.setBackground(Color.RED);
+                                // panel.setBackground(Color.red);
 
-				setOpaque(true);
-				// setLayout(new GridLayout(1,1));
+                                setOpaque(true);
+                                // setLayout(new GridLayout(1,1));
 
-				// ContentPanel.this.add(gameGrid, BorderLayout.CENTER);
-				// System.out.println("in2");
-				// rechange2 = new JPanel(null);
-				// System.out.println("test");
-				// rechange2.setBackground(Color.white);
-				// rechange2.setBounds(50, 50, 240, 225);
-				// System.out.println("in3");
-				// panel.add(rechange2);
-				// panel.add(new Table());//new frame());
-				setVisible(true);
+                                // ContentPanel.this.add(gameGrid, BorderLayout.CENTER);
+                                // System.out.println("in2");
+                                // rechange2 = new JPanel(null);
+                                // System.out.println("test");
+                                // rechange2.setBackground(Color.white);
+                                // rechange2.setBounds(50, 50, 240, 225);
+                                // System.out.println("in3");
+                                // panel.add(rechange2);
+                                // panel.add(new Table());//new frame());
+                                setVisible(true);
 
-				panel.add(new PlayPanel());
-				validate();
-				repaint();
-				// Create an instance of a ball
+                                panel.add(new PlayPanel());
+                                validate();
+                                repaint();
+                                // Create an instance of a ball
 
-			}
+                        }
 
-		}
-	}
+                }
+        }
 }

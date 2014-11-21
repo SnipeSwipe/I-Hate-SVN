@@ -144,14 +144,14 @@ public class Ball extends Thread {
 		int oldy = (int) ball.getY();
 			
 		newx = oldx + dx;		
-		if ((newx + size > xBound || newx < 0)||(newx + size >=214|| newx<=433)&& flagHitComputerGoal==1) {
+		if ((newx + size > xBound || newx < 0)||((newx + size >=214 || newx<=433)&& (flagHitComputerGoal==1))) {
 			flagHitComputerGoal=0;
 			dx = -dx;
 		} else
 			dx = +dx;
 		
 		newy = oldy + dy;
-		if (newy + size > yBound || newy < 0) {
+		if ((newy + size > yBound || newy< 0)||((newx + size >=214 || newx<=433)&& (flagHitComputerGoal==1))){
 			dy = -dy;
 		} else {
 			dy = +dy;

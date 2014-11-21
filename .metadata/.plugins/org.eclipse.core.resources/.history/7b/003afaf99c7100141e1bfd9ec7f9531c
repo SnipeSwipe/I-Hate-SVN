@@ -94,23 +94,15 @@ public class Ball extends Thread {
 			moveBall();
 
 			// detecting collisions
-			//See this, refer for each collision
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfAttackers; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.attackers[i]
 						.getPlayerRect())) {
-
-					// dx is the speed
 					if (Math.abs(dx) < 20) {
-
-						// accelerate ball by one towards AI goalpost
 						this.dx = Math.abs(this.dx) + 1;
 					} else {
-						// If max speed(20) reached, carry on with same speed
 						this.dx = Math.abs(this.dx);
 					}
 					if (this.panel.humanTeam.attackers[i].dy > 0) {
-						// if going downwards, reduce ball angle(I dunno how to
-						// put it, just change ball angle
 						dy = dy + 1;
 					} else {
 						dy = dy - 1;

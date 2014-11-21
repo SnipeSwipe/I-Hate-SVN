@@ -94,7 +94,6 @@ public class Ball extends Thread {
 			moveBall();
 
 			// detecting collisions
-			//See this, refer for each collision
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfAttackers; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.attackers[i]
 						.getPlayerRect())) {

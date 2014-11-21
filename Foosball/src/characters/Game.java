@@ -11,13 +11,14 @@ public class Game {
 
 	}
 
-	public static void doCoinToss() {
+	public static int doCoinToss() {
 		int userChoice = showCoinTossDialog();
 		if (userChoice == -1) {
 			doCoinToss();
 		} else if (userChoice != -1) {
 			showResultDialog(userChoice);
 		}
+		return result();
 	}
 
 	public static int showCoinTossDialog() {
@@ -53,9 +54,11 @@ public class Game {
 		// System.out.println(userChoice);
 	}
 
-	public String result() {
-		return titleMessage;
-
+	public static int result() {
+		if(titleMessage.equals("You win the Toss"))
+			return 1;
+		else
+			return 0;
 	}
 
 	public static String convert(int x) {

@@ -18,18 +18,10 @@ public class Scoreboard extends JPanel {
 	//add constructor for GUI?
 	
 	public Scoreboard() {
-		this.setPreferredSize(new Dimension(1280, 30));
-		human = new JLabel("Your Score: "+this.humanScore+"   Computer Score:  "+this.aiScore, JLabel.CENTER);
-		//labelText = "Your Score:" + String.valueOf(this.humanScore) + "Computer Score:" + String.valueOf(this.aiScore);
-		//human.setText(labelText);
-        human.setFont(new Font("Segoe UI", Font.PLAIN, 30));
-        human.setBounds(490, 220, 300, 100);
-        //human.setForeground(new Color(39, 64, 139));
-        human.setOpaque(false);
-        human.repaint();
-        this.add(human);
-        human.setVisible(true);
-        this.setVisible(true);
+		this.setPreferredSize(new Dimension(1280, 32));
+		//this.setBackground(new Color(0, 0, 0, 0));
+		
+        human = new JLabel();
 		this.humanScore = 0;
 		this.aiScore = 0;
 	}
@@ -38,7 +30,7 @@ public class Scoreboard extends JPanel {
 		super.paintComponent(g);
 		//g.drawString(Integer.toString(this.humanScore), 100, 100);
 		human.setText(labelText);
-        human.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+        human.setFont(new Font("Segoe UI", Font.BOLD, 18));
         human.setBounds(490, 220, 300, 100);
         //human.setForeground(new Color(39, 64, 139));
         this.add(human);
@@ -52,14 +44,13 @@ public class Scoreboard extends JPanel {
 		//labelText = "Your Score: " + String.valueOf(this.humanScore) + " Computer Score: " + String.valueOf(this.aiScore);
 		labelText = String.valueOf(this.humanScore) + "       " + String.valueOf(this.aiScore);
 		human.setText(labelText);
-        human.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+        human.setFont(new Font("Segoe UI", Font.BOLD, 18));
         human.setBounds(490, 220, 300, 100);
         //human.setForeground(new Color(39, 64, 139));
         human.setOpaque(false);
 		human.setBorder(null);
         this.add(human);
         human.setVisible(true);
-        human.repaint();
 		this.setVisible(true);
 	}
 	

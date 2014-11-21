@@ -25,7 +25,7 @@ public class Ball extends Thread {
 	private int size, speed;
 	private int dx, dy;
 	int startx, starty;
-	int newx, newy;
+	public static int newx, newy;
 	boolean computerScored;
 	int xBound, yBound; //width and height of field in pixels (Hard-code or pass as parameters)
 	

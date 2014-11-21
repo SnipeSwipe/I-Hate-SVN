@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
+import table.Ball;
 import table.Formation;
 import table.PlayPanel;
 //import table.PlayPanel.Attacker;
@@ -20,16 +21,18 @@ public class Team implements Runnable {
 	public Attacker[] attackers;
 	public Goalkeeper goalkeeper;
 	public int bally;
-	PlayPanel panel;
+	public PlayPanel panel;
 	private Rectangle2D.Double rod;
 	private Rectangle2D.Double rodGK1;
 	private Rectangle2D.Double rodGK2;
 
-	Color color,rodColor;
+	Color color, rodColor;
 	boolean isMoving;
-	
-	public int getBally(int b){
-		return b;
+
+	int timeCord = 0;
+
+	public void setBally(int b) {
+		bally = b;
 	}
 
 	public void run() {
@@ -39,31 +42,42 @@ public class Team implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			this.move();
+			timeCord++;
+			if (Ball.newy > goalkeeper.currenty) {
+				if (timeCord % 2 == 0) {
+					this.moveDown();
+				}
+			} else if (Ball.newy < goalkeeper.currenty) {
+				if (timeCord % 2 == 0) {
+					this.moveUp();
+				}
+			}
 			this.panel.repaint();
 		}
 	}
-	public void rodDraw(Graphics2D g2d){
-		int placerod=194;
-		rodGK1 = new Rectangle2D.Double(1227, 0,2, 670);
-		rodGK2 = new Rectangle2D.Double(66, 0,2, 670);
-		rodColor = new Color(0,100,0);
 
-		if (rodGK1 != null || rodGK2!=null) {
+	public void rodDraw(Graphics2D g2d) {
+		int placerod = 194;
+		rodGK1 = new Rectangle2D.Double(1227, 0, 2, 670);
+		rodGK2 = new Rectangle2D.Double(66, 0, 2, 670);
+		rodColor = new Color(0, 100, 0);
+
+		if (rodGK1 != null || rodGK2 != null) {
 			g2d.setColor(rodColor);
 			g2d.fill(rodGK1);
 			g2d.fill(rodGK2);
 		}
-		for(int k=0;k<8;k++){
-			rod = new Rectangle2D.Double(placerod, 0,2, 670);
-			placerod+=182;
+		for (int k = 0; k < 8; k++) {
+			rod = new Rectangle2D.Double(placerod, 0, 2, 670);
+			placerod += 182;
 			if (rod != null) {
 				g2d.setColor(rodColor);
 				g2d.fill(rod);
 			}
 		}
-		
+
 	}
+
 	public Team(Formation formation, PlayPanel panel, TeamMode teamMode) {
 		this.panel = panel;
 		this.formation = formation;
@@ -84,7 +98,7 @@ public class Team implements Runnable {
 		attackY = attackBound = convertNumberToCoordinateGap(panelHeight,
 				this.formation.noOfAttackers);
 		gkY = panelHeight / 2;
-		;
+
 		gkBound = 150; // bound set to cover just the goal area
 
 		int gkX, defX, midX, attackX;
@@ -198,7 +212,7 @@ public class Team implements Runnable {
 	}
 
 	public void draw(Graphics2D g2d) {
-		//Team team=new Team(formation, panel, teamMode);
+		// Team team=new Team(formation, panel, teamMode);
 
 		this.rodDraw(g2d);
 		this.goalkeeper.draw(g2d);
@@ -214,7 +228,7 @@ public class Team implements Runnable {
 		for (int i = 0; i < this.formation.noOfAttackers; i++) {
 			this.attackers[i].draw(g2d);
 		}
-		
+
 	}
 
 	public static int convertNumberToCoordinate(int height, int number) {

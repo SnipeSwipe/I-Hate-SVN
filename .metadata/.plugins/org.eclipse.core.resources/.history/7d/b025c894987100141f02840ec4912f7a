@@ -99,54 +99,93 @@ public class Ball extends Thread {
 						.getPlayerRect())) {
 					// whoever fixes this code, this should be in the kick()
 					// method
-					this.dx = Math.abs(this.dx);
+					this.dx = Math.abs(this.dx) + 1;
+					if (this.panel.humanTeam.attackers[i].dy > 0) {
+						dy = dy + 1;
+					} else {
+						dy = dy - 1;
+					}
 				}
 			}
 
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfDefenders; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.defenders[i]
 						.getPlayerRect())) {
-					this.dx = Math.abs(this.dx);
+					this.dx = Math.abs(this.dx) + 1;
+					if (this.panel.humanTeam.defenders[i].dy > 0) {
+						dy = dy + 1;
+					} else {
+						dy = dy - 1;
+					}
 				}
 			}
 
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfMidfielders; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.midfielders[i]
 						.getPlayerRect())) {
-					this.dx = Math.abs(this.dx);
+					this.dx = Math.abs(this.dx) + 1;
+					if (this.panel.humanTeam.midfielders[i].dy > 0) {
+						dy = dy + 1;
+					} else {
+						dy = dy - 1;
+					}
 				}
 			}
 
 			if (this.ball.intersects(this.panel.humanTeam.goalkeeper
 					.getPlayerRect())) {
-				this.dx = Math.abs(this.dx);
+				this.dx = Math.abs(this.dx) + 1;
+				if (this.panel.humanTeam.goalkeeper.dy > 0) {
+					dy = dy + 1;
+				} else {
+					dy = dy - 1;
+				}
+
 			}
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfAttackers; i++) {
 				if (this.ball.intersects(this.panel.computerTeam.attackers[i]
 						.getPlayerRect())) {
-					// whoever fixes this code, this should be in the kick()
-					// method
-					this.dx = (-1) * Math.abs(this.dx);
+					this.dx = (-1) * Math.abs(this.dx) - 1;
+					if (this.panel.computerTeam.attackers[i].dy > 0) {
+						dy = dy + 1;
+					} else if (this.panel.computerTeam.attackers[i].dy < 0) {
+						dy = dy - 1;
+					}
 				}
 			}
 
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfDefenders; i++) {
 				if (this.ball.intersects(this.panel.computerTeam.defenders[i]
 						.getPlayerRect())) {
-					this.dx = (-1) * Math.abs(this.dx);
+					this.dx = (-1) * Math.abs(this.dx) - 1;
+					if (this.panel.computerTeam.defenders[i].dy > 0) {
+						dy = dy + 1;
+					} else if (this.panel.computerTeam.defenders[i].dy < 0) {
+						dy = dy - 1;
+					}
 				}
 			}
 
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfMidfielders; i++) {
 				if (this.ball.intersects(this.panel.computerTeam.midfielders[i]
 						.getPlayerRect())) {
-					this.dx = (-1) * Math.abs(this.dx);
+					this.dx = (-1) * Math.abs(this.dx) - 1;
+					if (this.panel.computerTeam.midfielders[i].dy > 0) {
+						dy = dy + 1;
+					} else if (this.panel.computerTeam.midfielders[i].dy < 0) {
+						dy = dy - 1;
+					}
 				}
 			}
 
 			if (this.ball.intersects(this.panel.computerTeam.goalkeeper
 					.getPlayerRect())) {
-				this.dx = (-1) * Math.abs(this.dx);
+				this.dx = (-1) * Math.abs(this.dx) - 1;
+				if (this.panel.computerTeam.goalkeeper.dy > 0) {
+					dy = dy + 1;
+				} else if (this.panel.computerTeam.goalkeeper.dy < 0) {
+					dy = dy - 1;
+				}
 			}
 			// end of detecting collisions
 
@@ -169,7 +208,16 @@ public class Ball extends Thread {
 			computerScored = false;
 		}
 
-		newx = oldx + dx;
+		if (Math.abs(dx) > 1) {
+			if (dx > 0) {
+				newx = oldx + dx - 1;
+			} else if (dx < 0) {
+				newx = oldx + dx + 1;
+			}
+		} else {
+			newx = oldx + dx;
+		}
+		// newx = oldx + dx;
 
 		newy = oldy + dy;
 		if (newy + size > yBound || newy < 0) {
@@ -207,7 +255,11 @@ public class Ball extends Thread {
 				e1.printStackTrace();
 			}
 			computerScored = true;
+
+			speed = 20;
+			dx = dy = 10;
 			ball.setFrame(1150, 360, size, size);
+
 		} else if (((newy >= 250 - 15) && (newy <= 425 - 15)) && (newx < 0)) {
 			BufferedImage myPicture;
 			this.panel.scoreBoard.increaseScoreAI();
@@ -223,6 +275,9 @@ public class Ball extends Thread {
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
 			}
+
+			speed = 20;
+			dx = dy = 10;
 
 			ball.setFrame(59, 360, size, size);
 		}

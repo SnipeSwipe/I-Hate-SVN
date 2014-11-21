@@ -97,9 +97,11 @@ public class Ball extends Thread {
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfAttackers; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.attackers[i]
 						.getPlayerRect())) {
-					// whoever fixes this code, this should be in the kick()
-					// method
-					this.dx = Math.abs(this.dx) + 1;
+					if (Math.abs(dx) < 20) {
+						this.dx = Math.abs(this.dx) + 1;
+					} else {
+						this.dx = Math.abs(this.dx);
+					}
 					if (this.panel.humanTeam.attackers[i].dy > 0) {
 						dy = dy + 1;
 					} else {
@@ -111,7 +113,11 @@ public class Ball extends Thread {
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfDefenders; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.defenders[i]
 						.getPlayerRect())) {
-					this.dx = Math.abs(this.dx) + 1;
+					if (Math.abs(dx) < 20) {
+						this.dx = Math.abs(this.dx) + 1;
+					} else {
+						this.dx = Math.abs(this.dx);
+					}
 					if (this.panel.humanTeam.defenders[i].dy > 0) {
 						dy = dy + 1;
 					} else {
@@ -123,7 +129,11 @@ public class Ball extends Thread {
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfMidfielders; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.midfielders[i]
 						.getPlayerRect())) {
-					this.dx = Math.abs(this.dx) + 1;
+					if (Math.abs(dx) < 20) {
+						this.dx = Math.abs(this.dx) + 1;
+					} else {
+						this.dx = Math.abs(this.dx);
+					}
 					if (this.panel.humanTeam.midfielders[i].dy > 0) {
 						dy = dy + 1;
 					} else {
@@ -134,7 +144,11 @@ public class Ball extends Thread {
 
 			if (this.ball.intersects(this.panel.humanTeam.goalkeeper
 					.getPlayerRect())) {
-				this.dx = Math.abs(this.dx) + 1;
+				if (Math.abs(dx) < 20) {
+					this.dx = Math.abs(this.dx) + 1;
+				} else {
+					this.dx = Math.abs(this.dx);
+				}
 				if (this.panel.humanTeam.goalkeeper.dy > 0) {
 					dy = dy + 1;
 				} else {
@@ -145,7 +159,12 @@ public class Ball extends Thread {
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfAttackers; i++) {
 				if (this.ball.intersects(this.panel.computerTeam.attackers[i]
 						.getPlayerRect())) {
-					this.dx = (-1) * Math.abs(this.dx) - 1;
+					if (Math.abs(dx) < 20) {
+						this.dx = (-1) * Math.abs(this.dx) - 1;
+					} else {
+						this.dx = (-1) * Math.abs(this.dx);
+					}
+
 					if (this.panel.computerTeam.attackers[i].dy > 0) {
 						dy = dy + 1;
 					} else if (this.panel.computerTeam.attackers[i].dy < 0) {
@@ -157,7 +176,11 @@ public class Ball extends Thread {
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfDefenders; i++) {
 				if (this.ball.intersects(this.panel.computerTeam.defenders[i]
 						.getPlayerRect())) {
-					this.dx = (-1) * Math.abs(this.dx) - 1;
+					if (Math.abs(dx) < 20) {
+						this.dx = (-1) * Math.abs(this.dx) - 1;
+					} else {
+						this.dx = (-1) * Math.abs(this.dx);
+					}
 					if (this.panel.computerTeam.defenders[i].dy > 0) {
 						dy = dy + 1;
 					} else if (this.panel.computerTeam.defenders[i].dy < 0) {
@@ -169,7 +192,11 @@ public class Ball extends Thread {
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfMidfielders; i++) {
 				if (this.ball.intersects(this.panel.computerTeam.midfielders[i]
 						.getPlayerRect())) {
-					this.dx = (-1) * Math.abs(this.dx) - 1;
+					if (Math.abs(dx) < 20) {
+						this.dx = (-1) * Math.abs(this.dx) - 1;
+					} else {
+						this.dx = (-1) * Math.abs(this.dx);
+					}
 					if (this.panel.computerTeam.midfielders[i].dy > 0) {
 						dy = dy + 1;
 					} else if (this.panel.computerTeam.midfielders[i].dy < 0) {
@@ -180,7 +207,11 @@ public class Ball extends Thread {
 
 			if (this.ball.intersects(this.panel.computerTeam.goalkeeper
 					.getPlayerRect())) {
-				this.dx = (-1) * Math.abs(this.dx) - 1;
+				if (Math.abs(dx) < 20) {
+					this.dx = (-1) * Math.abs(this.dx) - 1;
+				} else {
+					this.dx = (-1) * Math.abs(this.dx);
+				}
 				if (this.panel.computerTeam.goalkeeper.dy > 0) {
 					dy = dy + 1;
 				} else if (this.panel.computerTeam.goalkeeper.dy < 0) {

@@ -286,8 +286,8 @@ public class Ball extends Thread {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
 				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.add(picLabel);
-				picLabel.setBounds(250, 120, 800, 400);
-
+				picLabel.setBounds(250, 220, 800, 400);
+				panel.repaint();
 				sleep(1000);
 				panel.remove(picLabel);
 			} catch (IOException | InterruptedException e1) {
@@ -307,7 +307,9 @@ public class Ball extends Thread {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
 				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.add(picLabel);
-				picLabel.setBounds(250, 120, 800, 400);
+				picLabel.setBounds(250, 220, 800, 400);
+				panel.repaint();
+				//panel.scoreBoard.draw(g2d);
 				// picLabel.setOpaque(true);
 				sleep(1000);
 				panel.remove(picLabel);

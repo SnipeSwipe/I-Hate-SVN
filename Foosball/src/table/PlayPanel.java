@@ -106,6 +106,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 
 		Graphics2D g2d = (Graphics2D) g;
 		b.draw(g2d);
+		scoreBoard.draw(g2d);
 		humanTeam.draw(g2d);
 		computerTeam.draw(g2d);
 		humanTeam.rodDraw(g2d);

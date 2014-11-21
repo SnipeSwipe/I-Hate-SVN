@@ -104,9 +104,4 @@ public abstract class Player implements PlayingInterface {
 		}
 	}
 
-	@Override
-	public int kick() {
-		return 0;
-	}
-
 }

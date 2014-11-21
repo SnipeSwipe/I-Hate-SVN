@@ -19,12 +19,14 @@ public class Scoreboard extends JPanel {
 	
 	public Scoreboard() {
 		this.setPreferredSize(new Dimension(1280, 30));
-		human= new JLabel("Your Score: "+this.humanScore+"   Computer Score:  "+this.aiScore, JLabel.CENTER);
+		human = new JLabel("Your Score: "+this.humanScore+"   Computer Score:  "+this.aiScore, JLabel.CENTER);
 		//labelText = "Your Score:" + String.valueOf(this.humanScore) + "Computer Score:" + String.valueOf(this.aiScore);
 		//human.setText(labelText);
-        human.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+        human.setFont(new Font("Segoe UI", Font.PLAIN, 30));
         human.setBounds(490, 220, 300, 100);
-        human.setForeground(new Color(39, 64, 139));
+        //human.setForeground(new Color(39, 64, 139));
+        human.setOpaque(false);
+        human.repaint();
         this.add(human);
         human.setVisible(true);
         this.setVisible(true);
@@ -38,7 +40,7 @@ public class Scoreboard extends JPanel {
 		human.setText(labelText);
         human.setFont(new Font("Segoe UI", Font.PLAIN, 18));
         human.setBounds(490, 220, 300, 100);
-        human.setForeground(new Color(39, 64, 139));
+        //human.setForeground(new Color(39, 64, 139));
         this.add(human);
         human.setVisible(true);
 		this.setVisible(true);
@@ -47,13 +49,17 @@ public class Scoreboard extends JPanel {
 	public void draw(Graphics g2d)
 	{
 		g2d.setColor(new Color(0,0,0));
-		labelText = "Your Score: " + String.valueOf(this.humanScore) + " Computer Score: " + String.valueOf(this.aiScore);
+		//labelText = "Your Score: " + String.valueOf(this.humanScore) + " Computer Score: " + String.valueOf(this.aiScore);
+		labelText = String.valueOf(this.humanScore) + "       " + String.valueOf(this.aiScore);
 		human.setText(labelText);
         human.setFont(new Font("Segoe UI", Font.PLAIN, 18));
         human.setBounds(490, 220, 300, 100);
-        human.setForeground(new Color(39, 64, 139));
+        //human.setForeground(new Color(39, 64, 139));
+        human.setOpaque(false);
+		human.setBorder(null);
         this.add(human);
         human.setVisible(true);
+        human.repaint();
 		this.setVisible(true);
 	}
 	

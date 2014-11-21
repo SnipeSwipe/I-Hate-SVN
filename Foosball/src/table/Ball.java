@@ -26,10 +26,8 @@ public class Ball extends Thread {
 
 	private Color color;
 	private PlayPanel panel;
-	private Scoreboard board;
 	JLabel image;
 	Game game;
-	private int tossResult;
 
 	public static Ball getInstance(PlayPanel panel, int tossResult) { // a
 																		// unique
@@ -70,7 +68,6 @@ public class Ball extends Thread {
 		ball = new Ellipse2D.Double(startx, starty, size, size);
 		color = new Color(204, 0, 0);
 		game = new Game();
-		board = new Scoreboard();
 
 	}
 
@@ -96,135 +93,64 @@ public class Ball extends Thread {
 			// detecting collisions
 			//See this, refer for each collision
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfAttackers; i++) {
-				if (this.ball.intersects(this.panel.humanTeam.attackers[i]
-						.getPlayerRect())) {
-
-					// dx is the speed
-					if (Math.abs(dx) < 20) {
-
-						// accelerate ball by one towards AI goalpost
-						this.dx = Math.abs(this.dx) + 1;
-					} else {
-						// If max speed(20) reached, carry on with same speed
-						this.dx = Math.abs(this.dx);
-					}
-					if (this.panel.humanTeam.attackers[i].dy > 0) {
-						// if going downwards, reduce ball angle(I dunno how to
-						// put it, just change ball angle
-						dy = dy + 1;
-					} else {
-						dy = dy - 1;
-					}
+				if (this.ball.intersects(this.panel.humanTeam.attackers[i].getPlayerRect())) {
+					int[] temp = this.panel.humanTeam.attackers[i].kick(dx, dy);
+					dx = temp[0];
+					dy = temp[1];
 				}
 			}
 
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfDefenders; i++) {
-				if (this.ball.intersects(this.panel.humanTeam.defenders[i]
-						.getPlayerRect())) {
-					if (Math.abs(dx) < 20) {
-						this.dx = Math.abs(this.dx) + 1;
-					} else {
-						this.dx = Math.abs(this.dx);
-					}
-					if (this.panel.humanTeam.defenders[i].dy > 0) {
-						dy = dy + 1;
-					} else {
-						dy = dy - 1;
-					}
+				if (this.ball.intersects(this.panel.humanTeam.defenders[i].getPlayerRect())) {
+					int[] temp = this.panel.humanTeam.defenders[i].kick(dx, dy);
+					dx = temp[0];
+					dy = temp[1];
 				}
 			}
 
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfMidfielders; i++) {
-				if (this.ball.intersects(this.panel.humanTeam.midfielders[i]
-						.getPlayerRect())) {
-					if (Math.abs(dx) < 20) {
-						this.dx = Math.abs(this.dx) + 1;
-					} else {
-						this.dx = Math.abs(this.dx);
-					}
-					if (this.panel.humanTeam.midfielders[i].dy > 0) {
-						dy = dy + 1;
-					} else {
-						dy = dy - 1;
-					}
+				if (this.ball.intersects(this.panel.humanTeam.midfielders[i].getPlayerRect())) {
+					int[] temp = this.panel.humanTeam.midfielders[i].kick(dx, dy);
+					dx = temp[0];
+					dy = temp[1];
 				}
 			}
 
-			if (this.ball.intersects(this.panel.humanTeam.goalkeeper
-					.getPlayerRect())) {
-				if (Math.abs(dx) < 20) {
-					this.dx = Math.abs(this.dx) + 1;
-				} else {
-					this.dx = Math.abs(this.dx);
-				}
-				if (this.panel.humanTeam.goalkeeper.dy > 0) {
-					dy = dy + 1;
-				} else {
-					dy = dy - 1;
-				}
+			if (this.ball.intersects(this.panel.humanTeam.goalkeeper.getPlayerRect())) {
+				int[] temp = new int[2];
+				temp = this.panel.humanTeam.goalkeeper.kick(dx, dy);
+				dx = temp[0];
+				dy = temp[1];
 
 			}
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfAttackers; i++) {
-				if (this.ball.intersects(this.panel.computerTeam.attackers[i]
-						.getPlayerRect())) {
-					if (Math.abs(dx) < 20) {
-						this.dx = (-1) * Math.abs(this.dx) - 1;
-					} else {
-						this.dx = (-1) * Math.abs(this.dx);
-					}
-
-					if (this.panel.computerTeam.attackers[i].dy > 0) {
-						dy = dy + 1;
-					} else if (this.panel.computerTeam.attackers[i].dy < 0) {
-						dy = dy - 1;
-					}
+				if (this.ball.intersects(this.panel.computerTeam.attackers[i].getPlayerRect())) {
+					int[] temp = this.panel.computerTeam.attackers[i].kick(dx, dy);
+					dx = (-1) * temp[0];
+					dy = temp[1];
 				}
 			}
 
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfDefenders; i++) {
-				if (this.ball.intersects(this.panel.computerTeam.defenders[i]
-						.getPlayerRect())) {
-					if (Math.abs(dx) < 20) {
-						this.dx = (-1) * Math.abs(this.dx) - 1;
-					} else {
-						this.dx = (-1) * Math.abs(this.dx);
-					}
-					if (this.panel.computerTeam.defenders[i].dy > 0) {
-						dy = dy + 1;
-					} else if (this.panel.computerTeam.defenders[i].dy < 0) {
-						dy = dy - 1;
-					}
+				if (this.ball.intersects(this.panel.computerTeam.defenders[i].getPlayerRect())) {
+					int[] temp = this.panel.computerTeam.defenders[i].kick(dx, dy);
+					dx = (-1) * temp[0];
+					dy = temp[1];
 				}
 			}
 
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfMidfielders; i++) {
-				if (this.ball.intersects(this.panel.computerTeam.midfielders[i]
-						.getPlayerRect())) {
-					if (Math.abs(dx) < 20) {
-						this.dx = (-1) * Math.abs(this.dx) - 1;
-					} else {
-						this.dx = (-1) * Math.abs(this.dx);
-					}
-					if (this.panel.computerTeam.midfielders[i].dy > 0) {
-						dy = dy + 1;
-					} else if (this.panel.computerTeam.midfielders[i].dy < 0) {
-						dy = dy - 1;
-					}
+				if (this.ball.intersects(this.panel.computerTeam.midfielders[i].getPlayerRect())) {
+					int[] temp = this.panel.computerTeam.midfielders[i].kick(dx, dy);
+					dx = (-1) * temp[0];
+					dy = temp[1];
 				}
 			}
 
-			if (this.ball.intersects(this.panel.computerTeam.goalkeeper
-					.getPlayerRect())) {
-				if (Math.abs(dx) < 20) {
-					this.dx = (-1) * Math.abs(this.dx) - 1;
-				} else {
-					this.dx = (-1) * Math.abs(this.dx);
-				}
-				if (this.panel.computerTeam.goalkeeper.dy > 0) {
-					dy = dy + 1;
-				} else if (this.panel.computerTeam.goalkeeper.dy < 0) {
-					dy = dy - 1;
-				}
+			if (this.ball.intersects(this.panel.computerTeam.goalkeeper.getPlayerRect())) {
+				int[] temp = this.panel.computerTeam.goalkeeper.kick(dx, dy);
+				dx = (-1) * temp[0];
+				dy = temp[1];
 			}
 			// end of detecting collisions
 

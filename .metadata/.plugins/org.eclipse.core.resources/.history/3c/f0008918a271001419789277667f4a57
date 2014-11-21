@@ -61,8 +61,6 @@ public class Team implements Runnable {
 					this.moveUp();
 				}
 			}
-			
-			//Repaint as usual
 			this.panel.repaint();
 		}
 	}

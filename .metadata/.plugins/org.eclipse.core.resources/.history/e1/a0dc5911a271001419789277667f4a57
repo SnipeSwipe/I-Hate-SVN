@@ -42,27 +42,16 @@ public class Team implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
-			// Whole motive of AI is to try to make Goalkeeper reach the ball,
-			// any other intersection that happens is accidental
-
-			// timeCord to make AI movement fast/slow
 			timeCord++;
 			if (Ball.newy > goalkeeper.currenty) {
-				// if ball's below gk, we move the whole team down
 				if (timeCord % 2 == 0) {
-					// Loop makes team movement a little slow, otherwise AI was
-					// too fast
 					this.moveDown();
 				}
 			} else if (Ball.newy < goalkeeper.currenty) {
-				// If ball's above the gk, we move the whole team up
 				if (timeCord % 2 == 0) {
 					this.moveUp();
 				}
 			}
-			
-			//Repaint as usual
 			this.panel.repaint();
 		}
 	}
@@ -109,7 +98,7 @@ public class Team implements Runnable {
 		attackY = attackBound = convertNumberToCoordinateGap(panelHeight,
 				this.formation.noOfAttackers);
 		gkY = panelHeight / 2;
-
+		
 		gkBound = 150; // bound set to cover just the goal area
 
 		int gkX, defX, midX, attackX;
@@ -120,13 +109,13 @@ public class Team implements Runnable {
 			defX = 185;
 			midX = 549;
 			attackX = 913;
-			this.color = new Color(255, 165, 0);
+			this.color = new Color(255,165,0);
 		} else if (teamMode == TeamMode.COMPUTER) {
 			gkX = 1221;
 			defX = 1095;
 			midX = 731;
 			attackX = 367;
-			this.color = new Color(72, 61, 139);
+			this.color = new Color(72,61,139);
 			this.isMoving = true;
 		}
 
@@ -243,8 +232,8 @@ public class Team implements Runnable {
 	}
 
 	static int convertNumberToCoordinateGap(int height, int number) {
-
-		return height / (number + 1);
-
+	
+		return height/(number+1);
+		
 	}
 }

@@ -1,20 +1,14 @@
 package table;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Random;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import characters.Game;
 
 public class Ball extends Thread {
@@ -182,7 +176,7 @@ public class Ball extends Thread {
 		if (((newy >= 250-15) && (newy <= 425-15))
 				&& (newx >= panel.getWidth() - 20)) {
 			BufferedImage myPicture;
-			board.increaseScoreHuman();
+			this.panel.scoreBoard.increaseScoreHuman();
 			try {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
 				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
@@ -198,7 +192,7 @@ public class Ball extends Thread {
 			ball.setFrame(1150, 360, size, size);
 		} else if (((newy >= 250-15) && (newy <= 425-15)) && (newx <0)) {
 			BufferedImage myPicture;
-			board.increaseScoreAI();
+			this.panel.scoreBoard.increaseScoreAI();
 
 			try {
 				myPicture = ImageIO.read(new File("resources/goal.png"));

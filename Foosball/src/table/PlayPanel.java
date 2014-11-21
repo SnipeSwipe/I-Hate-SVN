@@ -82,13 +82,16 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		computerThread = new Thread(computerTeam);
 		computerThread.start();
 		computerTeam.setBally(b.newy);
-
+		this.scoreBoard = new Scoreboard();
+		this.add(scoreBoard);
+		this.scoreBoard.setBounds(250, 120, 800, 400);
 		timer = new Timer(100, this);
 		addKeyListener(this);
 		setFocusable(true);
 		requestFocusInWindow();
 		setFocusTraversalKeysEnabled(false);
 		putTAB();
+		
 
 		setVisible(true);
 

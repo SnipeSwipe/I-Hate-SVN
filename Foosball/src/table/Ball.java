@@ -179,7 +179,7 @@ public class Ball extends Thread {
 	
 	public void checkGoal(){
 				
-		if (((newy >= 250-10) && (newy <= 425-10))
+		if (((newy >= 250-15) && (newy <= 425-15))
 				&& (newx >= panel.getWidth() - 20)) {
 			BufferedImage myPicture;
 			board.increaseScoreHuman();
@@ -196,7 +196,7 @@ public class Ball extends Thread {
 			}
 			computerScored = true;
 			ball.setFrame(1150, 360, size, size);
-		} else if (((newy >= 250-10) && (newy <= 425-10)) && (newx <0)) {
+		} else if (((newy >= 250-15) && (newy <= 425-15)) && (newx <0)) {
 			BufferedImage myPicture;
 			board.increaseScoreAI();
 

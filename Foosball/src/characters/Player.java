@@ -39,7 +39,7 @@ public abstract class Player implements PlayingInterface {
 		this.currenty = starty;
 		this.dy = dy;
 		this.bound = bound; // defines the upper and lower bound for movement
-		this.max = starty + bound;
+		this.max = starty + bound - 25;
 		this.min = starty - bound;
 		this.color = color;
 

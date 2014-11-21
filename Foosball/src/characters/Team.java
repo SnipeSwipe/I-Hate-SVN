@@ -110,7 +110,7 @@ public class Team implements Runnable {
 				this.formation.noOfAttackers);
 		gkY = panelHeight / 2;
 
-		gkBound = 150; // bound set to cover just the goal area
+		gkBound = 130; // bound set to cover just the goal area
 
 		int gkX, defX, midX, attackX;
 		gkX = defX = midX = attackX = 0;

@@ -67,12 +67,10 @@ public abstract class Player implements PlayingInterface {
 			if (this.currenty < bally) {
 				if (this.dy < 0) {
 					this.dy = this.dy * (-1);
-					this.currenty += this.dy;
 				}
 			} else if (this.currenty > bally) {
 				if (this.dy > 0) {
 					this.dy = this.dy * (-1);
-					this.currenty += this.dy;
 				}
 			}
 		}

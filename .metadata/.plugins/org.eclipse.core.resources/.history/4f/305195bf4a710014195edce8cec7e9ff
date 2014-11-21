@@ -66,7 +66,6 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		setFocusable(true);
 		requestFocusInWindow();
 		setFocusTraversalKeysEnabled(false);
-		putTAB();
 
 		setVisible(true);
 
@@ -102,19 +101,23 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		// End of goal logic
 	}
 
-	public void putTAB() {
+	public void putTAB(){
 		try {
-			Robot robot = new Robot();
+        Robot robot = new Robot();
 
-			// Simulate a key press
-			robot.keyPress(KeyEvent.VK_TAB);
-			robot.keyRelease(KeyEvent.VK_TAB);
+        // Simulate a mouse click
+        robot.mousePress(InputEvent.BUTTON1_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_MASK);
 
-		} catch (AWTException e) {
-			e.printStackTrace();
-		}
-	}
+        // Simulate a key press
+        robot.keyPress(KeyEvent.VK_A);
+        robot.keyRelease(KeyEvent.VK_A);
 
+} catch (AWTException e) {
+        e.printStackTrace();
+}
+}
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_TAB) {

@@ -66,8 +66,8 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		setFocusable(true);
 		requestFocusInWindow();
 		setFocusTraversalKeysEnabled(false);
-		putTAB();
-
+putTAB();
+		
 		setVisible(true);
 
 	}

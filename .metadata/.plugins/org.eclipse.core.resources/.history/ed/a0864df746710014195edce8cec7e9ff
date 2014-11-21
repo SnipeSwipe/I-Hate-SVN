@@ -63,19 +63,18 @@ public abstract class Player implements PlayingInterface {
 	}
 
 	public void move(int bally) {
+
 		if (this.currenty <= this.min || this.currenty >= this.max) {
+
 			if (this.currenty < bally) {
 				if (this.dy < 0) {
-					this.dy = this.dy * (-1);
-					this.currenty += this.dy;
-				}
-			} else if (this.currenty > bally) {
-				if (this.dy > 0) {
-					this.dy = this.dy * (-1);
-					this.currenty += this.dy;
+					this.dy=this.dy*(-1);
 				}
 			}
+			this.dy = this.dy * (-1);
 		}
+
+		this.currenty += this.dy;
 	}
 
 	public void moveUp() {

@@ -44,7 +44,9 @@ public abstract class Player implements PlayingInterface {
 		this.color = color;
 
 		player = new Rectangle2D.Double(startx, starty, sizex, sizey);
-		
+
+		// color = new Color(255, 255, 255);
+
 		panel.setFocusable(true);
 		panel.requestFocusInWindow();
 	}

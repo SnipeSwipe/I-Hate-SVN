@@ -30,8 +30,7 @@ public abstract class Player implements PlayingInterface {
 	public Player(PlayPanel panel, int starty, int startx, int dy, int bound,
 			Color color) {
 		this.panel = panel;
-		sizex = 10;
-		sizey = 30;
+		size = 20;
 		speed = 50; // This sleeps, so increase to decrease speed
 		this.startx = startx;
 		this.starty = starty;
@@ -43,7 +42,7 @@ public abstract class Player implements PlayingInterface {
 		this.min = starty - bound;
 		this.color = color;
 
-		player = new Rectangle2D.Double(startx, starty, sizex, sizey);
+		player = new Rectangle2D.Double(startx, starty, size, size);
 
 		// color = new Color(255, 255, 255);
 
@@ -59,7 +58,7 @@ public abstract class Player implements PlayingInterface {
 		if (this.currenty <= this.min || this.currenty >= this.max) {
 			this.dy = this.dy * (-1);
 		}
-		//System.out.println("Not Working");
+
 		this.currenty += this.dy;
 	}
 
@@ -69,7 +68,6 @@ public abstract class Player implements PlayingInterface {
 				if (this.dy < 0) {
 					this.dy = this.dy * (-1);
 					this.currenty += this.dy;
-					//System.out.println("Working");
 				}
 			} else if (this.currenty > bally) {
 				if (this.dy > 0) {
@@ -101,8 +99,8 @@ public abstract class Player implements PlayingInterface {
 	public void draw(Graphics2D g2d) {
 		if (player != null) {
 			g2d.setColor(color);
-			player.setFrame(currentx, currenty, sizex, sizey);
-			g2d.fillRect(currentx, currenty, sizex, sizey);
+			player.setFrame(currentx, currenty, size, size);
+			g2d.fillRect(currentx, currenty, size, size);
 		}
 	}
 

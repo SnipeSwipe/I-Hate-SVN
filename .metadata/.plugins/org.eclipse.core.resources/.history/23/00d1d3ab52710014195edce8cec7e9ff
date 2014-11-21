@@ -26,7 +26,6 @@ public class Ball extends Thread {
 	private int dx, dy;
 	int startx, starty;
 	int newx, newy;
-	int flagHitComputerGoal=0;
 	int xBound, yBound; //width and height of field in pixels (Hard-code or pass as parameters)
 	
 	private Color color;
@@ -144,8 +143,7 @@ public class Ball extends Thread {
 		int oldy = (int) ball.getY();
 			
 		newx = oldx + dx;		
-		if ((newx + size > xBound || newx < 0)||(newx + size >=214|| newx<=433)&& flagHitComputerGoal==1) {
-			flagHitComputerGoal=0;
+		if ((newx + size > xBound || newx < 0)||((newy>= 214)&&(newy<=433)&& newx+size>xBound)) {
 			dx = -dx;
 		} else
 			dx = +dx;
@@ -201,7 +199,7 @@ public class Ball extends Thread {
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
 			}
-			flagHitComputerGoal=1;
+
 			ball.setFrame(1200, 360, size, size);
 		}
 		

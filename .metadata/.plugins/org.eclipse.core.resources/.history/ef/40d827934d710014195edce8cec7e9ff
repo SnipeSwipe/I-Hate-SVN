@@ -92,7 +92,6 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		ranNum = -30 + ran.nextInt(61);
 		ranNum = ranNum + b.getBallY();
 		repaint();
-		computerTeam.bally=ranNum;
 		computerTeam.move(ranNum);
 
 	}

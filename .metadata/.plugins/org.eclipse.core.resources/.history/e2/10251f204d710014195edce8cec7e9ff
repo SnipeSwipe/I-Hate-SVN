@@ -17,14 +17,9 @@ public class Team implements Runnable {
 	public Midfielder[] midfielders;
 	public Attacker[] attackers;
 	public Goalkeeper goalkeeper;
-	public int bally;
 	PlayPanel panel;
 	Color color;
 	boolean isMoving;
-	
-	public int getBally(int b){
-		return b;
-	}
 
 	public void run() {
 		while (isMoving) {
@@ -33,6 +28,7 @@ public class Team implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
 			this.move();
 			this.panel.repaint();
 		}
@@ -122,20 +118,18 @@ public class Team implements Runnable {
 	}
 
 	public void move(int bally) {
-
-		System.out.println(bally);
-		this.goalkeeper.move(bally);
+		this.goalkeeper.move2(bally);
 
 		for (int i = 0; i < this.formation.noOfDefenders; i++) {
-			this.defenders[i].move(bally);
+			this.defenders[i].move2(bally);
 		}
 
 		for (int i = 0; i < this.formation.noOfMidfielders; i++) {
-			this.midfielders[i].move(bally);
+			this.midfielders[i].move2(bally);
 		}
 
 		for (int i = 0; i < this.formation.noOfAttackers; i++) {
-			this.attackers[i].move(bally);
+			this.attackers[i].move2(bally);
 		}
 	}
 

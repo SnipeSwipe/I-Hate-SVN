@@ -59,7 +59,7 @@ public abstract class Player implements PlayingInterface {
 		if (this.currenty <= this.min || this.currenty >= this.max) {
 			this.dy = this.dy * (-1);
 		}
-		//System.out.println("Not Working");
+
 		this.currenty += this.dy;
 	}
 
@@ -69,7 +69,6 @@ public abstract class Player implements PlayingInterface {
 				if (this.dy < 0) {
 					this.dy = this.dy * (-1);
 					this.currenty += this.dy;
-					//System.out.println("Working");
 				}
 			} else if (this.currenty > bally) {
 				if (this.dy > 0) {
@@ -101,8 +100,8 @@ public abstract class Player implements PlayingInterface {
 	public void draw(Graphics2D g2d) {
 		if (player != null) {
 			g2d.setColor(color);
-			player.setFrame(currentx, currenty, sizex, sizey);
-			g2d.fillRect(currentx, currenty, sizex, sizey);
+			player.setFrame(currentx, currenty, size, size);
+			g2d.fillRect(currentx, currenty, size, size);
 		}
 	}
 

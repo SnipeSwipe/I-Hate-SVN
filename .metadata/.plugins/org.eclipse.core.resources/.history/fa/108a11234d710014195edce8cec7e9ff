@@ -59,17 +59,17 @@ public abstract class Player implements PlayingInterface {
 		if (this.currenty <= this.min || this.currenty >= this.max) {
 			this.dy = this.dy * (-1);
 		}
-		//System.out.println("Not Working");
+		System.out.println("Not Working");
 		this.currenty += this.dy;
 	}
 
-	public void move(int bally) {
+	public void move2(int bally) {
 		if (this.currenty <= this.min || this.currenty >= this.max) {
 			if (this.currenty < bally) {
 				if (this.dy < 0) {
 					this.dy = this.dy * (-1);
 					this.currenty += this.dy;
-					//System.out.println("Working");
+					System.out.println("Working");
 				}
 			} else if (this.currenty > bally) {
 				if (this.dy > 0) {

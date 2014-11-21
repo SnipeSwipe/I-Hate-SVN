@@ -33,7 +33,7 @@ public class Team implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			this.move();
+			this.move(bally);
 			this.panel.repaint();
 		}
 	}

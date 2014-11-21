@@ -30,8 +30,8 @@ public abstract class Player implements PlayingInterface {
 	public Player(PlayPanel panel, int starty, int startx, int dy, int bound,
 			Color color) {
 		this.panel = panel;
-		sizex = 20;
-		sizey = 20;
+		sizex = 10;
+		sizey = 30;
 		speed = 50; // This sleeps, so increase to decrease speed
 		this.startx = startx;
 		this.starty = starty;
@@ -44,7 +44,9 @@ public abstract class Player implements PlayingInterface {
 		this.color = color;
 
 		player = new Rectangle2D.Double(startx, starty, sizex, sizey);
-		
+
+		// color = new Color(255, 255, 255);
+
 		panel.setFocusable(true);
 		panel.requestFocusInWindow();
 	}

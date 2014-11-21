@@ -109,13 +109,13 @@ public class Team implements Runnable {
 			defX = 185;
 			midX = 549;
 			attackX = 913;
-			this.color = new Color(255, 255, 255);
+			this.color = new Color(255,165,0);
 		} else if (teamMode == TeamMode.COMPUTER) {
 			gkX = 1221;
 			defX = 1095;
 			midX = 731;
 			attackX = 367;
-			this.color = new Color(0, 0, 0);
+			this.color = new Color(72,61,139);
 			this.isMoving = true;
 		}
 

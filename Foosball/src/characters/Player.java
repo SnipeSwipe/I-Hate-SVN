@@ -30,8 +30,8 @@ public abstract class Player implements PlayingInterface {
 	public Player(PlayPanel panel, int starty, int startx, int dy, int bound,
 			Color color) {
 		this.panel = panel;
-		sizex = 20;
-		sizey = 20;
+		sizex = 25;
+		sizey = 25;
 		speed = 50; // This sleeps, so increase to decrease speed
 		this.startx = startx;
 		this.starty = starty;

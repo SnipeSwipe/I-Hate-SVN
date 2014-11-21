@@ -60,7 +60,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 
 		// humanThread = new Thread(humanTeam);
 		// humanThread.start();
-
+		
 		timer = new Timer(100, this);
 		addKeyListener(this);
 		setFocusable(true);
@@ -83,6 +83,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		b.draw(g2d);
 		humanTeam.draw(g2d);
 		computerTeam.draw(g2d);
+		humanTeam.rodDraw(g2d);
 
 	}
 

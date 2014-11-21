@@ -26,7 +26,7 @@ public class Ball extends Thread {
 	private int dx, dy;
 	int startx, starty;
 	int newx, newy;
-	int flagHitComputerGoal=0;
+	boolean computerScored;
 	int xBound, yBound; //width and height of field in pixels (Hard-code or pass as parameters)
 	
 	private Color color;
@@ -53,6 +53,7 @@ public class Ball extends Thread {
 		newx = newy = startx = starty = 0;
 		xBound = 1280;
 		yBound = 670;
+		computerScored = false;
 		
 		ball = new Ellipse2D.Double(startx, starty, size, size);
 		color = new Color(204, 0, 0);
@@ -143,21 +144,25 @@ public class Ball extends Thread {
 		int oldx = (int) ball.getX();
 		int oldy = (int) ball.getY();
 			
-		newx = oldx + dx;		
-		if ((newx + size > xBound || newx < 0)||((newx + size >=214 || newx<=433)&& (flagHitComputerGoal==1))) {
-			flagHitComputerGoal=0;
+		if (newx + size > xBound || newx < 0) {
 			dx = -dx;
 		} else
 			dx = +dx;
+		if(computerScored){
+			dx = - Math.abs(dx);
+			computerScored = false;
+		}
+		
+		newx = oldx + dx;
 		
 		newy = oldy + dy;
-		if ((newy + size > yBound || newy< 0)||((newx + size >=214 || newx<=433)&& (flagHitComputerGoal==1))){
+		if (newy + size > yBound || newy< 0){
 			dy = -dy;
 		} else {
 			dy = +dy;
 		}
 			
-		System.out.println(newx+" "+newy);
+		//System.out.println(newx+" "+newy);
 		ball.setFrame(newx, newy, size, size);
 	}
 	
@@ -184,8 +189,8 @@ public class Ball extends Thread {
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
 			}
-
-			ball.setFrame(59, 360, size, size);
+			computerScored = true;
+			ball.setFrame(1150, 360, size, size);
 		} else if (((newy >= 234-20) && (newy <= 453-20)) && (newx <0)) {
 			BufferedImage myPicture;
 			board.increaseScoreAI();
@@ -201,8 +206,8 @@ public class Ball extends Thread {
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
 			}
-			flagHitComputerGoal=1;
-			ball.setFrame(1200, 360, size, size);
+		
+			ball.setFrame(59, 360, size, size);
 		}
 		
 		

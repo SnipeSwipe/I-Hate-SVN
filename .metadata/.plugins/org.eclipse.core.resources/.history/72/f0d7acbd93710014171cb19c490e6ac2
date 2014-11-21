@@ -17,7 +17,7 @@ public abstract class Player implements PlayingInterface {
 
 	private Rectangle2D.Double player;
 	private int sizex, sizey, speed;
-	public int dy;
+	private int dy;
 	private Color color;
 	private PlayPanel panel;
 	int starty, startx;

@@ -128,7 +128,7 @@ public class Ball extends Thread {
 				}
 			}
 			
-			for(int i=0; i<this.panel.humanTeam.formation.noOfMidfielders; i++) {
+			for(int i=0; i<this.panel.computerTeam.formation.noOfMidfielders; i++) {
 				if (this.ball.intersects(this.panel.computerTeam.midfielders[i].getPlayerRect())) {
 					this.dx =  (-1) * Math.abs(this.dx);
 				}

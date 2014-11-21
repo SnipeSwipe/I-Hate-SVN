@@ -98,7 +98,7 @@ public class Team implements Runnable {
 		attackY = attackBound = convertNumberToCoordinateGap(panelHeight,
 				this.formation.noOfAttackers);
 		gkY = panelHeight / 2;
-
+		
 		gkBound = 150; // bound set to cover just the goal area
 
 		int gkX, defX, midX, attackX;
@@ -231,43 +231,9 @@ public class Team implements Runnable {
 
 	}
 
-	public static int convertNumberToCoordinate(int height, int number) {
-		int coordinate = 0;
-		switch (number) {
-		case 2:
-			coordinate = height / 3;
-			break;
-		case 3:
-			coordinate = height / 4;
-			break;
-		case 4:
-			coordinate = height / 5;
-			break;
-		case 5:
-			coordinate = height / 6;
-			break;
-		}
-
-		return coordinate;
-	}
-
 	static int convertNumberToCoordinateGap(int height, int number) {
-		int coordinateGap = 0;
-		switch (number) {
-		case 2:
-			coordinateGap = height / 3;
-			break;
-		case 3:
-			coordinateGap = height / 4;
-			break;
-		case 4:
-			coordinateGap = height / 5;
-			break;
-		case 5:
-			coordinateGap = height / 6;
-			break;
-		}
-
-		return coordinateGap;
+	
+		return height/(number+1);
+		
 	}
 }

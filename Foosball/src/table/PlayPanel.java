@@ -40,17 +40,41 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 	Scoreboard scoreBoard;
 
 	public PlayPanel(String formationChosen, String levelChosen) {
+		
+		String[] compChoices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};		
+
 		setPreferredSize(new Dimension(1280, 670));
 		try {
 			img = ImageIO.read(new File("resources/field.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		int humanForm[] = new int[3];
+		int compForm[] = new int[3];
+		
+		int randomIdx = (int)(Math.random()*13); //random index b/w 0-12
+		String randomForm = compChoices[randomIdx];  //choose random formation
+		
+		//split formation string into int array
+		int i = 0;	
+		for(String retVal: formationChosen.split("-", 3)){			
+			humanForm[i] = Integer.parseInt(retVal);
+			i++;			
+		}
+		i = 0;		
+		for(String retVal: randomForm.split("-", 3)){			
+			compForm[i] = Integer.parseInt(retVal);
+			i++;			
+		}
+		//splitting ends
+		
 		scoreBoard = new Scoreboard();
 		int result = Game.doCoinToss();
-		humanTeam = new Team(new Formation(3, 3, 4), this, TeamMode.HUMAN);
-		computerTeam = new Team(new Formation(3, 4, 3), this, TeamMode.COMPUTER);
+		
+		
+		humanTeam = new Team(new Formation(humanForm[0], humanForm[1], humanForm[2]), this, TeamMode.HUMAN);
+		computerTeam = new Team(new Formation(compForm[0], compForm[1], compForm[2]), this, TeamMode.COMPUTER);
 
 		b = Ball.getInstance(this, result);
 		b.start();

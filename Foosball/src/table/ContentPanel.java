@@ -29,7 +29,14 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class ContentPanel extends JPanel {
+	
 	private JButton playButton = new JButton("Play");
+
+	String[] choices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};
+	String[] levelChoices = {"Noob", "Semi-Pro", "God"};	
+	String formationChosen, levelChosen;
+	final JComboBox<String> formationMenu = new JComboBox<String>(choices);
+	final JComboBox<String> levelMenu = new JComboBox<String>(levelChoices);
 
 	// private Table mainFrame;
 	JPanel panel = new JPanel();
@@ -55,9 +62,8 @@ public class ContentPanel extends JPanel {
 	}
 
 	public class ButtonListener implements ActionListener {
-		// JPanel rechange2;
-
-		String formationChosen, levelChosen;
+		
+		//String formationChosen, levelChosen;
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			JButton clickedButton = (JButton) event.getSource();
@@ -70,20 +76,16 @@ public class ContentPanel extends JPanel {
 				}
 				//setBackground(Color.BLACK);
 				//setOpaque(true);
-				//System.out.println("hello");
+
 				panel.removeAll();
 				
 				int panelHeight = 675;
 				int panelWidth = 1280;
 				panel.setPreferredSize(new Dimension(panelWidth, panelHeight));
 				panel.setLayout(null);
-				
-
-				/*Integer[] defenderChoices = {3, 4, 5, 6};
-				Integer[] midfielderChoices = {2, 3, 4, 5, 6};*/
-				
-				String[] choices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};
-				String[] levelChoices = {"Noob", "Semi-Pro", "God"};
+								
+				//String[] choices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};
+				//String[] levelChoices = {"Noob", "Semi-Pro", "God"};
 				
 				JLabel chooseFormation = new JLabel("Choose Team Formation", JLabel.CENTER);
 				chooseFormation.setFont(new Font("Segoe UI", Font.PLAIN, 18));
@@ -99,7 +101,7 @@ public class ContentPanel extends JPanel {
 				panel.add(defMidAttack);
 				defMidAttack.setVisible(true);
 				
-				final JComboBox<String> formationMenu = new JComboBox<String>(choices);
+				//final JComboBox<String> formationMenu = new JComboBox<String>(choices);
 				formationMenu.setBounds(590, 150, 100, 20);
 				panel.add(formationMenu);
 				formationMenu.setVisible(true);
@@ -111,7 +113,7 @@ public class ContentPanel extends JPanel {
 				panel.add(chooseLevel);
 				chooseLevel.setVisible(true);
 				
-				final JComboBox<String> levelMenu = new JComboBox<String>(levelChoices);
+				//final JComboBox<String> levelMenu = new JComboBox<String>(levelChoices);
 				levelMenu.setBounds(590, 300, 100, 20);
 				panel.add(levelMenu);
 				levelMenu.setVisible(true);
@@ -124,9 +126,10 @@ public class ContentPanel extends JPanel {
 				finalPlayButton.addActionListener(new ButtonListener());
 				finalPlayButton.setVisible(true);
 				
-				formationChosen = (String)formationMenu.getSelectedItem();
+				/*formationChosen = (String)formationMenu.getSelectedItem();
 				levelChosen = (String)levelMenu.getSelectedItem();
 				
+				System.out.println(formationChosen);*/
 				
 				//panel.setOpaque(true);
 				//add(panel);
@@ -167,6 +170,10 @@ public class ContentPanel extends JPanel {
 				setVisible(true);
 			}
 			if (buttonText.equals("Play!")) {
+				
+				formationChosen = (String)formationMenu.getSelectedItem();
+				levelChosen = (String)levelMenu.getSelectedItem();
+				
 				panel.removeAll();
 				panel.setLayout(new BorderLayout());
 				//panel.setVisible(false);

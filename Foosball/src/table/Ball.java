@@ -99,7 +99,7 @@ public class Ball implements Runnable { //singleton class
 
 			// detecting collisions by checking intersection
 			// Refer to Playing interface for explanation of kick function
-			
+		
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfAttackers; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.attackers[i]
 						.getPlayerRect())) {
@@ -119,8 +119,11 @@ public class Ball implements Runnable { //singleton class
 					
 					boolean shoot = rand.nextBoolean();
 					
-					if(shoot)
+					if(shoot){
+						//temp = this.panel.humanTeam.defenders[i].pass();
+
 						temp = this.panel.humanTeam.defenders[i].kick(dx,dy, 1);
+					}
 					else
 						temp = this.panel.humanTeam.defenders[i].pass();
 					
@@ -137,8 +140,12 @@ public class Ball implements Runnable { //singleton class
 					
 					boolean shoot = rand.nextBoolean();
 					
-					if(shoot)
+					if(shoot){
 						temp = this.panel.humanTeam.midfielders[i].kick(dx,dy, 1);
+						//temp = this.panel.humanTeam.midfielders[i].pass();
+
+						
+					}
 					else
 						temp = this.panel.humanTeam.midfielders[i].pass();
 					
@@ -177,10 +184,16 @@ public class Ball implements Runnable { //singleton class
 					
 					boolean shoot = rand.nextBoolean();
 					
-					if(shoot)
+					if(shoot){
 						temp = this.panel.computerTeam.defenders[i].kick(dx,dy, -1);
-					else
+						//temp = this.panel.computerTeam.defenders[i].pass();
+
+					}
+					else{
+						//temp = this.panel.computerTeam.defenders[i].kick(dx,dy, -1);
+
 						temp = this.panel.computerTeam.defenders[i].pass();
+					}
 					
 					dx = temp[0];
 					dy = temp[1];
@@ -196,8 +209,11 @@ public class Ball implements Runnable { //singleton class
 					
 					boolean shoot = rand.nextBoolean();
 					
-					if(shoot)
+					if(shoot){
 						temp = this.panel.computerTeam.midfielders[i].kick(dx,dy, -1);
+						//temp = this.panel.computerTeam.midfielders[i].pass();
+
+					}
 					else
 						temp = this.panel.computerTeam.midfielders[i].pass();
 					
@@ -214,6 +230,7 @@ public class Ball implements Runnable { //singleton class
 				dy = temp[1];
 				
 			}
+			
 			// end of detecting collisions
 
 			checkGoal(); // method to check for goals

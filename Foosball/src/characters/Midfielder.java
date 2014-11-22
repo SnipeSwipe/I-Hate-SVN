@@ -49,6 +49,7 @@ public class Midfielder extends Player {
 		
 		int toX;
 		int toY;
+		int dir = 1;
 				
 		if(startx < 640){
 
@@ -60,6 +61,7 @@ public class Midfielder extends Player {
 		}
 		else{
 			
+			dir = -1;
 			int randomIdx = (int)(Math.random()*(panel.computerTeam.formation.noOfAttackers));
 			Attacker att = panel.computerTeam.attackers[randomIdx];
 			toX = att.currentx;
@@ -75,8 +77,8 @@ public class Midfielder extends Player {
 		ycoor = (ycoor*newSpeed)/xcoor;
 		xcoor = newSpeed;
 		
-		coords[0] = (int)xcoor;
-		coords[1] = (int)ycoor;
+		coords[0] = dir*(int)xcoor;
+		coords[1] = dir*(int)ycoor;
 		
 		//System.out.println(xcoor + " " + ycoor);
 		

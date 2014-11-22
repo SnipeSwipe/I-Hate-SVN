@@ -9,7 +9,6 @@ import java.awt.Graphics2D;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import characters.Game;
 
@@ -68,8 +67,6 @@ public class Scoreboard extends JPanel {
 	@SuppressWarnings("deprecation")
 	public void increaseScoreHuman() {
 		this.humanScore++;
-		System.out.println("Human Scores!");
-		System.out.println(this.humanScore);
 		
 		if (this.humanScore >= 5) {
 
@@ -80,10 +77,9 @@ public class Scoreboard extends JPanel {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public void increaseScoreAI() {
 		this.aiScore++;
-		System.out.println("Computer Scores!");
-		System.out.println(this.aiScore);
 		
 		if (this.aiScore >= 5) {
 			this.mainFrame.playPanel.computerTeam.isMoving = false;

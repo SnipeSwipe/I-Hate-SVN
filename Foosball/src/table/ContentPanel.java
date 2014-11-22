@@ -5,13 +5,8 @@ import interfaces.MenuOptions;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.MediaTracker;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -19,18 +14,19 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import utils.*;
 
-import javax.swing.JPanel;
-
+@SuppressWarnings("serial")
 public class ContentPanel extends JPanel implements MenuOptions {
 	
 	private JButton playButton = new JButton("Play");
@@ -44,6 +40,9 @@ public class ContentPanel extends JPanel implements MenuOptions {
 
 	JPanel panel = new JPanel();
 	BufferedImage img;
+	
+	CustomButton musicButton;
+	ImageIcon musicButtonImage;
 
 	public ContentPanel(Table mainFrame) 
 	{
@@ -104,6 +103,14 @@ public class ContentPanel extends JPanel implements MenuOptions {
 		panel.add(defMidAttack);
 		defMidAttack.setVisible(true);
 		
+		try {
+			this.musicButtonImage = new ImageIcon("resources/buttons/music.png");
+			this.musicButton = new CustomButton(this.musicButtonImage, "PLAY", 200, 0, 200, 200);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		panel.add(musicButton);
+		musicButton.addActionListener(new ButtonListener());
 		formationMenu.setBounds(590, 150, 100, 20);
 		panel.add(formationMenu);
 		formationMenu.setVisible(true);
@@ -131,12 +138,34 @@ public class ContentPanel extends JPanel implements MenuOptions {
 		finalPlayButton.setVisible(true);
 	}
 	
+	public static void playSound() {
+		try {
+	        Clip clip = AudioSystem.getClip();
+	        // getAudioInputStream() also accepts a File or InputStream
+	        AudioInputStream ais = AudioSystem.getAudioInputStream(new File("resources/sound.wav"));
+	        clip.open(ais);
+	        clip.loop(Clip.LOOP_CONTINUOUSLY);
+		} catch(Exception e) {
+			System.out.println("");
+		}
+	        SwingUtilities.invokeLater(new Runnable() {
+	            public void run() {
+	                // A GUI element to prevent the Clip's daemon Thread
+	                // from terminating at the end of the main()
+	                //JOptionPane.showMessageDialog(null, "Close to exit!");
+	            }
+	        });  
+    }  
+	
 	public class ButtonListener implements ActionListener 
 	{
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			JButton clickedButton = (JButton) event.getSource();
 			String buttonText = clickedButton.getText();
+			if (buttonText.equals("")) {
+				ContentPanel.playSound();
+			}
 			if (buttonText.equals("Play")) {
 				try {
 					img = ImageIO.read(new File("resources/7.jpg"));
@@ -177,6 +206,7 @@ public class ContentPanel extends JPanel implements MenuOptions {
 				repaint();
 
 			}
+			
 
 		}
 	}

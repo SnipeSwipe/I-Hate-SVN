@@ -2,8 +2,6 @@ package characters;
 
 import interfaces.GamingInterface;
 
-import javax.swing.Icon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import table.Scoreboard;

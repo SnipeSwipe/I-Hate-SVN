@@ -1,7 +1,5 @@
 package interfaces;
 
-import table.Table;
-
 public interface GamingInterface 
 {
 	/*Any "Game" should implement this interface*/

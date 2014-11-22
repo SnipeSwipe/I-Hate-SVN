@@ -6,9 +6,11 @@ import table.Table;
 
 public class Main {
 
+	@SuppressWarnings("unused")
+	private static JFrame f;
+
 	public static void main(String[] args) {
-	    JFrame f = new Table();
-	    //((Table) f).playSound();
+	    f = new Table();
 	  } //main 
 	
 	

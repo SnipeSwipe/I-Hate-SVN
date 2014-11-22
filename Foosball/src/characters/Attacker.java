@@ -1,12 +1,6 @@
 package characters;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.util.Random;
-
-import javax.swing.JPanel;
 
 import table.PlayPanel;
 
@@ -19,41 +13,6 @@ public class Attacker extends Player {
 		maxKickSpeed = 30;
 	}
 	
-
-	/*public int[] kicke(int dx, int dy, int dir) { // x - present x axis speed
-											   // y - present y axis speed
-											   // dir - x axis direction(+ or -)
-		
-=======
-
-	public int[] kick(int dx, int dy, int dir) { // x - present x axis speed
-													// y - present y axis speed
-													// dir - x axis direction(+
-													// or -)
-
->>>>>>> Stashed changes
-		int[] coords = new int[2];
-
-		// dir = dir/(Math.abs(dir)); //Get only unit vector direction in x axis
-		if (dir > 0) // i.e. if dx and dir have same sign (While defending)
-			dx = Math.abs(dx) * (-1);
-		else { // Else dx and dir have different signs(While attacking)
-			int newSpeed = minKickSpeed
-					+ (int) (Math.random() * (maxKickSpeed - minKickSpeed));
-			dx = dir * (newSpeed) * (-1);
-		}
-
-		// if going downwards, reduce ball angle(I dunno how to
-		// put it, just change ball angle)
-		if (this.dy > 0) {
-			dy = dy + 1;
-		} else {
-			dy = dy - 1;
-		}
-		coords[0] = dx;
-		coords[1] = dy;
-		return coords;
-	}*/
 	public int[] kick(int dx, int dy, int dir){
 		
 		int[] coords = new int[2];

@@ -5,13 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import characters.Game;
 
@@ -23,7 +17,8 @@ public class Ball implements Runnable { // singleton class
 	private int size, speedInverse;
 	private int dx, dy;
 	int startx, starty;
-	public static int newx, newy;
+	public static int newx;
+	public static int newy;
 	boolean computerScored, humanScored;
 	int xBound, yBound; // width and height of field in pixels (Hard-code or
 						// pass as parameters)
@@ -285,10 +280,8 @@ public class Ball implements Runnable { // singleton class
 
 		if (((newy >= 250 - 15) && (newy <= 425 - 15))
 				&& (newx >= panel.getWidth() - 20)) {
-			BufferedImage myPicture;
 			this.panel.game.scoreBoard.increaseScoreHuman();
 			try {
-				myPicture = ImageIO.read(new File("resources/goal.png"));
 				// JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.setLayout(null);
 				JLabel picLabel = new JLabel("GOAL!", JLabel.CENTER);
@@ -301,7 +294,7 @@ public class Ball implements Runnable { // singleton class
 
 				panel.remove(picLabel);
 				panel.setLayout(new BorderLayout());
-			} catch (IOException | InterruptedException e1) {
+			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
 			humanScored = true;
@@ -312,12 +305,9 @@ public class Ball implements Runnable { // singleton class
 					size, size);
 
 		} else if (((newy >= 250 - 15) && (newy <= 425 - 15)) && (newx < 0)) {
-			BufferedImage myPicture;
 			this.panel.game.scoreBoard.increaseScoreAI();
 
 			try {
-				myPicture = ImageIO.read(new File("resources/goal.png"));
-				// JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.setLayout(null);
 				JLabel picLabel = new JLabel("GOAL!", JLabel.CENTER);
 				picLabel.setFont(new Font("Segoe UI", Font.BOLD, 150));
@@ -328,7 +318,7 @@ public class Ball implements Runnable { // singleton class
 				Thread.sleep(1000);
 				panel.remove(picLabel);
 				panel.setLayout(new BorderLayout());
-			} catch (IOException | InterruptedException e1) {
+			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
 			computerScored = true;

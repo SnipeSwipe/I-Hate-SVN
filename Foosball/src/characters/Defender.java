@@ -1,12 +1,6 @@
 package characters;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.util.Random;
-
-import javax.swing.JPanel;
 
 import table.PlayPanel;
 
@@ -108,7 +102,6 @@ public class Defender extends Player {
 		coords[0] = dir*(int)xcoor + xerror;
 		coords[1] = dir*(int)ycoor + yerror;
 		
-		//System.out.println(xcoor + " " + ycoor);
 		
 		return coords;
 		

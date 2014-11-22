@@ -6,19 +6,17 @@ import java.awt.Color;
 
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
-import javax.swing.*;
 
 import table.PlayPanel;
 
 public abstract class Player implements PlayingInterface {
 
 	private Rectangle2D.Double player;
-	private int sizex, sizey, speed;
+	private int sizex, sizey;
+	
 	public int dy;
 	private Color color;
 	public PlayPanel panel;
@@ -36,7 +34,6 @@ public abstract class Player implements PlayingInterface {
 		this.panel = panel;
 		sizex = 25;
 		sizey = 25;
-		speed = 50; // This sleeps, so increase to decrease speed
 		this.startx = startx;
 		this.starty = starty;
 		this.currentx = startx;

@@ -2,17 +2,12 @@ package characters;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 import table.Ball;
 import table.Formation;
 import table.PlayPanel;
-//import table.PlayPanel.Attacker;
-//import table.PlayPanel.Defender;
-//import table.PlayPanel.Goalkeeper;
-//import table.PlayPanel.Midfielder;
 
 public class Team implements Runnable {
 	TeamMode teamMode;

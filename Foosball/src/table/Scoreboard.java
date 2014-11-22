@@ -17,7 +17,7 @@ public class Scoreboard extends JPanel {
 	Table mainFrame;
 	private static final long serialVersionUID = 1L;
 	int humanScore;
-	int aiScore;
+	public int aiScore;
 	JLabel human;
 	String labelText;
 	Game game;

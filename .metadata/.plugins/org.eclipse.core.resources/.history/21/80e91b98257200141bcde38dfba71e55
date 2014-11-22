@@ -24,7 +24,7 @@ public class Scoreboard extends JPanel {
 
 	public Scoreboard(Table mainFrame) {
 		this.mainFrame = mainFrame;
-		this.setPreferredSize(new Dimension(90, 32));
+		this.setPreferredSize(new Dimension(100, 32));
 
 		human = new JLabel();
 		this.humanScore = 0;
@@ -38,18 +38,14 @@ public class Scoreboard extends JPanel {
 
 	public void PaintComponent(Graphics g) {
 		super.paintComponent(g);
-		
-		g.setColor(new Color(0,100,0));
 
 	}
 
 	public void draw(Graphics2D g2d) {
-		g2d.setColor(new Color(0, 0, 0));
+		g2d.setColor(new Color(0, 100, 0));
 		labelText = String.valueOf(this.humanScore) + "       "
 				+ String.valueOf(this.aiScore);
 
-		//Set 0f for total transparency
-		//This is the thing for transparency, it somehow makes players transparent though
 		 g2d.setComposite(makeComposite(1f));
 		
 		human.setText(labelText);

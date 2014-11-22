@@ -2,7 +2,11 @@ package characters;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.util.Random;
 
+import table.Ball;
 import table.Formation;
 import table.PlayPanel;
 //import table.PlayPanel.Attacker;
@@ -18,12 +22,21 @@ public class Team implements Runnable {
 	public Attacker[] attackers;
 	public Goalkeeper goalkeeper;
 	public int bally;
-	PlayPanel panel;
-	Color color;
-	boolean isMoving;
-	
-	public int getBally(int b){
-		return b;
+	public PlayPanel panel;
+	private Rectangle2D.Double rod;
+	private Rectangle2D.Double rodGK1;
+	private Rectangle2D.Double rodGK2;
+
+	Random ran;
+	int rand;
+
+	Color color, rodColor;
+	public boolean isMoving;
+
+	int timeCord = 0;
+
+	public void setBally(int b) {
+		bally = b;
 	}
 
 	public void run() {
@@ -33,9 +46,56 @@ public class Team implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			this.move(bally);
+
+			// set AI 1 for pro, 2 for intermediate, 3 for noob
+			AI(3);
+
+			// Repaint as usual
 			this.panel.repaint();
 		}
+	}
+
+	public void AI(int dif) {
+		// Whole motive of AI is to try to make Goalkeeper reach the ball,
+		// any other intersection that happens is accidental
+
+		// timeCord to make AI movement fast/slow
+		timeCord++;
+		if (Ball.newy > goalkeeper.currenty) {
+			// if ball's below gk, we move the whole team down
+			if (timeCord % dif == 0) {
+				// Loop makes team movement a little slow, otherwise AI was
+				// too fast
+				this.moveDown();
+			}
+		} else if (Ball.newy < goalkeeper.currenty) {
+			// If ball's above the gk, we move the whole team up
+			if (timeCord % dif == 0) {
+				this.moveUp();
+			}
+		}
+	}
+
+	public void rodDraw(Graphics2D g2d) {
+		int placerod = 194;
+		rodGK1 = new Rectangle2D.Double(1227, 0, 2, 670);
+		rodGK2 = new Rectangle2D.Double(66, 0, 2, 670);
+		rodColor = new Color(0, 100, 0);
+
+		if (rodGK1 != null || rodGK2 != null) {
+			g2d.setColor(rodColor);
+			g2d.fill(rodGK1);
+			g2d.fill(rodGK2);
+		}
+		for (int k = 0; k < 8; k++) {
+			rod = new Rectangle2D.Double(placerod, 0, 2, 670);
+			placerod += 182;
+			if (rod != null) {
+				g2d.setColor(rodColor);
+				g2d.fill(rod);
+			}
+		}
+
 	}
 
 	public Team(Formation formation, PlayPanel panel, TeamMode teamMode) {
@@ -58,8 +118,8 @@ public class Team implements Runnable {
 		attackY = attackBound = convertNumberToCoordinateGap(panelHeight,
 				this.formation.noOfAttackers);
 		gkY = panelHeight / 2;
-		;
-		gkBound = 150; // bound set to cover just the goal area
+
+		gkBound = 130; // bound set to cover just the goal area
 
 		int gkX, defX, midX, attackX;
 		gkX = defX = midX = attackX = 0;
@@ -69,13 +129,13 @@ public class Team implements Runnable {
 			defX = 185;
 			midX = 549;
 			attackX = 913;
-			this.color = new Color(255, 255, 255);
+			this.color = new Color(255, 165, 0);
 		} else if (teamMode == TeamMode.COMPUTER) {
 			gkX = 1221;
 			defX = 1095;
 			midX = 731;
 			attackX = 367;
-			this.color = new Color(0, 0, 0);
+			this.color = new Color(72, 61, 139);
 			this.isMoving = true;
 		}
 
@@ -172,6 +232,9 @@ public class Team implements Runnable {
 	}
 
 	public void draw(Graphics2D g2d) {
+		// Team team=new Team(formation, panel, teamMode);
+
+		this.rodDraw(g2d);
 		this.goalkeeper.draw(g2d);
 
 		for (int i = 0; i < this.formation.noOfDefenders; i++) {
@@ -185,45 +248,12 @@ public class Team implements Runnable {
 		for (int i = 0; i < this.formation.noOfAttackers; i++) {
 			this.attackers[i].draw(g2d);
 		}
-	}
 
-	public static int convertNumberToCoordinate(int height, int number) {
-		int coordinate = 0;
-		switch (number) {
-		case 2:
-			coordinate = height / 3;
-			break;
-		case 3:
-			coordinate = height / 4;
-			break;
-		case 4:
-			coordinate = height / 5;
-			break;
-		case 5:
-			coordinate = height / 6;
-			break;
-		}
-
-		return coordinate;
 	}
 
 	static int convertNumberToCoordinateGap(int height, int number) {
-		int coordinateGap = 0;
-		switch (number) {
-		case 2:
-			coordinateGap = height / 3;
-			break;
-		case 3:
-			coordinateGap = height / 4;
-			break;
-		case 4:
-			coordinateGap = height / 5;
-			break;
-		case 5:
-			coordinateGap = height / 6;
-			break;
-		}
 
-		return coordinateGap;
+		return height / (number + 1);
+
 	}
 }

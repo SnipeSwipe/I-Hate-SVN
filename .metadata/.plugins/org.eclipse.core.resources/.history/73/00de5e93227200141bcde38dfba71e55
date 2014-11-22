@@ -1,11 +1,9 @@
 package table;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,44 +19,47 @@ public class Scoreboard extends JPanel {
 	int aiScore;
 	JLabel human;
 	String labelText;
+	
+	JTextField message;
+
+	// add constructor for GUI?
 
 	public Scoreboard(Table mainFrame) {
 		this.mainFrame = mainFrame;
-		this.setPreferredSize(new Dimension(90, 32));
+		this.setPreferredSize(new Dimension(1280, 32));
+		// this.setBackground(new Color(0, 0, 0, 0));
 
 		human = new JLabel();
 		this.humanScore = 0;
 		this.aiScore = 0;
 	}
 
-	private AlphaComposite makeComposite(float alpha) {
-		int type = AlphaComposite.SRC_OVER;
-		return (AlphaComposite.getInstance(type, alpha));
-	}
-
 	public void PaintComponent(Graphics g) {
 		super.paintComponent(g);
-		
-		g.setColor(new Color(0,100,0));
+		// g.drawString(Integer.toString(this.humanScore), 100, 100);
+		human.setText(labelText);
+		message.setText(labelText);
+		human.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		human.setBounds(490, 220, 300, 100);
+		// human.setForeground(new Color(39, 64, 139));
+		this.add(human);
+		human.setVisible(true);
+		this.setVisible(true);
 
 	}
 
-	public void draw(Graphics2D g2d) {
+	public void draw(Graphics g2d) {
 		g2d.setColor(new Color(0, 0, 0));
+		// labelText = "Your Score: " + String.valueOf(this.humanScore) +
+		// " Computer Score: " + String.valueOf(this.aiScore);
 		labelText = String.valueOf(this.humanScore) + "       "
 				+ String.valueOf(this.aiScore);
-
-		//Set 0f for total transparency
-		//This is the thing for transparency, it somehow makes players transparent though
-		 g2d.setComposite(makeComposite(1f));
-		
 		human.setText(labelText);
 		human.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		human.setBounds(490, 220, 300, 100);
-
+		// human.setForeground(new Color(39, 64, 139));
 		human.setOpaque(false);
 		human.setBorder(null);
-
 		this.add(human);
 		human.setVisible(true);
 		this.setVisible(true);
@@ -68,7 +69,7 @@ public class Scoreboard extends JPanel {
 	public void increaseScoreHuman() {
 		this.humanScore++;
 		if (this.humanScore >= 5) {
-
+			// this.mainFrame.playPanel.b.sleep();
 			this.mainFrame.playPanel.computerTeam.isMoving = false;
 			this.mainFrame.playPanel.computerThread.stop();
 
@@ -82,6 +83,7 @@ public class Scoreboard extends JPanel {
 	public void increaseScoreAI() {
 		this.aiScore++;
 		if (this.aiScore >= 5) {
+			// this.mainFrame.playPanel.b.stop();
 			this.mainFrame.playPanel.computerTeam.isMoving = false;
 			this.mainFrame.playPanel.computerThread.stop();
 

@@ -48,8 +48,6 @@ public class Scoreboard extends JPanel {
 		labelText = String.valueOf(this.humanScore) + "       "
 				+ String.valueOf(this.aiScore);
 
-		//Set 0f for total transparency
-		//This is the thing for transparency, it somehow makes players transparent though
 		 g2d.setComposite(makeComposite(1f));
 		
 		human.setText(labelText);

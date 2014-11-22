@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,9 +21,11 @@ public class Scoreboard extends JPanel {
 	JLabel human;
 	String labelText;
 
+	JTextField message;
+
 	public Scoreboard(Table mainFrame) {
 		this.mainFrame = mainFrame;
-		this.setPreferredSize(new Dimension(90, 32));
+		this.setPreferredSize(new Dimension(1280, 32));
 
 		human = new JLabel();
 		this.humanScore = 0;
@@ -39,26 +40,23 @@ public class Scoreboard extends JPanel {
 	public void PaintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.setColor(new Color(0,100,0));
+		this.add(human);
+		human.setVisible(true);
+		this.setVisible(true);
 
 	}
 
-	public void draw(Graphics2D g2d) {
+	public void draw(Graphics g2d) {
 		g2d.setColor(new Color(0, 0, 0));
 		labelText = String.valueOf(this.humanScore) + "       "
 				+ String.valueOf(this.aiScore);
-
-		//Set 0f for total transparency
-		//This is the thing for transparency, it somehow makes players transparent though
-		 g2d.setComposite(makeComposite(1f));
 		
 		human.setText(labelText);
 		human.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		human.setBounds(490, 220, 300, 100);
-
+		
 		human.setOpaque(false);
 		human.setBorder(null);
-
 		this.add(human);
 		human.setVisible(true);
 		this.setVisible(true);
@@ -68,7 +66,7 @@ public class Scoreboard extends JPanel {
 	public void increaseScoreHuman() {
 		this.humanScore++;
 		if (this.humanScore >= 5) {
-
+			// this.mainFrame.playPanel.b.sleep();
 			this.mainFrame.playPanel.computerTeam.isMoving = false;
 			this.mainFrame.playPanel.computerThread.stop();
 

@@ -13,4 +13,7 @@
 <fullyQualifiedTypeName name="java.awt.event.InputEvent"/>
 <fullyQualifiedTypeName name="java.awt.AWTException"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="java.awt.AlphaComposite"/>
+<fullyQualifiedTypeName name="java.awt.Graphics2D"/>
 </qualifiedTypeNameHistroy>

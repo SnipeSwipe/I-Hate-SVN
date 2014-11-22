@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.util.Random;
 
 import table.Ball;
 import table.Formation;
@@ -27,9 +26,6 @@ public class Team implements Runnable {
 	private Rectangle2D.Double rodGK1;
 	private Rectangle2D.Double rodGK2;
 
-	Random ran;
-	int rand;
-
 	Color color, rodColor;
 	public boolean isMoving;
 
@@ -47,9 +43,9 @@ public class Team implements Runnable {
 				e.printStackTrace();
 			}
 
-			// set AI 1 for pro, 2 for intermediate, 3 for noob
-			AI(3);
-
+			AI(1);
+			
+			
 			// Repaint as usual
 			this.panel.repaint();
 		}

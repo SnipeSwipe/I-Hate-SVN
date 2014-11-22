@@ -29,7 +29,7 @@ public class Team implements Runnable {
 
 	Random ran;
 	int rand;
-
+	
 	Color color, rodColor;
 	public boolean isMoving;
 
@@ -47,21 +47,21 @@ public class Team implements Runnable {
 				e.printStackTrace();
 			}
 
-			// set AI 1 for pro, 2 for intermediate, 3 for noob
-			AI(3);
-
+			AI(3, ran.nextInt(5));
+			
+			
 			// Repaint as usual
 			this.panel.repaint();
 		}
 	}
 
-	public void AI(int dif) {
+	public void AI(int dif, int rand) {
 		// Whole motive of AI is to try to make Goalkeeper reach the ball,
 		// any other intersection that happens is accidental
-
+		
 		// timeCord to make AI movement fast/slow
 		timeCord++;
-		if (Ball.newy > goalkeeper.currenty) {
+		if (Ball.newy +rand-2 > goalkeeper.currenty) {
 			// if ball's below gk, we move the whole team down
 			if (timeCord % dif == 0) {
 				// Loop makes team movement a little slow, otherwise AI was

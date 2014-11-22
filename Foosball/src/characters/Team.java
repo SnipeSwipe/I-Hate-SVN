@@ -27,7 +27,7 @@ public class Team implements Runnable {
 	private Rectangle2D.Double rodGK2;
 
 	Color color, rodColor;
-	boolean isMoving;
+	public boolean isMoving;
 
 	int timeCord = 0;
 
@@ -244,7 +244,7 @@ public class Team implements Runnable {
 
 	static int convertNumberToCoordinateGap(int height, int number) {
 
-		return height / (number + 1);
+		return height/(number + 1);
 
 	}
 }

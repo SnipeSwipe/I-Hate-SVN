@@ -31,16 +31,17 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 
 	Random ran;
 	int ranNum;
-
-	Ball b;
+	Table mainFrame;
+	public Ball b;
 	BufferedImage img;
 	Team humanTeam, computerTeam;
 	Thread humanThread, computerThread;
 	Timer timer;
 	Scoreboard scoreBoard;
 
-	public PlayPanel(String formationChosen, String levelChosen) {
+	public PlayPanel(String formationChosen, String levelChosen, Table mainFrame) {
 		
+		this.mainFrame = mainFrame;
 		String[] compChoices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};		
 
 		setPreferredSize(new Dimension(1280, 670));
@@ -69,7 +70,6 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		}
 		//splitting ends
 		
-		scoreBoard = new Scoreboard();
 		int result = Game.doCoinToss();
 		
 		
@@ -82,7 +82,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		computerThread = new Thread(computerTeam);
 		computerThread.start();
 		computerTeam.setBally(b.newy);
-		this.scoreBoard = new Scoreboard();
+		this.scoreBoard = new Scoreboard(mainFrame);
 		this.add(scoreBoard);
 		this.scoreBoard.setBounds(250, 120, 800, 400);
 		timer = new Timer(100, this);

@@ -1,14 +1,65 @@
 package characters;
 
+import javax.swing.Icon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class Game {
+import table.Table;
+
+public class Game 
+{
+	Table mainFrame;
 	static String titleMessage = null;
 	static String dialogMessage = null;
 	static String whoStartsMessage = null;
 
-	public void GameOver() {
-
+	public static void gameOver(int winner, Table mainFrame) //0: Human, 1:AI
+	{	
+		//mainFrame.playPanel.b.stop();
+		int x = launchGameOverDialog(winner);
+		
+		if(x == -1)
+		{
+			gameOver(winner, mainFrame);
+		}
+		else if(x == 0)
+		{
+			/*System.out.println("Working");
+			mainFrame.setVisible(false);
+			mainFrame.playPanel.b.stop();
+			JFrame f = new Table();
+			f.setVisible(true);
+			f.display();*/
+			System.exit(0);
+		}
+		else if(x == 1)
+		{
+			mainFrame.playPanel.b.stop();
+			System.exit(0);
+		}
+		
+	}
+	
+	public static int launchGameOverDialog(int winner)
+	{
+		Object[] options = { "Play Again", "Exit" };
+		String winnerDeclare = null;
+		int icon = 0;
+		if(winner == 0)
+		{
+			icon = JOptionPane.INFORMATION_MESSAGE;
+			winnerDeclare = "Congrats, you just earned some respect.";
+		}
+		else if(winner == 1)
+		{
+			icon = JOptionPane.ERROR_MESSAGE;
+			winnerDeclare = "Sorry, you suck.";
+		}
+		
+		int n = JOptionPane.showOptionDialog(null, winnerDeclare, "Game Over!", 
+				JOptionPane.YES_NO_OPTION, icon, null, options, null);
+		
+		return n;
 	}
 
 	public static int doCoinToss() {

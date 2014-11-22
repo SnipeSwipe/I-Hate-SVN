@@ -50,7 +50,7 @@ public class Ball extends Thread {
 		this.panel = panel;
 		isMoving = true;
 		size = 20;
-		speed = 20;
+		speed = 40;
 		dx = dy = 10;
 		newx = newy = startx = starty = 0;
 		xBound = 1280;

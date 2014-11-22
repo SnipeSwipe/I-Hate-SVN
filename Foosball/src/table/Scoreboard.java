@@ -8,8 +8,11 @@ import java.awt.Graphics;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import characters.Game;
+
 public class Scoreboard extends JPanel {
 	
+	Table mainFrame;
 	private static final long serialVersionUID = 1L;
 	int humanScore;
 	int aiScore;
@@ -17,7 +20,9 @@ public class Scoreboard extends JPanel {
 	String labelText;
 	//add constructor for GUI?
 	
-	public Scoreboard() {
+	public Scoreboard(Table mainFrame) 
+	{	
+		this.mainFrame = mainFrame;
 		this.setPreferredSize(new Dimension(1280, 32));
 		//this.setBackground(new Color(0, 0, 0, 0));
 		
@@ -54,10 +59,17 @@ public class Scoreboard extends JPanel {
 		this.setVisible(true);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void increaseScoreHuman() {
 		this.humanScore++;
-		if (this.humanScore > 5) {
-			//gameOver, print relevant message
+		if (this.humanScore >= 1) 
+		{
+			//this.mainFrame.playPanel.b.sleep();
+			this.mainFrame.playPanel.computerTeam.isMoving = false;
+			this.mainFrame.playPanel.computerThread.stop();
+			
+			Game.gameOver(0, this.mainFrame);
+			
 		}
 		System.out.println("Human Scores!");
 		System.out.println(this.humanScore);
@@ -65,8 +77,13 @@ public class Scoreboard extends JPanel {
 	
 	public void increaseScoreAI() {
 		this.aiScore++;
-		if (this.aiScore > 5) {
-			//gameOver, print relevant message
+		if (this.aiScore >= 1) 
+		{
+			//this.mainFrame.playPanel.b.stop();
+			this.mainFrame.playPanel.computerTeam.isMoving = false;
+			this.mainFrame.playPanel.computerThread.stop();
+			
+			Game.gameOver(1, this.mainFrame);
 		}
 		System.out.println("Computer Scores!");
 		System.out.println(this.aiScore);

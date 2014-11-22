@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -31,7 +32,7 @@ import javax.swing.JPanel;
 public class ContentPanel extends JPanel {
 	
 	private JButton playButton = new JButton("Play");
-
+	Table mainFrame;
 	String[] choices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};
 	String[] levelChoices = {"Noob", "Semi-Pro", "God"};	
 	String formationChosen, levelChosen;
@@ -43,15 +44,47 @@ public class ContentPanel extends JPanel {
 	BufferedImage img;
 
 	public ContentPanel(Table mainFrame) {
-		// this.mainFrame = mainFrame;
-		add(panel);
+		this.mainFrame = mainFrame;
+		//add(panel);
+		
+		panel.setPreferredSize(new Dimension(675, 1280));
+		this.setBackground(new Color(255, 255, 255));
+		this.setLayout(null);
 		// this.mainFrame = mainFrame;
 		panel.setLayout(new BorderLayout(1, 2));
-		// playButton.setLocation(100,500);
-		playButton.setBounds(1000, 100, 400, 200);
+		panel.setBackground(new Color(255, 255, 255));
+		//panel.setLayout(null);
+		//playButton.setLocation(100,500);
+		playButton.setBounds(650, 600, 400, 200);
+		playButton.setVisible(true);
 		playButton.addActionListener(new ButtonListener());
-		panel.add(playButton, BorderLayout.CENTER);
-
+		//panel.add(playButton, BorderLayout.CENTER);
+		panel.add(playButton);
+		
+		/*try 
+		{
+			BufferedImage foosballFront;
+			foosballFront = ImageIO.read(new File("resources/foosballFront.png"));
+			
+			
+			JLabel foosball = new JLabel(new ImageIcon(foosballFront));
+			foosball.setBounds(400, 200, 638, 322);
+			foosball.setVisible(true);
+			panel.add(foosball);
+			//picLabel.setBounds(250, 400, 800, 400);
+			//panel.repaint();
+			//panel.scoreBoard.draw(g2d);
+			// picLabel.setOpaque(true);
+			
+		} 
+		catch (IOException e1) 
+		{
+			e1.printStackTrace();
+		}*/
+		panel.setVisible(true);
+		panel.setBounds(0, 0, 1280, 720);
+		add(panel);
+		setVisible(true);
 	}
 
 	@Override
@@ -179,7 +212,8 @@ public class ContentPanel extends JPanel {
 				//panel.setVisible(false);
 				setOpaque(true);
 				setVisible(true);
-				panel.add(new PlayPanel(formationChosen, levelChosen));
+				mainFrame.playPanel = new PlayPanel(formationChosen, levelChosen, mainFrame);
+				panel.add(mainFrame.playPanel);
 				validate();
 				repaint();
 

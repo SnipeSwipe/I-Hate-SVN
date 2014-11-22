@@ -19,7 +19,7 @@ public abstract class Player implements PlayingInterface {
 	private int sizex, sizey, speed;
 	public int dy;
 	private Color color;
-	private PlayPanel panel;
+	public PlayPanel panel;
 	int starty, startx;
 	public int currentx, currenty;
 	int min, max;

@@ -76,7 +76,7 @@ public class Scoreboard extends JPanel {
 
 		}
 		System.out.println("Human Scores!");
-		System.out.println(this.humanScore);
+		//System.out.println(this.humanScore);
 	}
 
 	public void increaseScoreAI() {
@@ -88,7 +88,7 @@ public class Scoreboard extends JPanel {
 			Game.gameOver(1, this.mainFrame);
 		}
 		System.out.println("Computer Scores!");
-		System.out.println(this.aiScore);
+		//System.out.println(this.aiScore);
 	}
 
 }

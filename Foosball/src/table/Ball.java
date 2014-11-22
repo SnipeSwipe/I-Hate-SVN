@@ -6,6 +6,8 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -27,6 +29,7 @@ public class Ball implements Runnable { //singleton class
 	private Color color;
 	private PlayPanel panel;
 	private Scoreboard board;
+	Random rand;
 	JLabel image;
 	Game game;
 
@@ -88,6 +91,8 @@ public class Ball implements Runnable { //singleton class
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
+			rand = new Random();
 
 			// calculate new position and move ball
 			moveBall();
@@ -110,7 +115,15 @@ public class Ball implements Runnable { //singleton class
 				if (this.ball.intersects(this.panel.humanTeam.defenders[i]
 						.getPlayerRect())) {
 					
-					int[] temp = this.panel.humanTeam.defenders[i].kick(dx, dy, 1);
+					int[] temp;
+					
+					boolean shoot = rand.nextBoolean();
+					
+					if(shoot)
+						temp = this.panel.humanTeam.defenders[i].kick(dx,dy, 1);
+					else
+						temp = this.panel.humanTeam.defenders[i].pass();
+					
 					dx = temp[0];
 					dy = temp[1];
 					
@@ -120,17 +133,27 @@ public class Ball implements Runnable { //singleton class
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfMidfielders; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.midfielders[i].getPlayerRect())) {
 
-					int[] temp = this.panel.humanTeam.midfielders[i].kick(dx, dy, 1);
+					int[] temp;
+					
+					boolean shoot = rand.nextBoolean();
+					
+					if(shoot)
+						temp = this.panel.humanTeam.midfielders[i].kick(dx,dy, 1);
+					else
+						temp = this.panel.humanTeam.midfielders[i].pass();
+					
 					dx = temp[0];
 					dy = temp[1];
 					
+					
 				}
 			}
-
+			
 			if (this.ball.intersects(this.panel.humanTeam.goalkeeper
 					.getPlayerRect())) {
 
-				int[] temp = this.panel.humanTeam.goalkeeper.kick(dx, dy, 1);
+				int[] temp = this.panel.humanTeam.goalkeeper.pass();
+
 				dx = temp[0];
 				dy = temp[1];
 				
@@ -150,10 +173,18 @@ public class Ball implements Runnable { //singleton class
 				if (this.ball.intersects(this.panel.computerTeam.defenders[i]
 						.getPlayerRect())) {
 
-					int[] temp = this.panel.computerTeam.defenders[i].kick(dx, dy, -1);
+					int[] temp;
+					
+					boolean shoot = rand.nextBoolean();
+					
+					if(shoot)
+						temp = this.panel.computerTeam.defenders[i].kick(dx,dy, -1);
+					else
+						temp = this.panel.computerTeam.defenders[i].pass();
+					
 					dx = temp[0];
 					dy = temp[1];
-					
+										
 				}
 			}
 
@@ -161,7 +192,15 @@ public class Ball implements Runnable { //singleton class
 				if (this.ball.intersects(this.panel.computerTeam.midfielders[i]
 						.getPlayerRect())) {
 
-					int[] temp = this.panel.computerTeam.midfielders[i].kick(dx, dy, -1);
+					int[] temp;
+					
+					boolean shoot = rand.nextBoolean();
+					
+					if(shoot)
+						temp = this.panel.computerTeam.midfielders[i].kick(dx,dy, -1);
+					else
+						temp = this.panel.computerTeam.midfielders[i].pass();
+					
 					dx = temp[0];
 					dy = temp[1];
 				}
@@ -170,7 +209,7 @@ public class Ball implements Runnable { //singleton class
 			if (this.ball.intersects(this.panel.computerTeam.goalkeeper
 					.getPlayerRect())) {
 
-				int[] temp = this.panel.computerTeam.goalkeeper.kick(dx, dy, -1);
+				int[] temp = this.panel.computerTeam.goalkeeper.pass();
 				dx = temp[0];
 				dy = temp[1];
 				
@@ -229,7 +268,7 @@ public class Ball implements Runnable { //singleton class
 
 	}
 
-	public boolean checkGoal() {
+	public void checkGoal() {
 
 		if (((newy >= 250 - 15) && (newy <= 425 - 15))
 				&& (newx >= panel.getWidth() - 20)) {
@@ -276,11 +315,6 @@ public class Ball implements Runnable { //singleton class
 			ball.setFrame(59, 360, size, size);
 		}
 		
-		if(computerScored||humanScored)
-			return true;
-		else
-			return false;
-
 	}
 	
 	public int getBallY() {

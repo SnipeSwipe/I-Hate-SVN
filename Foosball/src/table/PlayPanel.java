@@ -34,7 +34,8 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 	Table mainFrame;
 	public Ball b;
 	BufferedImage img;
-	Team humanTeam, computerTeam;
+	public Team humanTeam;
+	public Team computerTeam;
 	Thread humanThread, computerThread, ballThread;
 	Timer timer;
 	Scoreboard scoreBoard;

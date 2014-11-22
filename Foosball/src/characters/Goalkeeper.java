@@ -12,7 +12,6 @@ import table.PlayPanel;
 
 public class Goalkeeper extends Player {
 	
-	
 
 	public Goalkeeper(PlayPanel panel, int starty, int startx, int dy,
 			int bound, Color color) {
@@ -44,7 +43,44 @@ public class Goalkeeper extends Player {
 		return coords;
 	}
 	
-	public void pass(){
+	public int[] pass(){
+		
+		int[] coords = new int[2];
+		
+		int toX;
+		int toY;
+				
+		if(startx < 640){
+
+			int randomIdx = (int)(Math.random()*(panel.humanTeam.formation.noOfDefenders));
+			Defender defender = panel.humanTeam.defenders[randomIdx];
+			toX = defender.currentx;
+			toY = defender.currenty;
+					
+		}
+		else{
+			
+			int randomIdx = (int)(Math.random()*(panel.computerTeam.formation.noOfDefenders));
+			Defender defender = panel.computerTeam.defenders[randomIdx];
+			toX = defender.currentx;
+			toY = defender.currenty;
+			
+		}
+		
+		double xcoor = toX - this.currentx;
+		double ycoor = toY - this.currenty;
+		
+		int newSpeed = minKickSpeed + (int)(Math.random()*(maxKickSpeed-minKickSpeed));
+		
+		ycoor = (ycoor*newSpeed)/xcoor;
+		xcoor = newSpeed;
+		
+		coords[0] = (int)xcoor;
+		coords[1] = (int)ycoor;
+		
+		//System.out.println(xcoor + " " + ycoor);
+		
+		return coords;
 		
 	}
 	

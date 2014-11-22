@@ -45,4 +45,5 @@ public class Attacker extends Player {
 		return coords;
 	}
 	
+	
 }

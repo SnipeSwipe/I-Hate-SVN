@@ -48,7 +48,7 @@ public class Team implements Runnable {
 			}
 
 			// set AI 1 for pro, 2 for intermediate, 3 for noob
-			AI(1);
+			AI(3);
 
 			// Repaint as usual
 			this.panel.repaint();

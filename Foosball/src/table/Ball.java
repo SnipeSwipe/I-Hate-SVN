@@ -1,6 +1,8 @@
 package table;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
@@ -293,13 +295,18 @@ public class Ball implements Runnable { //singleton class
 			this.panel.scoreBoard.increaseScoreHuman();
 			try {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
-				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+				//JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+				panel.setLayout(null);
+				JLabel picLabel = new JLabel("GOAL!", JLabel.CENTER);
+				picLabel.setFont(new Font("Segoe UI", Font.BOLD, 150));
+				picLabel.setBounds(400, 250, 500, 130);
 				panel.add(picLabel);
 				picLabel.setBounds(250, 120, 800, 400);
 
 				Thread.sleep(1000);
 				
 				panel.remove(picLabel);
+				panel.setLayout(new BorderLayout());
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
 			}
@@ -315,12 +322,17 @@ public class Ball implements Runnable { //singleton class
 
 			try {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
-				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+				//JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+				panel.setLayout(null);
+				JLabel picLabel = new JLabel("GOAL!", JLabel.CENTER);
+				picLabel.setFont(new Font("Segoe UI", Font.BOLD, 150));
+				picLabel.setBounds(400, 250, 500, 130);
 				panel.add(picLabel);
-				picLabel.setBounds(250, 120, 800, 400);
+
 				// picLabel.setOpaque(true);
 				Thread.sleep(1000);
 				panel.remove(picLabel);
+				panel.setLayout(new BorderLayout());
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
 			}

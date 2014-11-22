@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import characters.Game;
 
-public class Ball extends Thread { //singleton class
+public class Ball implements Runnable { //singleton class
 
 	private static Ball instance = null; // singleton instance field
 	private Ellipse2D.Double ball;
@@ -229,7 +229,7 @@ public class Ball extends Thread { //singleton class
 
 	}
 
-	public void checkGoal() {
+	public boolean checkGoal() {
 
 		if (((newy >= 250 - 15) && (newy <= 425 - 15))
 				&& (newx >= panel.getWidth() - 20)) {
@@ -241,7 +241,8 @@ public class Ball extends Thread { //singleton class
 				panel.add(picLabel);
 				picLabel.setBounds(250, 120, 800, 400);
 
-				sleep(1000);
+				Thread.sleep(1000);
+				
 				panel.remove(picLabel);
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
@@ -262,7 +263,7 @@ public class Ball extends Thread { //singleton class
 				panel.add(picLabel);
 				picLabel.setBounds(250, 120, 800, 400);
 				// picLabel.setOpaque(true);
-				sleep(1000);
+				Thread.sleep(1000);
 				panel.remove(picLabel);
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
@@ -274,9 +275,14 @@ public class Ball extends Thread { //singleton class
 
 			ball.setFrame(59, 360, size, size);
 		}
+		
+		if(computerScored||humanScored)
+			return true;
+		else
+			return false;
 
 	}
-
+	
 	public int getBallY() {
 		// TODO Auto-generated method stub
 		return newy;

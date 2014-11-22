@@ -35,7 +35,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 	public Ball b;
 	BufferedImage img;
 	Team humanTeam, computerTeam;
-	Thread humanThread, computerThread;
+	Thread humanThread, computerThread, ballThread;
 	Timer timer;
 	Scoreboard scoreBoard;
 
@@ -77,7 +77,8 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		computerTeam = new Team(new Formation(compForm[0], compForm[1], compForm[2]), this, TeamMode.COMPUTER);
 
 		b = Ball.getInstance(this, result);
-		b.start();
+		ballThread = new Thread(b);
+		ballThread.start();
 		
 		computerThread = new Thread(computerTeam);
 		computerThread.start();

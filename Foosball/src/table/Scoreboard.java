@@ -67,28 +67,29 @@ public class Scoreboard extends JPanel {
 	@SuppressWarnings("deprecation")
 	public void increaseScoreHuman() {
 		this.humanScore++;
+		System.out.println("Human Scores!");
+		System.out.println(this.humanScore);
+		
 		if (this.humanScore >= 5) {
 
 			this.mainFrame.playPanel.computerTeam.isMoving = false;
 			this.mainFrame.playPanel.computerThread.stop();
 
 			Game.gameOver(0, this.mainFrame);
-
 		}
-		System.out.println("Human Scores!");
-		//System.out.println(this.humanScore);
 	}
 
 	public void increaseScoreAI() {
 		this.aiScore++;
+		System.out.println("Computer Scores!");
+		System.out.println(this.aiScore);
+		
 		if (this.aiScore >= 5) {
 			this.mainFrame.playPanel.computerTeam.isMoving = false;
 			this.mainFrame.playPanel.computerThread.stop();
 
 			Game.gameOver(1, this.mainFrame);
 		}
-		System.out.println("Computer Scores!");
-		//System.out.println(this.aiScore);
 	}
 
 }

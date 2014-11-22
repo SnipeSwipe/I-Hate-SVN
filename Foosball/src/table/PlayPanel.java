@@ -47,13 +47,13 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		String[] compChoices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};		
 
 		if(levelChosen.equals("Novice")){
-			diffLevel = 1;
+			this.diffLevel = 1;
 		}
 		else if(levelChosen.equals("Novice")){
-			diffLevel = 2;
+			this.diffLevel = 2;
 		}
 		else if(levelChosen.equals("Novice")){
-			diffLevel = 3;
+			this.diffLevel = 3;
 		}
 		
 		setPreferredSize(new Dimension(1280, 670));

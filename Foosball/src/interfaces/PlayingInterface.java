@@ -1,4 +1,4 @@
-package characters;
+package interfaces;
 
 public interface PlayingInterface {
 	

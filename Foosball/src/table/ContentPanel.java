@@ -1,5 +1,7 @@
 package table;
 
+import interfaces.MenuOptions;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -29,32 +31,29 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public class ContentPanel extends JPanel {
+public class ContentPanel extends JPanel implements MenuOptions {
 	
 	private JButton playButton = new JButton("Play");
 	Table mainFrame;
-	String[] choices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};
+	String[] choices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", 
+			"4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};
 	String[] levelChoices = {"Novice", "Intermediate", "Pro"};	
 	String formationChosen, levelChosen;
 	final JComboBox<String> formationMenu = new JComboBox<String>(choices);
 	final JComboBox<String> levelMenu = new JComboBox<String>(levelChoices);
 
-	// private Table mainFrame;
 	JPanel panel = new JPanel();
 	BufferedImage img;
 
-	public ContentPanel(Table mainFrame) {
+	public ContentPanel(Table mainFrame) 
+	{
 		this.mainFrame = mainFrame;
-		
+		this.setBackground(new Color(255, 255, 255));
 		panel.setPreferredSize(new Dimension(1280, 675));
 		panel.setBounds(0, 0, 1280, 720);
-		//this.setLayout(null);
-		this.setBackground(new Color(255, 255, 255));
-		
-		//panel.setLayout(new BorderLayout(1, 2));
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setLayout(null);
-		//playButton.setLocation(100,500);
+		
 		try 
 		{
 			BufferedImage foosballFront;
@@ -65,12 +64,8 @@ public class ContentPanel extends JPanel {
 			foosball.setBounds(450, 100, 400, 179);
 			foosball.setVisible(true);
 			panel.add(foosball);
-			//picLabel.setBounds(250, 400, 800, 400);
-			//panel.repaint();
-			//panel.scoreBoard.draw(g2d);
-			// picLabel.setOpaque(true);
-			
 		} 
+		
 		catch (IOException e1) 
 		{
 			e1.printStackTrace();
@@ -80,29 +75,7 @@ public class ContentPanel extends JPanel {
 		playButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		playButton.setVisible(true);
 		playButton.addActionListener(new ButtonListener());
-		//panel.add(playButton, BorderLayout.CENTER);
 		panel.add(playButton);
-		
-		/*try 
-		{
-			BufferedImage foosballFront;
-			foosballFront = ImageIO.read(new File("resources/foosballFront.png"));
-			
-			
-			JLabel foosball = new JLabel(new ImageIcon(foosballFront));
-			foosball.setBounds(400, 200, 638, 322);
-			foosball.setVisible(true);
-			panel.add(foosball);
-			//picLabel.setBounds(250, 400, 800, 400);
-			//panel.repaint();
-			//panel.scoreBoard.draw(g2d);
-			// picLabel.setOpaque(true);
-			
-		} 
-		catch (IOException e1) 
-		{
-			e1.printStackTrace();
-		}*/
 		panel.setVisible(true);
 		add(panel);
 		setVisible(true);
@@ -114,10 +87,52 @@ public class ContentPanel extends JPanel {
 		// paint the background image and scale it to fill the entire space
 		g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 	}
-
-	public class ButtonListener implements ActionListener {
+	
+	public void chooseTeamFormation(JPanel panel) //function to print formation menu
+	{
+		JLabel chooseFormation = new JLabel("Choose Team Formation", JLabel.CENTER);
+		chooseFormation.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		chooseFormation.setBounds(490, 30, 300, 100);
+		chooseFormation.setForeground(new Color(112, 48, 160));
+		panel.add(chooseFormation);
+		chooseFormation.setVisible(true);
 		
-		//String formationChosen, levelChosen;
+		JLabel defMidAttack = new JLabel("Defenders-Midfielders-Attackers");
+		defMidAttack.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		defMidAttack.setBounds(531, 70, 250, 100);
+		defMidAttack.setForeground(new Color(112, 48, 160));
+		panel.add(defMidAttack);
+		defMidAttack.setVisible(true);
+		
+		formationMenu.setBounds(590, 150, 100, 20);
+		panel.add(formationMenu);
+		formationMenu.setVisible(true);
+	}
+	
+	public void choosePlayLevel(JPanel panel) //function to print level menu
+	{
+		JLabel chooseLevel= new JLabel("Choose Game Level", JLabel.CENTER);
+		chooseLevel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		chooseLevel.setBounds(490, 220, 300, 100);
+		chooseLevel.setForeground(new Color(112, 48, 160));
+		panel.add(chooseLevel);
+		chooseLevel.setVisible(true);
+		
+		levelMenu.setBounds(590, 300, 100, 20);
+		panel.add(levelMenu);
+		levelMenu.setVisible(true);
+		
+		JButton finalPlayButton = new JButton("Play!");
+		finalPlayButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		finalPlayButton.setForeground(new Color(112, 48, 160));
+		finalPlayButton.setBounds(595, 400, 80, 30);
+		panel.add(finalPlayButton);
+		finalPlayButton.addActionListener(new ButtonListener());
+		finalPlayButton.setVisible(true);
+	}
+	
+	public class ButtonListener implements ActionListener 
+	{
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			JButton clickedButton = (JButton) event.getSource();
@@ -137,87 +152,10 @@ public class ContentPanel extends JPanel {
 				int panelWidth = 1280;
 				panel.setPreferredSize(new Dimension(panelWidth, panelHeight));
 				panel.setLayout(null);
-								
-				//String[] choices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};
-				//String[] levelChoices = {"Noob", "Semi-Pro", "God"};
 				
-				JLabel chooseFormation = new JLabel("Choose Team Formation", JLabel.CENTER);
-				chooseFormation.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-				chooseFormation.setBounds(490, 30, 300, 100);
-				chooseFormation.setForeground(new Color(112, 48, 160));
-				panel.add(chooseFormation);
-				chooseFormation.setVisible(true);
+				mainFrame.contentPanel.chooseTeamFormation(panel);
+				mainFrame.contentPanel.choosePlayLevel(panel);
 				
-				JLabel defMidAttack = new JLabel("Defenders-Midfielders-Attackers");
-				defMidAttack.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-				defMidAttack.setBounds(531, 70, 250, 100);
-				defMidAttack.setForeground(new Color(112, 48, 160));
-				panel.add(defMidAttack);
-				defMidAttack.setVisible(true);
-				
-				//final JComboBox<String> formationMenu = new JComboBox<String>(choices);
-				formationMenu.setBounds(590, 150, 100, 20);
-				panel.add(formationMenu);
-				formationMenu.setVisible(true);
-				
-				JLabel chooseLevel= new JLabel("Choose Game Level", JLabel.CENTER);
-				chooseLevel.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-				chooseLevel.setBounds(490, 220, 300, 100);
-				chooseLevel.setForeground(new Color(112, 48, 160));
-				panel.add(chooseLevel);
-				chooseLevel.setVisible(true);
-				
-				//final JComboBox<String> levelMenu = new JComboBox<String>(levelChoices);
-				levelMenu.setBounds(590, 300, 100, 20);
-				panel.add(levelMenu);
-				levelMenu.setVisible(true);
-				
-				JButton finalPlayButton = new JButton("Play!");
-				finalPlayButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
-				finalPlayButton.setForeground(new Color(112, 48, 160));
-				finalPlayButton.setBounds(595, 400, 80, 30);
-				panel.add(finalPlayButton);
-				finalPlayButton.addActionListener(new ButtonListener());
-				finalPlayButton.setVisible(true);
-				
-				/*formationChosen = (String)formationMenu.getSelectedItem();
-				levelChosen = (String)levelMenu.getSelectedItem();
-				
-				System.out.println(formationChosen);*/
-				
-				//panel.setOpaque(true);
-				//add(panel);
-				//this.mainFrame.setLocationByPlatform(true);
-				
-				// System.out.println("in2");
-				// JPanel buttonPanel = new JPanel(new BorderLayout());
-				//JPanel buttonPanel1 = new JPanel(new BorderLayout());
-				/*JLabel form = new JLabel(
-						"             Choose A Formation for Players         ");
-				panel.add(form, BorderLayout.NORTH);
-				panel.setLayout(new FlowLayout());
-				panel.add(option1);
-				panel.add(option2);
-				panel.add(option3);
-				panel.add(option4);
-				// panel.add(buttonPanel);
-				optionButton.addActionListener(new ButtonListener());
-				JLabel level = new JLabel(
-						"                        Choose A Level          ");
-				panel.add(level, BorderLayout.NORTH);
-				panel.add(optionlevel1, BorderLayout.WEST);
-				panel.add(optionlevel2, BorderLayout.EAST);
-				panel.add(optionlevel3, BorderLayout.EAST);
-				panel.add(buttonPanel1);
-				panel.add(optionButton, BorderLayout.SOUTH);*/
-
-				// rechange2.setBackground(Color.white);
-				// rechange2.setSize(1440, 920);
-				// rechange2.setBounds(50, 50, 240, 225);
-
-				// panel.add(rechange2);
-				// panel.add(optionButton, BorderLayout.CENTER);
-				// optionButton.addActionListener(new ButtonListener());
 				validate();
 				repaint();
 

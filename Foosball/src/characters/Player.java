@@ -104,5 +104,39 @@ public abstract class Player implements PlayingInterface {
 			g2d.fillRect(currentx, currenty, sizex, sizey);
 		}
 	}
+	
+	public int getError(boolean isHuman){
+		
+		int error= 0;
+		
+		switch(panel.diffLevel){
+		
+		case 1: {
+				if(isHuman)
+					error = 5 + (int)(Math.random()*4);
+				else
+					error = 5 + (int)(Math.random()*6);
+				break;
+			}
+			case 2: {
+				if(isHuman)
+					error = 3 + (int)(Math.random()*4);
+				else
+					error = 3 + (int)(Math.random()*4);
+				break;
+			}
+			case 3: {
+				if(isHuman)
+					error = 1 + (int)(Math.random()*4);
+				else
+					error = 1 + (int)(Math.random()*2);
+				break;
+				
+			}
+		}
+		
+		return error;
+		
+	}
 
 }

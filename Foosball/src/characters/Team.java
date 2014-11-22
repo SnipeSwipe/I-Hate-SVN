@@ -47,8 +47,8 @@ public class Team implements Runnable {
 				e.printStackTrace();
 			}
 
-			// set AI 1 for pro, 2 for intermediate, 3 for noob
-			AI(1);
+			// internal switch (set AI 1 for pro, 2 for intermediate, 3 for noob)
+			AI(2);
 
 			// Repaint as usual
 			this.panel.repaint();

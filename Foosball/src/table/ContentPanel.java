@@ -34,7 +34,7 @@ public class ContentPanel extends JPanel {
 	private JButton playButton = new JButton("Play");
 	Table mainFrame;
 	String[] choices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};
-	String[] levelChoices = {"Noob", "Semi-Pro", "God"};	
+	String[] levelChoices = {"Novice", "Intermediate", "Pro"};	
 	String formationChosen, levelChosen;
 	final JComboBox<String> formationMenu = new JComboBox<String>(choices);
 	final JComboBox<String> levelMenu = new JComboBox<String>(levelChoices);

@@ -18,41 +18,22 @@ public class Midfielder extends Player {
 		minKickSpeed = 20;
 		maxKickSpeed = 25;
 	}
-	
-	/*public int[] kicke(int dx, int dy, int dir) {
-		int[] coords = new int[2];
-				
-		dir = dir/(Math.abs(dir)); //Get only unit vector direction in x axis
-		if(dx*dir > 0)  //i.e. if dx and dir have same sign (While defending)
-			dx = dir*Math.abs(dx);
 		
-		else{		//Else dx and dir have different signs(While attacking)
-			int newSpeed = minKickSpeed + (int)(Math.random()*(maxKickSpeed-minKickSpeed));
-			dx = dir*(newSpeed);
-		}
-		
-		// if going downwards, reduce ball angle(I dunno how to
-		// put it, just change ball angle)
-		if (this.dy > 0) {
-			dy = dy + 1;
-		} else {
-			dy = dy - 1;
-		}
-		coords[0] = dx;
-		coords[1] = dy;
-		return coords;
-	}*/
-	
 	public int[] kick(int dx, int dy, int dir){
 		
 		int[] coords = new int[2];
 		int toX;
 		int toY = 320;
+		boolean isHuman;
 		
-		if(startx < 640)
+		if(startx < 640){
 			toX = 1280;
-		else
+			isHuman = true;			
+		}
+		else{
 			toX = 0;
+			isHuman = false;
+		}
 		
 		dir = dir/(Math.abs(dir)); //Get only unit vector direction in x axis
 		if(dx*dir > 0){  //i.e. if dx and dir have same sign (While defending)
@@ -70,8 +51,11 @@ public class Midfielder extends Player {
 			ycoor = (ycoor*newSpeed)/xcoor;
 			xcoor = newSpeed;
 			
-			coords[0] = dir*(int)xcoor;
-			coords[1] = dir*(int)ycoor;
+			int xerror = getError(isHuman);
+			int yerror = getError(isHuman);
+						
+			coords[0] = dir*(int)xcoor + xerror;
+			coords[1] = dir*(int)ycoor + yerror;
 			
 			
 		}
@@ -87,11 +71,13 @@ public class Midfielder extends Player {
 		int toX;
 		int toY;
 		int dir = 1;
+		boolean isHuman;
 				
 		if(startx < 640){
 
 			int randomIdx = (int)(Math.random()*(panel.humanTeam.formation.noOfAttackers));
 			Attacker att = panel.humanTeam.attackers[randomIdx];
+			isHuman = true;
 			toX = att.currentx;
 			toY = att.currenty;
 					
@@ -101,6 +87,7 @@ public class Midfielder extends Player {
 			dir = -1;
 			int randomIdx = (int)(Math.random()*(panel.computerTeam.formation.noOfAttackers));
 			Attacker att = panel.computerTeam.attackers[randomIdx];
+			isHuman = false;
 			toX = att.currentx;
 			toY = att.currenty;
 			
@@ -114,14 +101,15 @@ public class Midfielder extends Player {
 		ycoor = (ycoor*newSpeed)/xcoor;
 		xcoor = newSpeed;
 		
-		coords[0] = dir*(int)xcoor;
-		coords[1] = dir*(int)ycoor;
-		
+		int xerror = getError(isHuman);
+		int yerror = getError(isHuman);
+					
+		coords[0] = dir*(int)xcoor + xerror;
+		coords[1] = dir*(int)ycoor + yerror;
 		//System.out.println(xcoor + " " + ycoor);
 		
 		return coords;
 		
 	}
 	
-
 }

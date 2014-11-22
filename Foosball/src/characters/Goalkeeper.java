@@ -50,11 +50,13 @@ public class Goalkeeper extends Player {
 		int toX;
 		int toY;
 		int dir = 1;
+		boolean isHuman;
 				
 		if(startx < 640){
 
 			int randomIdx = (int)(Math.random()*(panel.humanTeam.formation.noOfDefenders));
 			Defender defender = panel.humanTeam.defenders[randomIdx];
+			isHuman = true;
 			toX = defender.currentx;
 			toY = defender.currenty;
 					
@@ -63,6 +65,7 @@ public class Goalkeeper extends Player {
 			dir = -1;
 			int randomIdx = (int)(Math.random()*(panel.computerTeam.formation.noOfDefenders));
 			Defender defender = panel.computerTeam.defenders[randomIdx];
+			isHuman = false;
 			toX = defender.currentx;
 			toY = defender.currenty;
 			
@@ -76,13 +79,16 @@ public class Goalkeeper extends Player {
 		ycoor = (ycoor*newSpeed)/xcoor;
 		xcoor = newSpeed;
 		
-		coords[0] = dir*(int)xcoor;
-		coords[1] = dir*(int)ycoor;
+		int xerror = getError(isHuman);
+		int yerror = getError(isHuman);
+					
+		coords[0] = dir*(int)xcoor + xerror;
+		coords[1] = dir*(int)ycoor + yerror;
 		
 		//System.out.println(xcoor + " " + ycoor);
 		
 		return coords;
 		
 	}
-	
+		
 }

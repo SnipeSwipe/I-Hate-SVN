@@ -19,7 +19,7 @@ public class Attacker extends Player {
 	}
 	
 	
-	public int[] kick(int dx, int dy, int dir) { // x - present x axis speed
+	/*public int[] kicke(int dx, int dy, int dir) { // x - present x axis speed
 											   // y - present y axis speed
 											   // dir - x axis direction(+ or -)
 		
@@ -43,6 +43,43 @@ public class Attacker extends Player {
 		coords[0] = dx;
 		coords[1] = dy;
 		return coords;
+	}*/
+	
+	public int[] kick(int dx, int dy, int dir){
+		
+		int[] coords = new int[2];
+		int toX;
+		int toY = 320;
+		
+		if(startx > 640)
+			toX = 1280;
+		else
+			toX = 0;
+		
+		dir = dir/(Math.abs(dir)); //Get only unit vector direction in x axis
+		if(dx*dir > 0){  //i.e. if dx and dir have same sign (While defending)
+			dx = dir*Math.abs(dx);
+			coords[0] = dx;
+			coords[1] = dy;
+		}
+		
+		else{		//Else dx and dir have different signs(While attacking)
+			int newSpeed = minKickSpeed + (int)(Math.random()*(maxKickSpeed-minKickSpeed));
+			
+			double xcoor = toX - this.currentx;
+			double ycoor = toY - this.currenty;
+			
+			ycoor = (ycoor*newSpeed)/xcoor;
+			xcoor = newSpeed;
+			
+			coords[0] = dir*(int)xcoor;
+			coords[1] = dir*(int)ycoor;
+			
+			
+		}
+				
+		return coords;
+			
 	}
 	
 	

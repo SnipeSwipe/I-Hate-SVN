@@ -11,21 +11,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import characters.Game;
 
-public class Ball extends Thread {
+public class Ball extends Thread { //singleton class
 
 	private static Ball instance = null; // singleton instance field
 	private Ellipse2D.Double ball;
 	private boolean isMoving;
-	private int size, speed;
+	private int size, speedInverse;
 	private int dx, dy;
 	int startx, starty;
 	public static int newx, newy;
-	boolean computerScored;
+	boolean computerScored, humanScored;
 	int xBound, yBound; // width and height of field in pixels (Hard-code or
 						// pass as parameters)
 
 	private Color color;
 	private PlayPanel panel;
+	private Scoreboard board;
 	JLabel image;
 	Game game;
 
@@ -50,12 +51,13 @@ public class Ball extends Thread {
 		this.panel = panel;
 		isMoving = true;
 		size = 20;
-		speed = 40;
+		speedInverse = 20;
 		dx = dy = 10;
 		newx = newy = startx = starty = 0;
 		xBound = 1280;
 		yBound = 670;
 		computerScored = false;
+		humanScored = false;
 
 		if (tossResult == 1) {
 			startx = 61;
@@ -82,7 +84,7 @@ public class Ball extends Thread {
 
 		while (isMoving) {
 			try {
-				Thread.sleep(speed);
+				Thread.sleep(speedInverse);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -90,67 +92,88 @@ public class Ball extends Thread {
 			// calculate new position and move ball
 			moveBall();
 
-			// detecting collisions
-			//See this, refer for each collision
+			// detecting collisions by checking intersection
+			// Refer to Playing interface for explanation of kick function
+			
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfAttackers; i++) {
-				if (this.ball.intersects(this.panel.humanTeam.attackers[i].getPlayerRect())) {
-					int[] temp = this.panel.humanTeam.attackers[i].kick(dx, dy);
+				if (this.ball.intersects(this.panel.humanTeam.attackers[i]
+						.getPlayerRect())) {
+					
+					int[] temp = this.panel.humanTeam.attackers[i].kick(dx, dy, 1);
 					dx = temp[0];
 					dy = temp[1];
+
 				}
 			}
 
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfDefenders; i++) {
-				if (this.ball.intersects(this.panel.humanTeam.defenders[i].getPlayerRect())) {
-					int[] temp = this.panel.humanTeam.defenders[i].kick(dx, dy);
+				if (this.ball.intersects(this.panel.humanTeam.defenders[i]
+						.getPlayerRect())) {
+					
+					int[] temp = this.panel.humanTeam.defenders[i].kick(dx, dy, 1);
 					dx = temp[0];
 					dy = temp[1];
+					
 				}
 			}
 
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfMidfielders; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.midfielders[i].getPlayerRect())) {
-					int[] temp = this.panel.humanTeam.midfielders[i].kick(dx, dy);
+
+					int[] temp = this.panel.humanTeam.midfielders[i].kick(dx, dy, 1);
+					dx = temp[0];
+					dy = temp[1];
+					
+				}
+			}
+
+			if (this.ball.intersects(this.panel.humanTeam.goalkeeper
+					.getPlayerRect())) {
+
+				int[] temp = this.panel.humanTeam.goalkeeper.kick(dx, dy, 1);
+				dx = temp[0];
+				dy = temp[1];
+				
+			}
+			
+			for (int i = 0; i < this.panel.computerTeam.formation.noOfAttackers; i++) {
+				if (this.ball.intersects(this.panel.computerTeam.attackers[i]
+						.getPlayerRect())) {
+
+					int[] temp = this.panel.computerTeam.attackers[i].kick(dx, dy, -1);
 					dx = temp[0];
 					dy = temp[1];
 				}
 			}
 
-			if (this.ball.intersects(this.panel.humanTeam.goalkeeper.getPlayerRect())) {
-				int[] temp = new int[2];
-				temp = this.panel.humanTeam.goalkeeper.kick(dx, dy);
-				dx = temp[0];
-				dy = temp[1];
-
-			}
-			for (int i = 0; i < this.panel.computerTeam.formation.noOfAttackers; i++) {
-				if (this.ball.intersects(this.panel.computerTeam.attackers[i].getPlayerRect())) {
-					int[] temp = this.panel.computerTeam.attackers[i].kick(dx, dy);
-					dx = (-1) * temp[0];
-					dy = temp[1];
-				}
-			}
-
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfDefenders; i++) {
-				if (this.ball.intersects(this.panel.computerTeam.defenders[i].getPlayerRect())) {
-					int[] temp = this.panel.computerTeam.defenders[i].kick(dx, dy);
-					dx = (-1) * temp[0];
+				if (this.ball.intersects(this.panel.computerTeam.defenders[i]
+						.getPlayerRect())) {
+
+					int[] temp = this.panel.computerTeam.defenders[i].kick(dx, dy, -1);
+					dx = temp[0];
 					dy = temp[1];
+					
 				}
 			}
 
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfMidfielders; i++) {
-				if (this.ball.intersects(this.panel.computerTeam.midfielders[i].getPlayerRect())) {
-					int[] temp = this.panel.computerTeam.midfielders[i].kick(dx, dy);
-					dx = (-1) * temp[0];
+				if (this.ball.intersects(this.panel.computerTeam.midfielders[i]
+						.getPlayerRect())) {
+
+					int[] temp = this.panel.computerTeam.midfielders[i].kick(dx, dy, -1);
+					dx = temp[0];
 					dy = temp[1];
 				}
 			}
 
-			if (this.ball.intersects(this.panel.computerTeam.goalkeeper.getPlayerRect())) {
-				int[] temp = this.panel.computerTeam.goalkeeper.kick(dx, dy);
-				dx = (-1) * temp[0];
+			if (this.ball.intersects(this.panel.computerTeam.goalkeeper
+					.getPlayerRect())) {
+
+				int[] temp = this.panel.computerTeam.goalkeeper.kick(dx, dy, -1);
+				dx = temp[0];
 				dy = temp[1];
+				
 			}
 			// end of detecting collisions
 
@@ -168,21 +191,25 @@ public class Ball extends Thread {
 			dx = -dx;
 		} else
 			dx = +dx;
-		if (computerScored) {
+		if (humanScored) {
 			dx = -Math.abs(dx);
+			humanScored = false;
+		}
+		if(computerScored){
+			dx = Math.abs(dx);
 			computerScored = false;
 		}
 
-		if (Math.abs(dx) > 1) {
+		/*if (Math.abs(dx) > 1) {
 			if (dx > 0) {
 				newx = oldx + dx - 1;
 			} else if (dx < 0) {
 				newx = oldx + dx + 1;
 			}
-		} else {
+		} else{ 
 			newx = oldx + dx;
-		}
-		// newx = oldx + dx;
+		}*/
+		newx = oldx + dx;
 
 		newy = oldy + dy;
 		if (newy + size > yBound || newy < 0) {
@@ -212,16 +239,16 @@ public class Ball extends Thread {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
 				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.add(picLabel);
-				picLabel.setBounds(250, 400, 800, 400);
-				panel.repaint();
+				picLabel.setBounds(250, 120, 800, 400);
+
 				sleep(1000);
 				panel.remove(picLabel);
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
 			}
-			computerScored = true;
+			humanScored = true;
 
-			speed = 20;
+			speedInverse = 20;
 			dx = dy = 10;
 			ball.setFrame(1150, 360, size, size);
 
@@ -233,17 +260,16 @@ public class Ball extends Thread {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
 				JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.add(picLabel);
-				picLabel.setBounds(250, 400, 800, 400);
-				panel.repaint();
-				//panel.scoreBoard.draw(g2d);
+				picLabel.setBounds(250, 120, 800, 400);
 				// picLabel.setOpaque(true);
 				sleep(1000);
 				panel.remove(picLabel);
 			} catch (IOException | InterruptedException e1) {
 				e1.printStackTrace();
 			}
+			computerScored = true;
 
-			speed = 20;
+			speedInverse = 20;
 			dx = dy = 10;
 
 			ball.setFrame(59, 360, size, size);

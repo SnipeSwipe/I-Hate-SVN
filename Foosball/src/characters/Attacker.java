@@ -14,26 +14,35 @@ public class Attacker extends Player {
 
 	public Attacker(PlayPanel panel, int starty, int startx, int dy, int bound,Color color) {
 		super(panel, starty, startx, 6, bound, color);
+		minKickSpeed = 20;
+		maxKickSpeed = 30;
 	}
 	
 	
-	public int[] kick(int x, int y) {
+	public int[] kick(int dx, int dy, int dir) { // x - present x axis speed
+											   // y - present y axis speed
+											   // dir - x axis direction(+ or -)
+		
 		int[] coords = new int[2];
-		if (Math.abs(x) < 20) {
-			x = Math.abs(x) + 1;
-		} else {
-			x = Math.abs(x);
+		
+		dir = dir/(Math.abs(dir)); //Get only unit vector direction in x axis
+		if(dx*dir > 0)  //i.e. if dx and dir have same sign (While defending)
+			dx = dir*Math.abs(dx);
+		else{		//Else dx and dir have different signs(While attacking)
+			int newSpeed = minKickSpeed + (int)(Math.random()*(maxKickSpeed-minKickSpeed));
+			dx = dir*(newSpeed);
 		}
+		
+		// if going downwards, reduce ball angle(I dunno how to
+		// put it, just change ball angle)
 		if (this.dy > 0) {
-			y = y + 1;
+			dy = dy + 1;
 		} else {
-			y = y - 1;
+			dy = dy - 1;
 		}
-		coords[0] = x;
-		coords[1] = y;
+		coords[0] = dx;
+		coords[1] = dy;
 		return coords;
 	}
-
-
-
+	
 }

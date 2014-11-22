@@ -24,6 +24,7 @@ public abstract class Player implements PlayingInterface {
 	public int currentx, currenty;
 	int min, max;
 	int bound;
+	int minKickSpeed, maxKickSpeed;
 
 	KeyEvent e;
 

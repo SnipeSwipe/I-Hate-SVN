@@ -34,7 +34,7 @@ public class Game
 		}
 		else if(x == 1)
 		{
-			mainFrame.playPanel.b.stop();
+			//mainFrame.playPanel.b.stop();
 			System.exit(0);
 		}
 		

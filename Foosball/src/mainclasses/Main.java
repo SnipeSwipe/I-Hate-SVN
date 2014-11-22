@@ -8,7 +8,7 @@ public class Main {
 
 	public static void main(String[] args) {
 	    JFrame f = new Table();
-	    ((Table) f).playSound();
+	    //((Table) f).playSound();
 	  } //main 
 	
 	

@@ -62,7 +62,7 @@ public class Scoreboard extends JPanel {
 	@SuppressWarnings("deprecation")
 	public void increaseScoreHuman() {
 		this.humanScore++;
-		if (this.humanScore >= 1) 
+		if (this.humanScore >= 5) 
 		{
 			//this.mainFrame.playPanel.b.sleep();
 			this.mainFrame.playPanel.computerTeam.isMoving = false;
@@ -77,7 +77,7 @@ public class Scoreboard extends JPanel {
 	
 	public void increaseScoreAI() {
 		this.aiScore++;
-		if (this.aiScore >= 1) 
+		if (this.aiScore >= 5) 
 		{
 			//this.mainFrame.playPanel.b.stop();
 			this.mainFrame.playPanel.computerTeam.isMoving = false;

@@ -2,6 +2,7 @@ package characters;
 
 import interfaces.GamingInterface;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import table.Scoreboard;
@@ -15,6 +16,11 @@ public class Game implements GamingInterface
 	static String dialogMessage = null;
 	static String whoStartsMessage = null;
 
+	public void startGame()
+	{
+		@SuppressWarnings("unused")
+		JFrame f = new Table();
+	}
 	public static void endGame(int winner, Table mainFrame) //0: Human, 1:AI
 	{	
 		//mainFrame.playPanel.b.stop();

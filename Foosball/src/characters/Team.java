@@ -73,7 +73,7 @@ public class Team implements Runnable {
 
 	public void rodDraw(Graphics2D g2d) {
 		int placerod = 194;
-		rodGK1 = new Rectangle2D.Double(1227, 0, 2, 670);
+		rodGK1 = new Rectangle2D.Double(1216, 0, 2, 670);
 		rodGK2 = new Rectangle2D.Double(66, 0, 2, 670);
 		rodColor = new Color(0, 100, 0);
 
@@ -83,8 +83,13 @@ public class Team implements Runnable {
 			g2d.fill(rodGK2);
 		}
 		for (int k = 0; k < 8; k++) {
+			/*if(k==6)
+			{
+				placerod-=10;
+			}*/
 			rod = new Rectangle2D.Double(placerod, 0, 2, 670);
 			placerod += 182;
+			
 			if (rod != null) {
 				g2d.setColor(rodColor);
 				g2d.fill(rod);
@@ -118,41 +123,50 @@ public class Team implements Runnable {
 
 		int gkX, defX, midX, attackX;
 		gkX = defX = midX = attackX = 0;
+		
+		int dyd, dym, dya; //random variable for horizontal movemement, strategy
+		dyd = dym = dya = 0;
 
 		if (teamMode == TeamMode.HUMAN) {
-			gkX = 59;
+			gkX = 56;
 			defX = 185;
 			midX = 549;
 			attackX = 913;
+			dyd = 3+(int)(Math.random()*4); //strategy differs because of random usage
+			dym = 3+(int)(Math.random()*4);
+			dya = 3+(int)(Math.random()*4);
 			this.color = new Color(255, 165, 0);
 		} else if (teamMode == TeamMode.COMPUTER) {
-			gkX = 1221;
+			gkX = 1203;
 			defX = 1095;
 			midX = 731;
 			attackX = 367;
+			dyd = 4;
+			dym = 5;
+			dya = 6;
 			this.color = new Color(72, 61, 139);
 			this.isMoving = true;
 		}
 
-		this.goalkeeper = new Goalkeeper(this.panel, gkY, gkX, 5, gkBound,
+		this.goalkeeper = new Goalkeeper(this.panel, gkY, gkX, 8, gkBound,
 				this.color);
 
 		for (int i = 0; i < this.formation.noOfDefenders; i++) {
-			this.defenders[i] = new Defender(this.panel, defY, defX, 5,
+			this.defenders[i] = new Defender(this.panel, defY, defX, dyd,
 					defBound, this.color);
 			defY += convertNumberToCoordinateGap(panelHeight,
 					this.formation.noOfDefenders);
 		}
 
 		for (int i = 0; i < this.formation.noOfMidfielders; i++) {
-			this.midfielders[i] = new Midfielder(this.panel, midY, midX, 5,
+			this.midfielders[i] = new Midfielder(this.panel, midY, midX, dym,
 					midBound, this.color);
 			midY += convertNumberToCoordinateGap(panelHeight,
 					this.formation.noOfMidfielders);
 		}
 
 		for (int i = 0; i < this.formation.noOfAttackers; i++) {
-			this.attackers[i] = new Attacker(this.panel, attackY, attackX, 5,
+			this.attackers[i] = new Attacker(this.panel, attackY, attackX, dya,
 					attackBound, this.color);
 			attackY += convertNumberToCoordinateGap(panelHeight,
 					this.formation.noOfAttackers);

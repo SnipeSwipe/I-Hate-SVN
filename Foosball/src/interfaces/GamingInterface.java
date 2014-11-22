@@ -4,6 +4,7 @@ public interface GamingInterface
 {
 	/*Any "Game" should implement this interface*/
 	
+	public void startGame();
 	
 	public int doCoinToss(); 						  //launches a "Coin Toss", returns 0 if user loses 
 	  												  //and 1 if user wins.

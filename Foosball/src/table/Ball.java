@@ -11,6 +11,7 @@ import characters.Game;
 
 public class Ball implements Runnable { // singleton class
 
+	int lastTeamContact; //0 if nothing, 1 if AI, 2 if Human
 	private static Ball instance = null; // singleton instance field
 	private Ellipse2D.Double ball;
 	private boolean isMoving;
@@ -19,7 +20,8 @@ public class Ball implements Runnable { // singleton class
 	int startx, starty;
 	public static int newx;
 	public static int newy;
-	boolean computerScored, humanScored;
+	public boolean computerScored;
+	boolean humanScored;
 	int xBound, yBound; // width and height of field in pixels (Hard-code or
 						// pass as parameters)
 
@@ -44,11 +46,12 @@ public class Ball implements Runnable { // singleton class
 		return instance;
 	}
 
-	private Ball(PlayPanel panel, int tossResult) { // private constructor to
+	public Ball(PlayPanel panel, int tossResult) { // private constructor to
 													// prevent instantiation
 													// from outside
 
 		this.panel = panel;
+		this.lastTeamContact = (tossResult+1); //1 if AI won and 2 if Human won
 		isMoving = true;
 		size = 20;
 		speedInverse = 20;

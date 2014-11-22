@@ -8,7 +8,7 @@ public class Attacker extends Player {
 
 	public Attacker(PlayPanel panel, int starty, int startx, int dy, int bound,
 			Color color) {
-		super(panel, starty, startx, 6, bound, color);
+		super(panel, starty, startx, dy, bound, color);
 		minKickSpeed = 20;
 		maxKickSpeed = 30;
 	}
@@ -17,7 +17,7 @@ public class Attacker extends Player {
 		
 		int[] coords = new int[2];
 		int toX;
-		int toY = 320;
+		int toY = -5 + 235 + (int)(Math.random()*(175+10)); //Error is -5 on either side
 		boolean isHuman;
 		
 		if(startx > 640){

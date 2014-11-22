@@ -39,11 +39,13 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 	Thread humanThread, computerThread, ballThread;
 	Timer timer;
 	public int diffLevel;
-	Scoreboard scoreBoard;
+	//Scoreboard scoreBoard;
+	Game game;
 
 	public PlayPanel(String formationChosen, String levelChosen, Table mainFrame) {
 		
 		this.mainFrame = mainFrame;
+		this.game = new Game();
 		String[] compChoices = {"3-3-4", "3-4-3", "3-5-2", "3-6-1", "4-2-4", "4-3-3", "4-4-2", "4-5-1", "5-2-3", "5-3-2", "5-4-1", "6-2-2", "6-3-1"};		
 
 		if(levelChosen.equals("Novice")){
@@ -82,7 +84,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		}
 		//splitting ends
 		
-		int result = Game.doCoinToss();
+		int result = this.game.doCoinToss();
 		
 		
 		humanTeam = new Team(new Formation(humanForm[0], humanForm[1], humanForm[2]), this, TeamMode.HUMAN);
@@ -95,9 +97,9 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 		computerThread = new Thread(computerTeam);
 		computerThread.start();
 		computerTeam.setBally(b.newy);
-		this.scoreBoard = new Scoreboard(mainFrame);
-		this.add(scoreBoard);
-		this.scoreBoard.setBounds(250, 120, 800, 400);
+		this.game.scoreBoard = new Scoreboard(mainFrame);
+		this.add(this.game.scoreBoard);
+		this.game.scoreBoard.setBounds(250, 120, 800, 400);
 		timer = new Timer(100, this);
 		addKeyListener(this);
 		setFocusable(true);
@@ -119,7 +121,7 @@ public class PlayPanel extends JPanel implements ActionListener, KeyListener {
 
 		Graphics2D g2d = (Graphics2D) g;
 		b.draw(g2d);
-		scoreBoard.draw(g2d);
+		this.game.scoreBoard.draw(g2d);
 		humanTeam.draw(g2d);
 		computerTeam.draw(g2d);
 		humanTeam.rodDraw(g2d);

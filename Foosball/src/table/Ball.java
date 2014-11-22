@@ -30,7 +30,7 @@ public class Ball implements Runnable { //singleton class
 
 	private Color color;
 	private PlayPanel panel;
-	private Scoreboard board;
+	//private Scoreboard board;
 	Random rand;
 	JLabel image;
 	Game game;
@@ -292,7 +292,7 @@ public class Ball implements Runnable { //singleton class
 		if (((newy >= 250 - 15) && (newy <= 425 - 15))
 				&& (newx >= panel.getWidth() - 20)) {
 			BufferedImage myPicture;
-			this.panel.scoreBoard.increaseScoreHuman();
+			this.panel.game.scoreBoard.increaseScoreHuman();
 			try {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
 				//JLabel picLabel = new JLabel(new ImageIcon(myPicture));
@@ -318,7 +318,7 @@ public class Ball implements Runnable { //singleton class
 
 		} else if (((newy >= 250 - 15) && (newy <= 425 - 15)) && (newx < 0)) {
 			BufferedImage myPicture;
-			this.panel.scoreBoard.increaseScoreAI();
+			this.panel.game.scoreBoard.increaseScoreAI();
 
 			try {
 				myPicture = ImageIO.read(new File("resources/goal.png"));

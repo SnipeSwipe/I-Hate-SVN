@@ -1,26 +1,30 @@
 package characters;
 
+import interfaces.GamingInterface;
+
 import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import table.Scoreboard;
 import table.Table;
 
-public class Game 
+public class Game implements GamingInterface 
 {
 	Table mainFrame;
+	public Scoreboard scoreBoard;
 	static String titleMessage = null;
 	static String dialogMessage = null;
 	static String whoStartsMessage = null;
 
-	public static void gameOver(int winner, Table mainFrame) //0: Human, 1:AI
+	public static void endGame(int winner, Table mainFrame) //0: Human, 1:AI
 	{	
 		//mainFrame.playPanel.b.stop();
 		int x = launchGameOverDialog(winner);
 		
 		if(x == -1)
 		{
-			gameOver(winner, mainFrame);
+			endGame(winner, mainFrame);
 		}
 		else if(x == 0)
 		{
@@ -62,10 +66,10 @@ public class Game
 		return n;
 	}
 
-	public static int doCoinToss() {
+	public int doCoinToss() {
 		int userChoice = showCoinTossDialog();
 		if (userChoice == -1) {
-			doCoinToss();
+			this.doCoinToss();
 		} else if (userChoice != -1) {
 			showResultDialog(userChoice);
 		}

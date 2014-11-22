@@ -21,6 +21,7 @@ public class Scoreboard extends JPanel {
 	int aiScore;
 	JLabel human;
 	String labelText;
+	Game game;
 
 	public Scoreboard(Table mainFrame) {
 		this.mainFrame = mainFrame;
@@ -75,7 +76,7 @@ public class Scoreboard extends JPanel {
 			this.mainFrame.playPanel.computerTeam.isMoving = false;
 			this.mainFrame.playPanel.computerThread.stop();
 
-			Game.gameOver(0, this.mainFrame);
+			Game.endGame(0, this.mainFrame);
 		}
 	}
 
@@ -88,7 +89,7 @@ public class Scoreboard extends JPanel {
 			this.mainFrame.playPanel.computerTeam.isMoving = false;
 			this.mainFrame.playPanel.computerThread.stop();
 
-			Game.gameOver(1, this.mainFrame);
+			Game.endGame(1, this.mainFrame);
 		}
 	}
 

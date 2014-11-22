@@ -190,8 +190,11 @@ public class Ball implements Runnable { // singleton class
 					if (shoot) {
 						temp = this.panel.computerTeam.defenders[i].kick(dx,
 								dy, -1);
+						// temp = this.panel.computerTeam.defenders[i].pass();
 
 					} else {
+						// temp =
+						// this.panel.computerTeam.defenders[i].kick(dx,dy, -1);
 
 						temp = this.panel.computerTeam.defenders[i].pass();
 					}

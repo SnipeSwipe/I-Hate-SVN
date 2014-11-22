@@ -1,6 +1,5 @@
 INDEX VERSION 1.127+/Users/SnipeSwipe/Documents/Workspace/I-Hate-SVN/.metadata/.plugins/org.eclipse.jdt.core
 3712507179.index
-1005264493.index
 3261838026.index
 1833648217.index
 3513380958.index

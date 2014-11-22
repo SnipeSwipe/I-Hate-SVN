@@ -190,8 +190,11 @@ public class Ball implements Runnable { // singleton class
 					if (shoot) {
 						temp = this.panel.computerTeam.defenders[i].kick(dx,
 								dy, -1);
+						// temp = this.panel.computerTeam.defenders[i].pass();
 
 					} else {
+						// temp =
+						// this.panel.computerTeam.defenders[i].kick(dx,dy, -1);
 
 						temp = this.panel.computerTeam.defenders[i].pass();
 					}
@@ -336,8 +339,7 @@ public class Ball implements Runnable { // singleton class
 			speedInverse = 20;
 			dx = dy = 10;
 
-			ball.setFrame(59, this.panel.humanTeam.goalkeeper.currenty, size,
-					size);
+			ball.setFrame(59, 360, size, size);
 		}
 
 	}

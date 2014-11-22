@@ -19,7 +19,9 @@ public class Attacker extends Player {
 		maxKickSpeed = 30;
 	}
 	
-
+	
+<<<<<<< Updated upstream
+=======
 	/*public int[] kicke(int dx, int dy, int dir) { // x - present x axis speed
 											   // y - present y axis speed
 											   // dir - x axis direction(+ or -)
@@ -54,6 +56,8 @@ public class Attacker extends Player {
 		coords[1] = dy;
 		return coords;
 	}*/
+	
+>>>>>>> Stashed changes
 	public int[] kick(int dx, int dy, int dir){
 		
 		int[] coords = new int[2];

@@ -18,8 +18,9 @@ public class Attacker extends Player {
 		minKickSpeed = 20;
 		maxKickSpeed = 30;
 	}
+<<<<<<< Updated upstream
 	
-
+	
 	/*public int[] kicke(int dx, int dy, int dir) { // x - present x axis speed
 											   // y - present y axis speed
 											   // dir - x axis direction(+ or -)
@@ -54,21 +55,17 @@ public class Attacker extends Player {
 		coords[1] = dy;
 		return coords;
 	}*/
+	
 	public int[] kick(int dx, int dy, int dir){
 		
 		int[] coords = new int[2];
 		int toX;
 		int toY = 320;
-		boolean isHuman;
 		
-		if(startx > 640){
+		if(startx > 640)
 			toX = 1280;
-			isHuman = true;			
-		}
-		else{
+		else
 			toX = 0;
-			isHuman = false;
-		}
 		
 		dir = dir/(Math.abs(dir)); //Get only unit vector direction in x axis
 		if(dx*dir > 0){  //i.e. if dx and dir have same sign (While defending)
@@ -86,16 +83,14 @@ public class Attacker extends Player {
 			ycoor = (ycoor*newSpeed)/xcoor;
 			xcoor = newSpeed;
 			
-			int xerror = getError(isHuman);
-			int yerror = getError(isHuman);
-						
-			coords[0] = dir*(int)xcoor + xerror;
-			coords[1] = dir*(int)ycoor + yerror;
+			coords[0] = dir*(int)xcoor;
+			coords[1] = dir*(int)ycoor;
 			
 			
 		}
 				
 		return coords;
 			
-}
+	}
+
 }

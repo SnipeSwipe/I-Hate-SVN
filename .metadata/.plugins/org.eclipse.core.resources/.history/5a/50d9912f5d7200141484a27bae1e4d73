@@ -27,7 +27,6 @@ public abstract class Player implements PlayingInterface {
 	int min, max;
 	int bound;
 	int minKickSpeed, maxKickSpeed;
-	Random rand;
 
 	KeyEvent e;
 
@@ -137,12 +136,12 @@ public abstract class Player implements PlayingInterface {
 
 		}
 		}
-		int randomSign = (int) (Math.random() * 2);
 
-		if (randomSign == 0) {
-			randomSign = -1;
+		if ((int) Math.random() == 0) {
+			return error;
+		} else {
+			return error*(-1);
 		}
-		return error;
 
 	}
 

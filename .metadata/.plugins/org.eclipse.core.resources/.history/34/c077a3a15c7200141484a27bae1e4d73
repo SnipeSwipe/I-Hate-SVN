@@ -27,7 +27,6 @@ public abstract class Player implements PlayingInterface {
 	int min, max;
 	int bound;
 	int minKickSpeed, maxKickSpeed;
-	Random rand;
 
 	KeyEvent e;
 
@@ -48,7 +47,7 @@ public abstract class Player implements PlayingInterface {
 		this.color = color;
 
 		player = new Rectangle2D.Double(startx, starty, sizex, sizey);
-
+		
 		panel.setFocusable(true);
 		panel.requestFocusInWindow();
 	}
@@ -61,7 +60,7 @@ public abstract class Player implements PlayingInterface {
 		if (this.currenty <= this.min || this.currenty >= this.max) {
 			this.dy = this.dy * (-1);
 		}
-		// System.out.println("Not Working");
+		//System.out.println("Not Working");
 		this.currenty += this.dy;
 	}
 
@@ -71,7 +70,7 @@ public abstract class Player implements PlayingInterface {
 				if (this.dy < 0) {
 					this.dy = this.dy * (-1);
 					this.currenty += this.dy;
-					// System.out.println("Working");
+					//System.out.println("Working");
 				}
 			} else if (this.currenty > bally) {
 				if (this.dy > 0) {
@@ -107,43 +106,39 @@ public abstract class Player implements PlayingInterface {
 			g2d.fillRect(currentx, currenty, sizex, sizey);
 		}
 	}
-
-	public int getError(boolean isHuman) {
-
-		int error = 0;
-
-		switch (panel.diffLevel) {
-
+	
+	public int getError(boolean isHuman){
+		
+		int error= 0;
+		
+		switch(panel.diffLevel){
+		
 		case 1: {
-			if (isHuman)
-				error = 4 + (int) (Math.random() * 2);
-			else
-				error = 4 + (int) (Math.random() * 4);
-			break;
+				if(isHuman)
+					error = 4 + (int)(Math.random()*2);
+				else
+					error = 4 + (int)(Math.random()*4);
+				break;
+			}
+			case 2: {
+				if(isHuman)
+					error = 3 + (int)(Math.random()*3);
+				else
+					error = 3 + (int)(Math.random()*3);
+				break;
+			}
+			case 3: {
+				if(isHuman)
+					error = 1 + (int)(Math.random()*4);
+				else
+					error = 1 + (int)(Math.random()*2);
+				break;
+				
+			}
 		}
-		case 2: {
-			if (isHuman)
-				error = 3 + (int) (Math.random() * 3);
-			else
-				error = 3 + (int) (Math.random() * 3);
-			break;
-		}
-		case 3: {
-			if (isHuman)
-				error = 1 + (int) (Math.random() * 4);
-			else
-				error = 1 + (int) (Math.random() * 2);
-			break;
-
-		}
-		}
-		int randomSign = (int) (Math.random() * 2);
-
-		if (randomSign == 0) {
-			randomSign = -1;
-		}
+		
 		return error;
-
+		
 	}
 
 }

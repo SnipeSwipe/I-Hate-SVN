@@ -141,6 +141,7 @@ public abstract class Player implements PlayingInterface {
 
 		if (randomSign == 0) {
 			randomSign = -1;
+
 		}
 		return error;
 

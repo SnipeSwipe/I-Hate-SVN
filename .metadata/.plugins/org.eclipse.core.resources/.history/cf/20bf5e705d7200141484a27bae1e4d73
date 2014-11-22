@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import characters.Game;
 
-public class Ball implements Runnable { // singleton class
+public class Ball implements Runnable { //singleton class
 
 	private static Ball instance = null; // singleton instance field
 	private Ellipse2D.Double ball;
@@ -30,7 +30,7 @@ public class Ball implements Runnable { // singleton class
 
 	private Color color;
 	private PlayPanel panel;
-	// private Scoreboard board;
+	//private Scoreboard board;
 	Random rand;
 	JLabel image;
 	Game game;
@@ -93,7 +93,7 @@ public class Ball implements Runnable { // singleton class
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
+			
 			rand = new Random();
 
 			// calculate new position and move ball
@@ -101,13 +101,12 @@ public class Ball implements Runnable { // singleton class
 
 			// detecting collisions by checking intersection
 			// Refer to Playing interface for explanation of kick function
-
+		
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfAttackers; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.attackers[i]
 						.getPlayerRect())) {
-
-					int[] temp = this.panel.humanTeam.attackers[i].kick(dx, dy,
-							1);
+					
+					int[] temp = this.panel.humanTeam.attackers[i].kick(dx, dy, 1);
 					dx = temp[0];
 					dy = temp[1];
 
@@ -117,47 +116,48 @@ public class Ball implements Runnable { // singleton class
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfDefenders; i++) {
 				if (this.ball.intersects(this.panel.humanTeam.defenders[i]
 						.getPlayerRect())) {
-
+					
 					int[] temp;
-
+					
 					boolean shoot = rand.nextBoolean();
+					
+					if(shoot){
+						//temp = this.panel.humanTeam.defenders[i].pass();
 
-					if (shoot) {
-						// temp = this.panel.humanTeam.defenders[i].pass();
-
-						temp = this.panel.humanTeam.defenders[i]
-								.kick(dx, dy, 1);
-					} else
+						temp = this.panel.humanTeam.defenders[i].kick(dx,dy, 1);
+					}
+					else
 						temp = this.panel.humanTeam.defenders[i].pass();
-
+					
 					dx = temp[0];
 					dy = temp[1];
-
+					
 				}
 			}
 
 			for (int i = 0; i < this.panel.humanTeam.formation.noOfMidfielders; i++) {
-				if (this.ball.intersects(this.panel.humanTeam.midfielders[i]
-						.getPlayerRect())) {
+				if (this.ball.intersects(this.panel.humanTeam.midfielders[i].getPlayerRect())) {
 
 					int[] temp;
-
+					
 					boolean shoot = rand.nextBoolean();
+					
+					if(shoot){
+						temp = this.panel.humanTeam.midfielders[i].kick(dx,dy, 1);
+						//temp = this.panel.humanTeam.midfielders[i].pass();
 
-					if (shoot) {
-						temp = this.panel.humanTeam.midfielders[i].kick(dx, dy,
-								1);
-						// temp = this.panel.humanTeam.midfielders[i].pass();
-
-					} else
+						
+					}
+					else
 						temp = this.panel.humanTeam.midfielders[i].pass();
-
+					
 					dx = temp[0];
 					dy = temp[1];
-
+					
+					
 				}
 			}
-
+			
 			if (this.ball.intersects(this.panel.humanTeam.goalkeeper
 					.getPlayerRect())) {
 
@@ -165,15 +165,14 @@ public class Ball implements Runnable { // singleton class
 
 				dx = temp[0];
 				dy = temp[1];
-
+				
 			}
-
+			
 			for (int i = 0; i < this.panel.computerTeam.formation.noOfAttackers; i++) {
 				if (this.ball.intersects(this.panel.computerTeam.attackers[i]
 						.getPlayerRect())) {
 
-					int[] temp = this.panel.computerTeam.attackers[i].kick(dx,
-							dy, -1);
+					int[] temp = this.panel.computerTeam.attackers[i].kick(dx, dy, -1);
 					dx = temp[0];
 					dy = temp[1];
 				}
@@ -184,21 +183,23 @@ public class Ball implements Runnable { // singleton class
 						.getPlayerRect())) {
 
 					int[] temp;
-
+					
 					boolean shoot = rand.nextBoolean();
+					
+					if(shoot){
+						temp = this.panel.computerTeam.defenders[i].kick(dx,dy, -1);
+						//temp = this.panel.computerTeam.defenders[i].pass();
 
-					if (shoot) {
-						temp = this.panel.computerTeam.defenders[i].kick(dx,
-								dy, -1);
-
-					} else {
+					}
+					else{
+						//temp = this.panel.computerTeam.defenders[i].kick(dx,dy, -1);
 
 						temp = this.panel.computerTeam.defenders[i].pass();
 					}
-
+					
 					dx = temp[0];
 					dy = temp[1];
-
+										
 				}
 			}
 
@@ -207,17 +208,17 @@ public class Ball implements Runnable { // singleton class
 						.getPlayerRect())) {
 
 					int[] temp;
-
+					
 					boolean shoot = rand.nextBoolean();
+					
+					if(shoot){
+						temp = this.panel.computerTeam.midfielders[i].kick(dx,dy, -1);
+						//temp = this.panel.computerTeam.midfielders[i].pass();
 
-					if (shoot) {
-						temp = this.panel.computerTeam.midfielders[i].kick(dx,
-								dy, -1);
-						// temp = this.panel.computerTeam.midfielders[i].pass();
-
-					} else
+					}
+					else
 						temp = this.panel.computerTeam.midfielders[i].pass();
-
+					
 					dx = temp[0];
 					dy = temp[1];
 				}
@@ -229,9 +230,9 @@ public class Ball implements Runnable { // singleton class
 				int[] temp = this.panel.computerTeam.goalkeeper.pass();
 				dx = temp[0];
 				dy = temp[1];
-
+				
 			}
-
+			
 			// end of detecting collisions
 
 			checkGoal(); // method to check for goals
@@ -252,15 +253,20 @@ public class Ball implements Runnable { // singleton class
 			dx = -Math.abs(dx);
 			humanScored = false;
 		}
-		if (computerScored) {
+		if(computerScored){
 			dx = Math.abs(dx);
 			computerScored = false;
 		}
 
-		/*
-		 * if (Math.abs(dx) > 1) { if (dx > 0) { newx = oldx + dx - 1; } else if
-		 * (dx < 0) { newx = oldx + dx + 1; } } else{ newx = oldx + dx; }
-		 */
+		/*if (Math.abs(dx) > 1) {
+			if (dx > 0) {
+				newx = oldx + dx - 1;
+			} else if (dx < 0) {
+				newx = oldx + dx + 1;
+			}
+		} else{ 
+			newx = oldx + dx;
+		}*/
 		newx = oldx + dx;
 
 		newy = oldy + dy;
@@ -289,7 +295,7 @@ public class Ball implements Runnable { // singleton class
 			this.panel.game.scoreBoard.increaseScoreHuman();
 			try {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
-				// JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+				//JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.setLayout(null);
 				JLabel picLabel = new JLabel("GOAL!", JLabel.CENTER);
 				picLabel.setFont(new Font("Segoe UI", Font.BOLD, 150));
@@ -298,7 +304,7 @@ public class Ball implements Runnable { // singleton class
 				picLabel.setBounds(250, 120, 800, 400);
 
 				Thread.sleep(1000);
-
+				
 				panel.remove(picLabel);
 				panel.setLayout(new BorderLayout());
 			} catch (IOException | InterruptedException e1) {
@@ -308,8 +314,7 @@ public class Ball implements Runnable { // singleton class
 
 			speedInverse = 20;
 			dx = dy = 10;
-			ball.setFrame(1221, this.panel.computerTeam.goalkeeper.currenty,
-					size, size);
+			ball.setFrame(1150, 360, size, size);
 
 		} else if (((newy >= 250 - 15) && (newy <= 425 - 15)) && (newx < 0)) {
 			BufferedImage myPicture;
@@ -317,7 +322,7 @@ public class Ball implements Runnable { // singleton class
 
 			try {
 				myPicture = ImageIO.read(new File("resources/goal.png"));
-				// JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+				//JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 				panel.setLayout(null);
 				JLabel picLabel = new JLabel("GOAL!", JLabel.CENTER);
 				picLabel.setFont(new Font("Segoe UI", Font.BOLD, 150));
@@ -336,12 +341,11 @@ public class Ball implements Runnable { // singleton class
 			speedInverse = 20;
 			dx = dy = 10;
 
-			ball.setFrame(59, this.panel.humanTeam.goalkeeper.currenty, size,
-					size);
+			ball.setFrame(59, 360, size, size);
 		}
-
+		
 	}
-
+	
 	public int getBallY() {
 		// TODO Auto-generated method stub
 		return newy;
